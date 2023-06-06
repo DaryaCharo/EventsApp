@@ -11,6 +11,13 @@
 		E39A2E7A2A2F21B40021100E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E792A2F21B40021100E /* ContentView.swift */; };
 		E39A2E7C2A2F21B50021100E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39A2E7B2A2F21B50021100E /* Assets.xcassets */; };
 		E39A2E7F2A2F21B50021100E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39A2E7E2A2F21B50021100E /* Preview Assets.xcassets */; };
+		E39A2E892A2F21E70021100E /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E882A2F21E70021100E /* RealmManager.swift */; };
+		E39A2E8C2A2F221B0021100E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = E39A2E8B2A2F221B0021100E /* Realm */; };
+		E39A2E8E2A2F221B0021100E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E39A2E8D2A2F221B0021100E /* RealmSwift */; };
+		E39A2E912A2F22450021100E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = E39A2E902A2F22450021100E /* Moya */; };
+		E39A2E932A2F22520021100E /* MoyaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E922A2F22520021100E /* MoyaManager.swift */; };
+		E39A2E952A2F22AE0021100E /* EventsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E942A2F22AE0021100E /* EventsProvider.swift */; };
+		E39A2E9A2A2F240E0021100E /* EventsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E992A2F240E0021100E /* EventsData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,10 @@
 		E39A2E792A2F21B40021100E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E39A2E7B2A2F21B50021100E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E39A2E7E2A2F21B50021100E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E39A2E882A2F21E70021100E /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		E39A2E922A2F22520021100E /* MoyaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaManager.swift; sourceTree = "<group>"; };
+		E39A2E942A2F22AE0021100E /* EventsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsProvider.swift; sourceTree = "<group>"; };
+		E39A2E992A2F240E0021100E /* EventsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +37,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39A2E8E2A2F221B0021100E /* RealmSwift in Frameworks */,
+				E39A2E8C2A2F221B0021100E /* Realm in Frameworks */,
+				E39A2E912A2F22450021100E /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,9 +65,10 @@
 		E39A2E762A2F21B40021100E /* EventsApp */ = {
 			isa = PBXGroup;
 			children = (
-				E39A2E772A2F21B40021100E /* EventsAppApp.swift */,
-				E39A2E792A2F21B40021100E /* ContentView.swift */,
-				E39A2E7B2A2F21B50021100E /* Assets.xcassets */,
+				E39A2E862A2F21C60021100E /* SupportFiles */,
+				E39A2E852A2F21BA0021100E /* View */,
+				E39A2E962A2F23A60021100E /* Model */,
+				E39A2E872A2F21D30021100E /* Services */,
 				E39A2E7D2A2F21B50021100E /* Preview Content */,
 			);
 			path = EventsApp;
@@ -65,6 +80,41 @@
 				E39A2E7E2A2F21B50021100E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E39A2E852A2F21BA0021100E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E39A2E792A2F21B40021100E /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E39A2E862A2F21C60021100E /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E39A2E772A2F21B40021100E /* EventsAppApp.swift */,
+				E39A2E7B2A2F21B50021100E /* Assets.xcassets */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		E39A2E872A2F21D30021100E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E39A2E882A2F21E70021100E /* RealmManager.swift */,
+				E39A2E922A2F22520021100E /* MoyaManager.swift */,
+				E39A2E942A2F22AE0021100E /* EventsProvider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E39A2E962A2F23A60021100E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E39A2E992A2F240E0021100E /* EventsData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +133,11 @@
 			dependencies = (
 			);
 			name = EventsApp;
+			packageProductDependencies = (
+				E39A2E8B2A2F221B0021100E /* Realm */,
+				E39A2E8D2A2F221B0021100E /* RealmSwift */,
+				E39A2E902A2F22450021100E /* Moya */,
+			);
 			productName = EventsApp;
 			productReference = E39A2E742A2F21B40021100E /* EventsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +166,10 @@
 				Base,
 			);
 			mainGroup = E39A2E6B2A2F21B40021100E;
+			packageReferences = (
+				E39A2E8A2A2F221B0021100E /* XCRemoteSwiftPackageReference "realm-swift" */,
+				E39A2E8F2A2F22450021100E /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = E39A2E752A2F21B40021100E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +196,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E39A2E952A2F22AE0021100E /* EventsProvider.swift in Sources */,
 				E39A2E7A2A2F21B40021100E /* ContentView.swift in Sources */,
+				E39A2E932A2F22520021100E /* MoyaManager.swift in Sources */,
+				E39A2E9A2A2F240E0021100E /* EventsData.swift in Sources */,
 				E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */,
+				E39A2E892A2F21E70021100E /* RealmManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +400,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E39A2E8A2A2F221B0021100E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.37.0;
+			};
+		};
+		E39A2E8F2A2F22450021100E /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E39A2E8B2A2F221B0021100E /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E39A2E8A2A2F221B0021100E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		E39A2E8D2A2F221B0021100E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E39A2E8A2A2F221B0021100E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		E39A2E902A2F22450021100E /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E39A2E8F2A2F22450021100E /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E39A2E6C2A2F21B40021100E /* Project object */;
 }
