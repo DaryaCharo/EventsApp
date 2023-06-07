@@ -16,14 +16,16 @@ struct EventsData: Decodable {
     let lat: Double
     let lon: Double
     let image: String
-    let squareLogo: SquareLogo
+    let squareLogo: [SquareLogo]
     
     enum CodingKeys: String, CodingKey {
-        case id, type, title, lat, lon, image
+        case id, type, title, lat, lon, image, squareLogo
         case shortTitle = "short_title"
         case viewType = "view_type"
     }
 }
+
+//
 
 struct SquareLogo: Decodable {
     let path: String

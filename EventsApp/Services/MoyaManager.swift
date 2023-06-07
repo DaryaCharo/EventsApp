@@ -9,23 +9,54 @@ import Foundation
 import Moya
 
 protocol MoyaAPIManagerProtocol: AnyObject {
-    //еще добавлю
-    func getPubsAndBarsList() async throws -> [PubsAndBarsData]
+    func getPlacesList(eventType: EventType) async throws -> [EventsData]
+    func getPosterEventsData(eventType: EventsPosterType) async throws -> [EventsPosterData]
 }
 
 class MoyaAPIManager: MoyaAPIManagerProtocol {
-    private let eventsProvider: MoyaProvider<EventsAPIProvider>
     
-    init() {
-        eventsProvider = MoyaProvider<EventsAPIProvider>()
+    private let eventsProvider = MoyaProvider<EventType>()
+    private let eventsPosterProvider = MoyaProvider<EventsPosterType>()
+
+    
+    //MARK: - get poster events (kuda go API)
+    
+    func getPosterEventsData(eventType: EventsPosterType) async throws -> [EventsPosterData] {
+        try await getPosterEvents(eventType: eventType)
     }
     
-    //накидала 1, потом добавлю ещё
-//    MARK: - get pabs/bars list
-    func getPabAndPBarsList() async throws -> [EventsData] {
+    //MARK: - get places list (relax API) -
+
+    func getPlacesList(eventType: EventType) async throws -> [EventsData] {
+        try await getPlaces(eventType: eventType)
+    }
+    
+    private func getPosterEvents(eventType: EventsPosterType) async throws -> [EventsPosterData] {
         return try await withCheckedThrowingContinuation { continuation in
-            eventsProvider.request(.getPubsAndBarsList) { result in
+            eventsPosterProvider.request(eventType) { result in
                 switch result {
+                    
+                case .success(let response):
+                    
+                    do {
+                        let places = try response.map([EventsPosterData].self)
+                        continuation.resume(with: .success(places))
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                    
+                case .failure(let error):
+                    continuation.resume(with: .failure(error))
+                }
+            }
+        }
+    }
+    
+    private func getPlaces(eventType: EventType) async throws -> [EventsData] {
+        return try await withCheckedThrowingContinuation { continuation in
+            eventsProvider.request(eventType) { result in
+                switch result {
+                    
                 case .success(let response):
                     
                     do {
@@ -41,9 +72,9 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
             }
         }
     }
-    //
 }
 
 struct Constants {
     static var baseURL = "https://api2.relax.by/"
+    static var placesURL = "v=2.0&tree=searchTreeId&method=place.getForMap&cityId=1"
 }
