@@ -8,35 +8,33 @@
 import Foundation
 
 struct EventsData: Decodable {
-    let id: Int
-    let type: String
-    let title: String
-    let shortTitle: String
-    let viewType: String
-    let lat: Double
-    let lon: Double
-    let image: String
-    let squareLogo: [SquareLogo]
+    let lang: String
+    let expand: String
+    let numberOfEvents: Int
+    let fields: EventFields
+    let orderBy: EventOrder
+    let location: String
+    let actualSince: Date
+    let actualUntil: Date
+    let isFree: Bool
+    let categories: Categories
+    let coordinates: Coordinates
+    let radius: CoordinateRadius
     
     enum CodingKeys: String, CodingKey {
-        case id, type, title, lat, lon, image, squareLogo
-        case shortTitle = "short_title"
-        case viewType = "view_type"
+        case lang, fields, location, categories, coordinates, radius, expand,
+             numberOfEvents = "page_size",
+             orderBy = "order_by",
+             actualSince = "actual_since",
+             actualUntil = "actual_until",
+             isFree = "is_free"
     }
 }
 
-//
+enum Language: String {
+    case ru, en
+}
 
-struct SquareLogo: Decodable {
-    let path: String
-    let width: Int
-    let height: Int
-    let entity: String
-    let server: String
-    let filename: String
-    
-    enum CodingKeys: String, CodingKey {
-        case path, width, height, entity, server, filename
-    }
-    
+enum Cities: String {
+    case msk, spb, nnb
 }

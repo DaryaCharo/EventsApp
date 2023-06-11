@@ -7,20 +7,17 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct StartPage: View {
+    
+    @StateObject var vm = StartPageVM()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        Text(vm.title)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        StartPage()
     }
 }

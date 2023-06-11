@@ -9,59 +9,23 @@ import Foundation
 import Moya
 
 protocol MoyaAPIManagerProtocol: AnyObject {
-    func getPlacesList(eventType: EventType) async throws -> [EventsData]
-    func getPosterEventsData(eventType: EventsPosterType) async throws -> [EventsPosterData]
+    func getEvents(events: Events) async throws -> [EventsData]
 }
 
 class MoyaAPIManager: MoyaAPIManagerProtocol {
     
-    private let eventsProvider = MoyaProvider<EventType>()
-    private let eventsPosterProvider = MoyaProvider<EventsPosterType>()
-
+    private let eventsProvider = MoyaProvider<Events>()
     
-    //MARK: - get poster events (kuda go API)
-    
-    func getPosterEventsData(eventType: EventsPosterType) async throws -> [EventsPosterData] {
-        try await getPosterEvents(eventType: eventType)
-    }
-    
-    //MARK: - get places list (relax API) -
-
-    func getPlacesList(eventType: EventType) async throws -> [EventsData] {
-        try await getPlaces(eventType: eventType)
-    }
-    
-    private func getPosterEvents(eventType: EventsPosterType) async throws -> [EventsPosterData] {
+    func getEvents(events: Events) async throws -> [EventsData] {
         return try await withCheckedThrowingContinuation { continuation in
-            eventsPosterProvider.request(eventType) { result in
+            eventsProvider.request(events) { result in
                 switch result {
                     
                 case .success(let response):
                     
                     do {
-                        let places = try response.map([EventsPosterData].self)
-                        continuation.resume(with: .success(places))
-                    } catch {
-                        continuation.resume(throwing: error)
-                    }
-                    
-                case .failure(let error):
-                    continuation.resume(with: .failure(error))
-                }
-            }
-        }
-    }
-    
-    private func getPlaces(eventType: EventType) async throws -> [EventsData] {
-        return try await withCheckedThrowingContinuation { continuation in
-            eventsProvider.request(eventType) { result in
-                switch result {
-                    
-                case .success(let response):
-                    
-                    do {
-                        let places = try response.map([EventsData].self)
-                        continuation.resume(with: .success(places))
+                        let eventsList = try response.map([EventsData].self)
+                        continuation.resume(with: .success(eventsList))
                     } catch {
                         continuation.resume(throwing: error)
                     }
@@ -75,6 +39,16 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
 }
 
 struct Constants {
-    static var baseURL = "https://api2.relax.by/"
+    static var baseURL = "https://kudago.com/public-api/v1.4/"
+    static var searchURL = "/search/"
+    static var eventListURL = "/lists/"
+    static var eventOfTheDayURL = "/events-of-the-day/"
+    static var eventsURL = "/events/"
+    static var movieShowingsURL = "/movie-showings/"
+    static var listOfSingers = "/agents/"
+    
+    static var eventCategories = "/event-categories/"
+    static var placesCategories = "/place-categories/"
+    
     static var placesURL = "v=2.0&tree=searchTreeId&method=place.getForMap&cityId=1"
 }
