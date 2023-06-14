@@ -23,19 +23,6 @@ struct CurrentDayEvents: Decodable {
     }
 }
 
-struct CurrentEventFields: Decodable {
-    let date: String?
-    let event: CurrentEvent
-    let city: String?
-    let title: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case date, title,
-             event = "object",
-             city = "location"
-    }
-}
-
 struct CurrentEvent: Decodable {
     let id: Int
     let type: String
@@ -51,7 +38,7 @@ struct CurrentEvent: Decodable {
     let genres: [Genres]?
     let ageRestriction: String?
     
-    init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws { 
         let container: KeyedDecodingContainer<CurrentEvent.CodingKeys> = try decoder.container(keyedBy: CurrentEvent.CodingKeys.self)
         
         self.id = try container.decode(Int.self, forKey: CurrentEvent.CodingKeys.id)

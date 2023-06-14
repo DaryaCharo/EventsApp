@@ -43,6 +43,13 @@
 		E39A2F002A3792A00021100E /* Font + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EFE2A3792A00021100E /* Font + Extension.swift */; };
 		E39A2F022A37932C0021100E /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F012A37932C0021100E /* RealmData.swift */; };
 		E39A2F042A39EC3C0021100E /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F032A39EC3C0021100E /* SplashScreenView.swift */; };
+		E39A2F062A3A39AE0021100E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F052A3A39AE0021100E /* HomeView.swift */; };
+		E39A2F082A3A39B80021100E /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F072A3A39B80021100E /* HomeVM.swift */; };
+		E39A2F0A2A3A55AA0021100E /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F092A3A55AA0021100E /* TabBarView.swift */; };
+		E39A2F0C2A3A56520021100E /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F0B2A3A56520021100E /* EventListView.swift */; };
+		E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F0D2A3A56A00021100E /* MapView.swift */; };
+		E39A2F102A3A57490021100E /* EventCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F0F2A3A57490021100E /* EventCalendarView.swift */; };
+		E39A2F122A3A58F90021100E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F112A3A58F90021100E /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +85,13 @@
 		E39A2EFE2A3792A00021100E /* Font + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font + Extension.swift"; sourceTree = "<group>"; };
 		E39A2F012A37932C0021100E /* RealmData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
 		E39A2F032A39EC3C0021100E /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		E39A2F052A3A39AE0021100E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E39A2F072A3A39B80021100E /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
+		E39A2F092A3A55AA0021100E /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		E39A2F0B2A3A56520021100E /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		E39A2F0D2A3A56A00021100E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E39A2F0F2A3A57490021100E /* EventCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarView.swift; sourceTree = "<group>"; };
+		E39A2F112A3A58F90021100E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +153,13 @@
 				E39A2E792A2F21B40021100E /* StartPage.swift */,
 				E39A2EBC2A3254AF0021100E /* StartPageVM.swift */,
 				E39A2F032A39EC3C0021100E /* SplashScreenView.swift */,
+				E39A2F052A3A39AE0021100E /* HomeView.swift */,
+				E39A2F072A3A39B80021100E /* HomeVM.swift */,
+				E39A2F092A3A55AA0021100E /* TabBarView.swift */,
+				E39A2F112A3A58F90021100E /* ProfileView.swift */,
+				E39A2F0D2A3A56A00021100E /* MapView.swift */,
+				E39A2F0B2A3A56520021100E /* EventListView.swift */,
+				E39A2F0F2A3A57490021100E /* EventCalendarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -307,9 +328,13 @@
 			files = (
 				E39A2E952A2F22AE0021100E /* EventProvider.swift in Sources */,
 				E39A2EFF2A3792A00021100E /* Color + Extension.swift in Sources */,
+				E39A2F0A2A3A55AA0021100E /* TabBarView.swift in Sources */,
 				E39A2EBD2A3254AF0021100E /* StartPageVM.swift in Sources */,
+				E39A2F082A3A39B80021100E /* HomeVM.swift in Sources */,
 				E39A2EC02A335D960021100E /* EventsData.swift in Sources */,
 				E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */,
+				E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */,
+				E39A2F0C2A3A56520021100E /* EventListView.swift in Sources */,
 				E39A2EC12A335D960021100E /* EventFields.swift in Sources */,
 				E39A2E932A2F22520021100E /* MoyaManager.swift in Sources */,
 				E39A2F042A39EC3C0021100E /* SplashScreenView.swift in Sources */,
@@ -320,9 +345,12 @@
 				E39A2EEF2A3634940021100E /* EventResult.swift in Sources */,
 				E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */,
 				E39A2F022A37932C0021100E /* RealmData.swift in Sources */,
+				E39A2F062A3A39AE0021100E /* HomeView.swift in Sources */,
 				E39A2ED12A34BC150021100E /* EventImages.swift in Sources */,
 				E39A2EF32A37780C0021100E /* (null) in Sources */,
 				E39A2F002A3792A00021100E /* Font + Extension.swift in Sources */,
+				E39A2F102A3A57490021100E /* EventCalendarView.swift in Sources */,
+				E39A2F122A3A58F90021100E /* ProfileView.swift in Sources */,
 				E39A2ED52A34C2060021100E /* ExpandList.swift in Sources */,
 				E39A2EF12A375F690021100E /* (null) in Sources */,
 				E39A2E892A2F21E70021100E /* RealmManager.swift in Sources */,

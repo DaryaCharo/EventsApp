@@ -25,6 +25,7 @@ extension Date {
             return formatter.string(from: date)
         case .time:
             formatter.dateFormat = "HH:mm a"
+            
             return formatter.string(from: date)
         }
     }
