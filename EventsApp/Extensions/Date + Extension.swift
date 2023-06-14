@@ -9,27 +9,40 @@ import Foundation
 
 extension Date {
     
-    func getDate() -> String {
+    func getDate(dateType: DateType, unix: Int = 0) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy"
-        return formatter.string(from: self)
-    }
-    
-    func getDate(unix: Int) -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(unix))
-        let formatter = DateFormatter()
         
-        formatter.dateFormat = "EEEE, d, yyyy"
-        
-        return formatter.string(from: date)
+        switch dateType {
+        case .monthDayYear:
+            formatter.dateFormat = dateType.getDate
+            return formatter.string(from: self)
+        case .yearMonthDay:
+            formatter.dateFormat = dateType.getDate
+            return formatter.string(from: self)
+        case .weekDayDayYear:
+            formatter.dateFormat = dateType.getDate
+            return formatter.string(from: date)
+        case .time:
+            formatter.dateFormat = "HH:mm a"
+            return formatter.string(from: date)
+        }
     }
+}
+
+enum DateType {
+    case monthDayYear, weekDayDayYear, time, yearMonthDay
     
-    func getTime(unix: Int) -> String {
-        let time = Date(timeIntervalSince1970: TimeInterval(unix))
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "HH:mm a"
-        
-        return formatter.string(from: time)
+    var getDate: String {
+        switch self {
+        case .monthDayYear:
+            return "MMM d, yyyy"
+        case .weekDayDayYear:
+            return "EEEE, d, yyyy"
+        case .time:
+            return "HH:mm a"
+        case .yearMonthDay:
+            return "yyyy-MM-dd"
+        }
     }
 }

@@ -9,23 +9,67 @@ import Foundation
 import Moya
 
 protocol MoyaAPIManagerProtocol: AnyObject {
-    func getEvents(events: Events) async throws -> [EventsData]
+    func getEventResults(numberOfEvents count: Int,
+                         page: String?,
+                         results: [CurrentDayEvents],
+                         lang: String,
+                         textFormat: String,
+                         location: String,
+                         date: String,
+                         expand: String
+    ) async throws -> EventResult
 }
 
 class MoyaAPIManager: MoyaAPIManagerProtocol {
+        
+    private lazy var eventsProvider: MoyaProvider<Events> = {
+        MoyaProvider<Events>(plugins: [networkPlugin])
+    }()
     
-    private let eventsProvider = MoyaProvider<Events>()
+    private lazy var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
     
-    func getEvents(events: Events) async throws -> [EventsData] {
+    private lazy var networkPlugin: NetworkLoggerPlugin = {
+        let formatter = NetworkLoggerPlugin.Configuration.Formatter(
+            requestData: jsonDataFormatter,
+            responseData: jsonDataFormatter)
+        
+        let configuration = NetworkLoggerPlugin.Configuration(
+            formatter: formatter,
+            output: NetworkLoggerPlugin.Configuration.defaultOutput,
+            logOptions: .verbose
+        )
+        return NetworkLoggerPlugin(configuration: configuration)
+    }()
+    
+    func getEventResults(numberOfEvents count: Int,
+                         page: String?,
+                         results: [CurrentDayEvents],
+                         lang: String = "ru",
+                         textFormat: String = "text",
+                         location: String = "msk",
+                         date: String = "2023-06-14",
+                         expand: String = "object"
+    ) async throws -> EventResult {
         return try await withCheckedThrowingContinuation { continuation in
-            eventsProvider.request(events) { result in
+            eventsProvider.request(.getEventResult(count: count,
+                                                    page: page,
+                                                    results: results,
+                                                    lang: lang,
+                                                    textFormat: textFormat,
+                                                    location: location,
+                                                    date: date,
+                                                    expand: expand
+                                                  )) { result in
                 switch result {
-                    
                 case .success(let response):
                     
                     do {
-                        let eventsList = try response.map([EventsData].self)
-                        continuation.resume(with: .success(eventsList))
+                        let results = try response.map(EventResult.self)
+                        continuation.resume(with: .success(results))
                     } catch {
                         continuation.resume(throwing: error)
                     }
@@ -36,10 +80,27 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
             }
         }
     }
+    
+    private func jsonDataFormatter(_ data: Data) -> String {
+        do {
+            let dataAsJSON = try JSONSerialization.jsonObject(with: data)
+            let prettyData = try JSONSerialization.data(withJSONObject: dataAsJSON,
+                                                        options: .prettyPrinted)
+            guard let result = String(data: prettyData,
+                                      encoding: String.Encoding.utf8) else {
+                return String(decoding: data,
+                              as: UTF8.self)
+            }
+            return result
+        } catch {
+            return String(decoding: data,
+                          as: UTF8.self)
+        }
+    }
 }
 
 struct Constants {
-    static var baseURL = "https://kudago.com/public-api/v1.4/"
+    static var baseURL = "https://kudago.com/public-api/v1.4"
     static var searchURL = "/search/"
     static var eventListURL = "/lists/"
     static var eventOfTheDayURL = "/events-of-the-day/"

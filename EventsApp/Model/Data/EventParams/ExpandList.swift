@@ -9,7 +9,6 @@ import Foundation
 
 struct ExpandList: Decodable {
 //    let events: EventsData
-    let currentEvent: CurrentEventFields
     let object: CurrentEvent
     let dates: Dates
     let place: Place
@@ -17,7 +16,6 @@ struct ExpandList: Decodable {
     
     //здесь небольшая загвоздка. Мне нужно разные expand создать для разных events? У них разные параметры
     enum CodingKeys: String, CodingKey {
-        case object, dates, images, place,
-             currentEvent = "event"
+        case object, dates, images, place	
     }
 }

@@ -8,32 +8,23 @@
 import SwiftUI
 
 final class StartPageVM: ObservableObject {
-    private let moyaManager = MoyaAPIManager()
-    @Published var result: [EventsData] = []
+    let moyaManager = MoyaAPIManager()
+    @Published var results: [CurrentDayEvents] = []
+    var count = 0
+    var page = ""
     
-    @Published var title = ""
-    var listOfEvents = [String]()
-    
-    func getEvents(events: Events, params: EventFields, expand: ExpandList) async throws {
-        do {
-            var data = try await moyaManager.getEvents(events: .getEvents(lang: "en",
-                                                                          expand: [expand.object.description,
-                                                                                   expand.place.address,
-                                                                                   expand.dates.start.getDate()],
-                                                                          fields: [params.description,
-                                                                                   params.price,
-                                                                                   params.title,
-                                                                                   "\(params.categories)",
-                                                                                   "\(params.dates)"],
-                                                                          location: "msk"))
-            result += data
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        //заполнение данных на странице
-        ForEach(result, id: \.fields.id) { object in
-            title = object.fields.title
+    func getEvents() {
+        DispatchQueue.main.async {
+            Task {
+                do {
+                    let data = try await self.moyaManager.getEventResults(numberOfEvents: self.count,
+                                                                     page: self.page,
+                                                                     results: self.results)
+                    self.results += data.results
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 }

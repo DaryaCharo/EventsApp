@@ -8,6 +8,7 @@
 import Foundation
 
 struct Categories: Decodable {
+    
     let lang: String
     let fields: CategoryFields
     let orderBy: EventOrder

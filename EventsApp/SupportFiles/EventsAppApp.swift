@@ -11,7 +11,7 @@ import SwiftUI
 struct EventsAppApp: App {
     var body: some Scene {
         WindowGroup {
-            StartPage()
+            SplashScreenView()
         }
     }
 }

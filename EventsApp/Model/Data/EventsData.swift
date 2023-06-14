@@ -30,11 +30,3 @@ struct EventsData: Decodable {
              isFree = "is_free"
     }
 }
-
-enum Language: String {
-    case ru, en
-}
-
-enum Cities: String {
-    case msk, spb, nnb
-}

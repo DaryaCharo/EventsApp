@@ -9,42 +9,54 @@ import Foundation
 import Moya
 
 enum Events {
-    case getEvents(lang: String,
-                   expand: [String],
-                   fields: [String],
-                   location: String)
+    case getEventResult(count: Int,
+                        page: String?,
+                        results: [CurrentDayEvents],
+                        lang: String?,
+                        textFormat: String?,
+                        location: String?,
+                        date: String?,
+                        expand: String
+    )
 }
 
 extension Events: TargetType {
     var baseURL: URL {
         switch self {
-        case .getEvents:
+        case .getEventResult:
             return URL(string: Constants.baseURL)!
         }
     }
     
     var path: String {
         switch self {
-        case .getEvents:
+        case .getEventResult:
             return Constants.eventOfTheDayURL
         }
     }
-    //пока не трогала
-        var parameters: [String: Any]? {
-            var params = [String: Any]()
-            switch self {
-            case .getEvents(let lang,
-                            let expand,
-                            let fields,
-                            let location):
-                params["lang"] = lang
-                params["expand"] = expand
-                params["fields"] = fields
-                params["location"] = location
-                
-                return params
-            }
+    var parameters: [String: Any]? {
+        var params = [String: Any]()
+        switch self {
+        case .getEventResult(let count,
+                             let page,
+                             let results,
+                             let lang,
+                             let textFormat,
+                             let location,
+                             let date,
+                             let expand
+        ):
+            params["count"] = count
+            params["next"] = page
+            params["results"] = results
+            params["lang"] = lang
+            params["text_format"] = textFormat
+            params["location"] = location
+            params["date"] = date
+            params["expand"] = expand
+            return params
         }
+    }
     
     var parameterEncoding: ParameterEncoding {
         URLEncoding.default

@@ -8,15 +8,13 @@
 import Foundation
 
 struct EventResult: Decodable {
-    let numberOfEvents: Int
-    let nextPage: String?
-    let previousPage: String?
-    let result: CurrentDayEvents
+    let numberOfEvents: Int?
+    let page: String?
+    let results: [CurrentDayEvents]
     
     enum CodingKeys: String, CodingKey {
-        case result,
+        case results,
              numberOfEvents = "count",
-             nextPage = "next",
-             previousPage = "previous"
+             page = "next"
     }
 }

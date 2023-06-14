@@ -10,10 +10,9 @@ import Foundation
 struct EventImages: Decodable {
     let image: String
     let source: ImageSource
-    let thumbnails: [String]
     
     enum CodingKeys: String, CodingKey {
-        case image, source, thumbnails
+        case image, source
     }
 }
 
