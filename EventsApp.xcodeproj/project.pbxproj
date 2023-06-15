@@ -24,7 +24,6 @@
 		E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EC62A348BD70021100E /* Adress&Coordinates.swift */; };
 		E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EC82A348CFA0021100E /* EventOrder.swift */; };
 		E39A2ECC2A348D2B0021100E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2ECB2A348D2B0021100E /* Categories.swift */; };
-		E39A2ECF2A34B9D90021100E /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2ECE2A34B9D90021100E /* Date + Extension.swift */; };
 		E39A2ED12A34BC150021100E /* EventImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2ED02A34BC150021100E /* EventImages.swift */; };
 		E39A2ED32A34BD6E0021100E /* CurrentDayEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2ED22A34BD6E0021100E /* CurrentDayEvents.swift */; };
 		E39A2ED52A34C2060021100E /* ExpandList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2ED42A34C2060021100E /* ExpandList.swift */; };
@@ -68,7 +67,6 @@
 		E39A2EC62A348BD70021100E /* Adress&Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adress&Coordinates.swift"; sourceTree = "<group>"; };
 		E39A2EC82A348CFA0021100E /* EventOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOrder.swift; sourceTree = "<group>"; };
 		E39A2ECB2A348D2B0021100E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
-		E39A2ECE2A34B9D90021100E /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		E39A2ED02A34BC150021100E /* EventImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventImages.swift; sourceTree = "<group>"; };
 		E39A2ED22A34BD6E0021100E /* CurrentDayEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDayEvents.swift; sourceTree = "<group>"; };
 		E39A2ED42A34C2060021100E /* ExpandList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandList.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 			children = (
 				E39A2EFD2A3792A00021100E /* Color + Extension.swift */,
 				E39A2EFE2A3792A00021100E /* Font + Extension.swift */,
-				E39A2ECE2A34B9D90021100E /* Date + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,7 +354,6 @@
 				E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */,
 				E39A2EFC2A37830F0021100E /* AppDelegate.swift in Sources */,
 				E39A2ECC2A348D2B0021100E /* Categories.swift in Sources */,
-				E39A2ECF2A34B9D90021100E /* Date + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

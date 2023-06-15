@@ -32,7 +32,7 @@ struct SplashScreenView: View {
                 Text("Acara")
                     .font(.customFont(type: .extraBold,
                                       size: 70))
-                    .foregroundColor(.customColor(type: .base).opacity(0.9))
+                    .foregroundColor(.customPurple).opacity(0.9)
             }
             .scaleEffect(size)
             .opacity(opacity)
@@ -47,7 +47,7 @@ struct SplashScreenView: View {
                 .padding(.bottom, 30)
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.isActive.toggle()
             }
         }
@@ -64,12 +64,12 @@ struct SplashScreenView: View {
                                            dashPhase: 3))
                 .frame(maxWidth: 70)
                 .rotationEffect(Angle(degrees: 360))
-                .foregroundColor(.customColor(type: .base))
+                .foregroundColor(.customPurple)
                 
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                withAnimation(.linear(duration: 1).delay(0.1).repeatCount(2))  {
+                withAnimation(.linear(duration: 1).delay(0.1).repeatForever(autoreverses: true))  {
                     revealStroke.toggle()
                     isLoading.toggle()
                 }
