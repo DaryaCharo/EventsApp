@@ -8,5 +8,7 @@
 import SwiftUI
 
 final class StartPageVM: ObservableObject {
+    @Published var isSignIn = false
+    
     
 }

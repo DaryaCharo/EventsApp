@@ -9,20 +9,8 @@ import Foundation
 
 struct Categories: Decodable {
     
-    let lang: String
-    let fields: CategoryFields
-    let orderBy: EventOrder
-    
-    enum CodingKeys: String, CodingKey {
-        case lang, fields, orderBy
-    }
-}
-
-//fields
-
-struct CategoryFields: Decodable {
     let id: Int
-    let name: String
+    let name: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name

@@ -16,14 +16,15 @@ enum Events {
                         textFormat: String?,
                         location: String?,
                         date: String?,
-                        expand: String
-    )
+                        expand: String)
+    
+    case getEventGenres(categories: [Categories])
 }
 
 extension Events: TargetType {
     var baseURL: URL {
         switch self {
-        case .getEventResult:
+        case .getEventResult, .getEventGenres:
             return URL(string: Constants.baseURL)!
         }
     }
@@ -32,6 +33,8 @@ extension Events: TargetType {
         switch self {
         case .getEventResult:
             return Constants.eventOfTheDayURL
+        case .getEventGenres:
+            return Constants.eventCategories
         }
     }
     var parameters: [String: Any]? {
@@ -44,8 +47,7 @@ extension Events: TargetType {
                              let textFormat,
                              let location,
                              let date,
-                             let expand
-        ):
+                             let expand):
             params["count"] = count
             params["next"] = page
             params["results"] = results
@@ -54,8 +56,11 @@ extension Events: TargetType {
             params["location"] = location
             params["date"] = date
             params["expand"] = expand
-            return params
+            
+        case .getEventGenres(let categories):
+            params["categories"] = categories
         }
+        return params
     }
     
     var parameterEncoding: ParameterEncoding {

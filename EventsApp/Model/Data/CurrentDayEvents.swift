@@ -26,6 +26,7 @@ struct CurrentDayEvents: Decodable {
 struct CurrentEvent: Decodable {
     let id: Int
     let type: String
+    let title: String?
     let favouritesCount: Int?
     let description: String?
     let dateRange: Dates?
@@ -43,6 +44,7 @@ struct CurrentEvent: Decodable {
         
         self.id = try container.decode(Int.self, forKey: CurrentEvent.CodingKeys.id)
         self.type = try container.decode(String.self, forKey: CurrentEvent.CodingKeys.type)
+        self.title = try container.decodeIfPresent(String.self, forKey: CurrentEvent.CodingKeys.title)
         self.favouritesCount = try container.decodeIfPresent(Int.self, forKey: CurrentEvent.CodingKeys.favouritesCount)
         self.description = try container.decodeIfPresent(String.self, forKey: CurrentEvent.CodingKeys.description)?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         self.dateRange = try container.decodeIfPresent(Dates.self, forKey: CurrentEvent.CodingKeys.dateRange)
@@ -61,7 +63,7 @@ struct CurrentEvent: Decodable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, description, country, year, genres, poster,
+        case id, title, description, country, year, genres, poster,
              images = "first_image",
              dateRange = "daterange",
              type = "ctype",
@@ -79,5 +81,14 @@ struct Genres: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case id, name
+    }
+}
+
+struct EventImages: Decodable {
+    let image: String?
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case image
     }
 }

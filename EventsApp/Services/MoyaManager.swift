@@ -16,8 +16,9 @@ protocol MoyaAPIManagerProtocol: AnyObject {
                          textFormat: String,
                          location: String,
                          date: String,
-                         expand: String
-    ) async throws -> EventResult
+                         expand: String) async throws -> EventResult
+    
+    func getCategories(categories: [Categories]) async throws -> [Categories]
 }
 
 class MoyaAPIManager: MoyaAPIManagerProtocol {
@@ -52,8 +53,7 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                          textFormat: String = "text",
                          location: String = "msk",
                          date: String = "2023-06-14",
-                         expand: String = "object"
-    ) async throws -> EventResult {
+                         expand: String = "object") async throws -> EventResult {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getEventResult(count: count,
                                                     page: page,
@@ -62,13 +62,32 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                                                     textFormat: textFormat,
                                                     location: location,
                                                     date: date,
-                                                    expand: expand
-                                                  )) { result in
+                                                    expand: expand)) { result in
                 switch result {
                 case .success(let response):
                     
                     do {
                         let results = try response.map(EventResult.self)
+                        continuation.resume(with: .success(results))
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                    
+                case .failure(let error):
+                    continuation.resume(with: .failure(error))
+                }
+            }
+        }
+    }
+    
+    func getCategories(categories: [Categories]) async throws -> [Categories] {
+        return try await withCheckedThrowingContinuation { continuation in
+            eventsProvider.request(.getEventGenres(categories: categories)) { result in
+                switch result {
+                case .success(let response):
+                    
+                    do {
+                        let results = try response.map([Categories].self)
                         continuation.resume(with: .success(results))
                     } catch {
                         continuation.resume(throwing: error)

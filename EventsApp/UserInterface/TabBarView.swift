@@ -15,7 +15,7 @@ struct TabBarView: View {
                     Label("",
                           image: "Home")
                 }
-            EventListView()
+            EventNoteView()
                 .tabItem {
                     Label("",
                           image: "Notification")

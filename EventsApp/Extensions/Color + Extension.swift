@@ -13,5 +13,7 @@ extension Color {
     static let customYellow = Color("customYellow")
     static let customRed = Color("customRed")
     static let customPink = Color("customPink")
+    static let customWindowBack = Color("customWindowBack")
+    static let dateBack = Color("dateBack")
     
 }

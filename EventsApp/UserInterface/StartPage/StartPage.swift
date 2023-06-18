@@ -13,6 +13,8 @@ struct StartPage: View {
     
     var body: some View {
         VStack {
+//            vm.isSignIn ? HomeView() : SignInView()
+            HomeView()
         }
     }
 }

@@ -1,0 +1,61 @@
+//
+//  SearchView.swift
+//  EventsApp
+//
+//  Created by Darya Charniankova on 18.06.23.
+//
+
+import SwiftUI
+
+struct SearchView: View {
+    @Binding var searchText: String
+    @State private var listOfEventIDs: [Int] = []
+    
+    var body: some View {
+        VStack {
+            HStack {
+                CustomButton(type: .back)
+                
+                Text("Search")
+                    .font(.customFont(type: .semiBold, size: 24))
+                
+                Spacer()
+            }
+            
+            HStack {
+                TextField("Search",
+                          text: $searchText)
+                .padding()
+                .background(Color.customWindowBack)
+                .cornerRadius(30)
+                
+                CustomButton(type: .search)
+            }
+            .padding()
+            
+            listOfResults
+        }
+    }
+    
+    private var listOfResults: some View {
+        VStack {
+            List(listOfEventIDs, id: \.self) { item in
+                HStack(spacing: 0) {
+                    NavigationLink {
+                        HomeView()
+                    } label: {
+                        Text(item.description)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .listStyle(.inset)
+    }
+}
+
+struct SearchView_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchView(searchText: .constant(""))
+    }
+}
