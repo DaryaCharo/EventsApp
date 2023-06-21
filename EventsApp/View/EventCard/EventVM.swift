@@ -6,23 +6,26 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 final class EventVM: ObservableObject {
-    @Published var image = UIImage()
+//    @Published var image = UIImage()
     
-    func getImage(link: String)  {
-        DispatchQueue.main.async {
-            Task {
-                guard let url = URL(string: link) else { return }
-                do {
-                    
-                    //фиолетовые ошибки при запуске. Ставила async func
-                    let data = try Data(contentsOf: url)
-                    self.image = UIImage(data: data) ?? UIImage()
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
+//    func getImage(link: String)  {
+////        DispatchQueue.main.async {
+//
+//            Task {
+//                guard let url = URL(string: link) else { return }
+//
+//                do {
+//
+//                    //фиолетовые ошибки при запуске. Ставила async func
+//                    let data = try Data(contentsOf: url)
+//                    self.image =
+//                } catch {
+//                    print(error.localizedDescription)
+//                }
+//            }
+////        }
+//    }
 }

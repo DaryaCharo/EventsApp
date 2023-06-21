@@ -55,7 +55,7 @@ struct CustomButton: View {
             Button {
                 
             } label: {
-                Image(systemName: "arrow.left")
+                Image(systemName: "list.star")
                     .foregroundColor(.customPurple)
             }
         case.navigation:
@@ -64,16 +64,25 @@ struct CustomButton: View {
             } label: {
                 Image("Navigation")
             }
+        case .changePhoto:
+            Button {
+                
+            } label: {
+                Image(systemName: "pencil.circle.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.customPurple)
+            }
         }
     }
 }
 
 struct Buttons_Previews: PreviewProvider {
     static var previews: some View {
-        CustomButton(type: .back)
+        CustomButton(type: .notification)
     }
 }
 
 enum ButtonType {
-    case back, settings, notification, favourite, search, filter, navigation
+    case back, settings, notification, favourite, search, filter, navigation, changePhoto
 }

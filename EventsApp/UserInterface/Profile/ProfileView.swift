@@ -13,6 +13,7 @@ struct ProfileView: View {
     var body: some View {
         VStack {
             header
+            
             avatar
         }
     }
@@ -25,17 +26,25 @@ struct ProfileView: View {
     
     private var avatar: some View {
         VStack {
-            Image(systemName: "person.fill")
-                .resizable()
-                .foregroundColor(.customPurple)
-                .frame(maxWidth: 50, maxHeight: 50)
-                .padding()
-                .background(Color.white)
-                .contentShape(Circle())
-                .padding()
-                .shadow(radius: 1)
-
+            ZStack {
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .foregroundColor(.customPurple).opacity(0.6)
+                    .frame(maxWidth: 80, maxHeight: 80)
+                    .padding()
+                    .background(Color.white)
+                    .clipShape(Circle())
+                    .padding()
+                    .shadow(radius: 1)
+                    
+                
+                CustomButton(type: .changePhoto)
+                    .frame(maxWidth: 100, maxHeight: 100,
+                           alignment: .bottomTrailing)
+            }
             Text(vm.name)
+                .font(.customFont(type: .semiBold,
+                                  size: 24))
         }
     }
     

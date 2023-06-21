@@ -5,6 +5,9 @@
 //  Created by Darya Charniankova on 14.06.23.
 //
 
+//пользовательские данные хранить в переменных
+
+
 import SwiftUI
 import Combine
 
@@ -16,8 +19,7 @@ final class HomeVM: ObservableObject {
     @Published var categories: [Categories] = []
     var count = 0
     var page = ""
-    @Published var showNotificationScreen = false
-    @Published var showFavouriteScreen = false
+    @Published var showView: ShowingView?
     @Published var searchText: String = ""
     
     init () {
@@ -26,7 +28,6 @@ final class HomeVM: ObservableObject {
             .sink { [weak self] text in
                 guard let self = self else { return }
                 self.searchText = text
-                print(text)
             }
             .store(in: &cancellable)
     }
@@ -34,6 +35,7 @@ final class HomeVM: ObservableObject {
     //MARK: - getEvents
     
     func getEvents() {
+        //main actor
         DispatchQueue.main.async {
             Task {
                 do {
@@ -65,8 +67,20 @@ final class HomeVM: ObservableObject {
         "(\(count))"
     }
     
-    
     deinit {
         cancellable.removeAll()
+    }
+}
+
+enum ShowingView: Identifiable {
+    case notification, favourite
+    
+    var id: Int {
+        switch self {
+        case .notification:
+            return 1
+        case .favourite:
+            return 2
+        }
     }
 }

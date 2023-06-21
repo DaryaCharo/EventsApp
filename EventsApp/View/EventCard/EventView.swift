@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct EventView: View {
     @StateObject var vm = EventVM()
@@ -18,28 +19,32 @@ struct EventView: View {
     
     var body: some View {
         ZStack {
+            if let url = URL(string: imageLink) {
+            KFImage(url)
+                    .resizable()
+                    .frame(maxWidth: 150,
+                           maxHeight: 100)
             
-            Image(uiImage: vm.image)
-                .resizable()
-                .frame(maxWidth: 150,
-                       maxHeight: 100)
+//            Image(uiImage: vm.image)
+                
             
             Spacer()
             
-            VStack {
-                
-                Text(date)
-                    .font(.customFont(type: .regular,
-                                      size: 18))
-                    .padding(10)
-                    .foregroundColor(.customPurple)
-                    .background(Color.dateBack)
-                    .cornerRadius(10)
-                    .padding()
-                    .frame(maxWidth: .infinity,
-                           alignment: .trailing)
-                
-                eventInfo
+                VStack {
+                    
+                    Text(date)
+                        .font(.customFont(type: .regular,
+                                          size: 18))
+                        .padding(10)
+                        .foregroundColor(.customPurple)
+                        .background(Color.dateBack)
+                        .cornerRadius(10)
+                        .padding()
+                        .frame(maxWidth: .infinity,
+                               alignment: .trailing)
+                    
+                    eventInfo
+                }
             }
         }
         .background(Color.customWindowBack)
@@ -48,7 +53,7 @@ struct EventView: View {
         .frame(maxWidth: .infinity)
         .padding()
         .task {
-            vm.getImage(link: imageLink)
+//            vm.getImage(link: imageLink)
         }
     }
     

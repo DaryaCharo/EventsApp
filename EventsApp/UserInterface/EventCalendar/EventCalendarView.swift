@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EventCalendarView: View {
+    @StateObject private var vm = EventCalendarVM()
+    
     var body: some View {
         VStack {
             //calendar

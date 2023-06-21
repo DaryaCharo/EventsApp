@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E36509F02A420304008FC035 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E36509EF2A420304008FC035 /* Kingfisher */; };
+		E385BCEC2A40CA30007C84B4 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385BCEB2A40CA30007C84B4 /* UserInfo.swift */; };
 		E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E772A2F21B40021100E /* EventsAppApp.swift */; };
 		E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E792A2F21B40021100E /* StartPage.swift */; };
 		E39A2E7C2A2F21B50021100E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39A2E7B2A2F21B50021100E /* Assets.xcassets */; };
@@ -45,6 +47,7 @@
 		E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F0D2A3A56A00021100E /* MapView.swift */; };
 		E39A2F102A3A57490021100E /* EventCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F0F2A3A57490021100E /* EventCalendarView.swift */; };
 		E39A2F122A3A58F90021100E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F112A3A58F90021100E /* ProfileView.swift */; };
+		E3A8228F2A40CBE400D15FD1 /* UserFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A8228E2A40CBE400D15FD1 /* UserFirebaseData.swift */; };
 		E3F8EDC52A3B6E0B00F1A312 /* FeaturedEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */; };
 		E3F8EDC82A3B710500F1A312 /* ButtonsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDC72A3B710500F1A312 /* ButtonsStyle.swift */; };
 		E3F8EDCB2A3B781F00F1A312 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDCA2A3B781F00F1A312 /* EventView.swift */; };
@@ -66,9 +69,11 @@
 		E3F8EDFE2A3F186D00F1A312 /* EventNoteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDFD2A3F186D00F1A312 /* EventNoteVM.swift */; };
 		E3F8EE012A3F241400F1A312 /* CustomButtonVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EE002A3F241400F1A312 /* CustomButtonVM.swift */; };
 		E3F8EE042A3F567700F1A312 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EE032A3F567700F1A312 /* SearchView.swift */; };
+		E3F8EE0B2A409D5A00F1A312 /* EventCalendarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EE0A2A409D5A00F1A312 /* EventCalendarVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E385BCEB2A40CA30007C84B4 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		E39A2E742A2F21B40021100E /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39A2E772A2F21B40021100E /* EventsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAppApp.swift; sourceTree = "<group>"; };
 		E39A2E792A2F21B40021100E /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
@@ -103,6 +108,7 @@
 		E39A2F0D2A3A56A00021100E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E39A2F0F2A3A57490021100E /* EventCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarView.swift; sourceTree = "<group>"; };
 		E39A2F112A3A58F90021100E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E3A8228E2A40CBE400D15FD1 /* UserFirebaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFirebaseData.swift; sourceTree = "<group>"; };
 		E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedEventsView.swift; sourceTree = "<group>"; };
 		E3F8EDC72A3B710500F1A312 /* ButtonsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsStyle.swift; sourceTree = "<group>"; };
 		E3F8EDCA2A3B781F00F1A312 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 		E3F8EDFD2A3F186D00F1A312 /* EventNoteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNoteVM.swift; sourceTree = "<group>"; };
 		E3F8EE002A3F241400F1A312 /* CustomButtonVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonVM.swift; sourceTree = "<group>"; };
 		E3F8EE032A3F567700F1A312 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		E3F8EE0A2A409D5A00F1A312 /* EventCalendarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +137,7 @@
 			files = (
 				E39A2E8E2A2F221B0021100E /* RealmSwift in Frameworks */,
 				E39A2E8C2A2F221B0021100E /* Realm in Frameworks */,
+				E36509F02A420304008FC035 /* Kingfisher in Frameworks */,
 				E39A2E9F2A2FCF330021100E /* Moya in Frameworks */,
 				E3F8EDE52A3CB8EF00F1A312 /* FirebaseFirestore in Frameworks */,
 				E3F8EDE32A3CB8EF00F1A312 /* FirebaseAuth in Frameworks */,
@@ -214,6 +222,7 @@
 		E39A2E962A2F23A60021100E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E385BCEB2A40CA30007C84B4 /* UserInfo.swift */,
 				E39A2EA02A2FD0E40021100E /* Data */,
 			);
 			path = Model;
@@ -222,6 +231,7 @@
 		E39A2EA02A2FD0E40021100E /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E3A8228E2A40CBE400D15FD1 /* UserFirebaseData.swift */,
 				E39A2EEE2A3634940021100E /* EventResult.swift */,
 				E39A2EBE2A335D960021100E /* EventsData.swift */,
 				E39A2ED22A34BD6E0021100E /* CurrentDayEvents.swift */,
@@ -323,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				E39A2F0F2A3A57490021100E /* EventCalendarView.swift */,
+				E3F8EE0A2A409D5A00F1A312 /* EventCalendarVM.swift */,
 			);
 			path = EventCalendar;
 			sourceTree = "<group>";
@@ -445,6 +456,7 @@
 				E3F8EDE22A3CB8EF00F1A312 /* FirebaseAuth */,
 				E3F8EDE42A3CB8EF00F1A312 /* FirebaseFirestore */,
 				E3F8EDE62A3CB8EF00F1A312 /* FirebaseFirestoreSwift */,
+				E36509EF2A420304008FC035 /* Kingfisher */,
 			);
 			productName = EventsApp;
 			productReference = E39A2E742A2F21B40021100E /* EventsApp.app */;
@@ -478,6 +490,7 @@
 				E39A2E8A2A2F221B0021100E /* XCRemoteSwiftPackageReference "realm-swift" */,
 				E39A2E9D2A2FCF330021100E /* XCRemoteSwiftPackageReference "Moya" */,
 				E3F8EDE12A3CB8EF00F1A312 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E36509EE2A420304008FC035 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = E39A2E752A2F21B40021100E /* Products */;
 			projectDirPath = "";
@@ -526,6 +539,7 @@
 				E39A2EC02A335D960021100E /* EventsData.swift in Sources */,
 				E3F8EDE92A3CBCD500F1A312 /* SignInView.swift in Sources */,
 				E3F8EDCB2A3B781F00F1A312 /* EventView.swift in Sources */,
+				E3F8EE0B2A409D5A00F1A312 /* EventCalendarVM.swift in Sources */,
 				E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */,
 				E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */,
 				E39A2EC12A335D960021100E /* EventFields.swift in Sources */,
@@ -543,6 +557,7 @@
 				E3F8EDE02A3CB73600F1A312 /* SettingsVM.swift in Sources */,
 				E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */,
 				E39A2F062A3A39AE0021100E /* HomeView.swift in Sources */,
+				E385BCEC2A40CA30007C84B4 /* UserInfo.swift in Sources */,
 				E39A2EF32A37780C0021100E /* (null) in Sources */,
 				E3F8EDF02A3CBD5100F1A312 /* SignUpView.swift in Sources */,
 				E39A2F002A3792A00021100E /* Font + Extension.swift in Sources */,
@@ -552,6 +567,7 @@
 				E39A2EF12A375F690021100E /* (null) in Sources */,
 				E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */,
 				E3F8EDEB2A3CBCE100F1A312 /* SignInVM.swift in Sources */,
+				E3A8228F2A40CBE400D15FD1 /* UserFirebaseData.swift in Sources */,
 				E39A2EFC2A37830F0021100E /* AppDelegate.swift in Sources */,
 				E3F8EDC52A3B6E0B00F1A312 /* FeaturedEventsView.swift in Sources */,
 				E3F8EDF82A3DC7B300F1A312 /* NotificationView.swift in Sources */,
@@ -758,6 +774,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E36509EE2A420304008FC035 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		E39A2E8A2A2F221B0021100E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -785,6 +809,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E36509EF2A420304008FC035 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E36509EE2A420304008FC035 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		E39A2E8B2A2F221B0021100E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E39A2E8A2A2F221B0021100E /* XCRemoteSwiftPackageReference "realm-swift" */;

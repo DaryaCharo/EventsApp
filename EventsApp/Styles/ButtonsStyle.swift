@@ -15,8 +15,6 @@ struct UserInteractionButtonsStyle: ButtonStyle {
             .padding(5)
             .background(Color.customPurple.opacity(0.2))
             .cornerRadius(10)
-        
-        
     }
 }
 
@@ -30,7 +28,7 @@ struct FillButtonStyle: ButtonStyle {
     }
 }
 
-struct BorderedButton: ButtonStyle {
+struct BorderedButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(5)

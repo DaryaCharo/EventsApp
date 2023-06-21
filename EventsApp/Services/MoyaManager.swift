@@ -63,18 +63,19 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                                                     location: location,
                                                     date: date,
                                                     expand: expand)) { result in
+                
                 switch result {
                 case .success(let response):
                     
                     do {
                         let results = try response.map(EventResult.self)
-                        continuation.resume(with: .success(results))
+                        continuation.resume(returning: results)
                     } catch {
                         continuation.resume(throwing: error)
                     }
                     
                 case .failure(let error):
-                    continuation.resume(with: .failure(error))
+                    continuation.resume(throwing: error)
                 }
             }
         }
