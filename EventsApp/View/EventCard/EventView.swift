@@ -9,7 +9,6 @@ import SwiftUI
 import Kingfisher
 
 struct EventView: View {
-    @StateObject var vm = EventVM()
     @State var imageLink: String
     @State var eventTitle: String
     @State var genre: String
@@ -19,68 +18,73 @@ struct EventView: View {
     
     var body: some View {
         ZStack {
-            if let url = URL(string: imageLink) {
-            KFImage(url)
+            VStack {
+                KFImage(URL(string: imageLink))
                     .resizable()
-                    .frame(maxWidth: 150,
-                           maxHeight: 100)
-            
-//            Image(uiImage: vm.image)
+                    .scaledToFit()
+                    .cornerRadius(20)
+                    .frame(maxWidth: .infinity)
                 
-            
-            Spacer()
-            
+                Spacer()
+                
+                Rectangle()
+                    .foregroundColor(.customWindowBack)
+                    .frame(maxWidth: .infinity, maxHeight: 150)
+            }
                 VStack {
-                    
-                    Text(date)
-                        .font(.customFont(type: .regular,
-                                          size: 18))
-                        .padding(10)
-                        .foregroundColor(.customPurple)
-                        .background(Color.dateBack)
-                        .cornerRadius(10)
-                        .padding()
-                        .frame(maxWidth: .infinity,
-                               alignment: .trailing)
-                    
                     eventInfo
                 }
             }
-        }
+        
         .background(Color.customWindowBack)
         .cornerRadius(20)
-        .shadow(radius: 10)
-        .frame(maxWidth: .infinity)
+        .shadow(radius: 1)
+        .frame(maxWidth: .infinity,
+               maxHeight: 400)
         .padding()
-        .task {
-//            vm.getImage(link: imageLink)
-        }
     }
     
     private var eventInfo: some View {
         VStack {
+            Text(date)
+                .font(.customFont(type: .regular,
+                                  size: 16))
+                .padding(10)
+                .foregroundColor(.customPurple)
+                .background(Color.dateBack)
+                .cornerRadius(10)
+                .frame(maxWidth: .infinity,
+                       alignment: .trailing)
+            
+            Spacer()
             
             Text(eventTitle)
                 .font(.customFont(type: .bold,
-                                  size: 25))
+                                  size: 18))
+                .lineLimit(3)
                 .frame(maxWidth: .infinity,
+                       maxHeight: 50,
                        alignment: .leading)
+                .padding(.top)
             
             HStack {
                 Text(genre)
                     .font(.customFont(type: .regular,
-                                      size: 18))
-                    .padding(10)
+                                      size: 16))
+                    .padding(8)
                     .overlay {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(lineWidth: 2)
                     }
                     .foregroundColor(.customPurple).opacity(0.8)
-                    .padding([.top, .bottom], 8)
                 
                 Text("\(followers)")
+                    .font(.customFont(type: .regular,
+                                      size: 16))
                     .padding(.leading, 8)
                 Text(" Going")
+                    .font(.customFont(type: .regular,
+                                      size: 16))
             }
             .frame(maxWidth: .infinity,
                    alignment: .leading)
@@ -88,6 +92,8 @@ struct EventView: View {
             HStack {
                 Label {
                     Text(location)
+                        .font(.customFont(type: .regular,
+                                          size: 16))
                 } icon: {
                     Image("MapMarker")
                         .resizable()
@@ -100,7 +106,9 @@ struct EventView: View {
                 CustomButton(type: .favourite)
             }
         }
-        .padding(30)
+        .padding([.leading, .trailing], 30)
+        .padding(.bottom, 18)
+        .padding(.top, 50)
     }
 }
 

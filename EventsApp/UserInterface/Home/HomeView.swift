@@ -27,6 +27,8 @@ struct HomeView: View {
                            eventImage: "")
     }
     
+    //                //через секцию. контент header footer. Когда появляется footer
+    //                //если hasMore loadMore - fetchData
     private var eventsList: some View {
         VStack {
             ScrollView {
@@ -45,6 +47,7 @@ struct HomeView: View {
                                       followers:  followers,
                                       location: location,
                                       date: date)
+                            .padding(.bottom)
                         }
                     }
                 } else {
@@ -55,68 +58,44 @@ struct HomeView: View {
             }
         }
         .task {
-            vm.getEvents()
+            vm.fillResults()
         }
     }
     
     private var header: some View {
         HStack {
-            Image("Logo")
-                .resizable()
-                .frame(width: 35, height: 35)
-                .padding(.leading, 10)
-            
-            
-            Text("Home")
-                .font(.customFont(type: .semiBold,
-                                  size: 24))
-                .padding(.leading, 5)
+            Header(title: "Home")
             
             Spacer()
             
             CustomButton(type: .notification)
                 .buttonStyle(UserInteractionButtonsStyle())
-                .fullScreenCover(item: $vm.showView) { item in
-                    switch item {
-                    case .notification:
-                        NotificationView()
-                    case .favourite:
-                        FavouriteView()
-                    }
-                }
+            //                .fullScreenCover(item: $vm.showView) { item in
+            //                    switch item {
+            //                    case .notification:
+            //                        NotificationView()
+            //                    case .favourite:
+            //                        FavouriteView()
+            //                    }
             CustomButton(type: .favourite)
                 .buttonStyle(UserInteractionButtonsStyle())
-                .fullScreenCover(item: $vm.showView) { item in
-                    switch item {
-                    case .notification:
-                        NotificationView()
-                    case .favourite:
-                        FavouriteView()
-                    }
-                }
+                .padding(.trailing)
         }
-        .padding()
     }
     
     private var searchAndFilter: some View {
-        VStack {
-            VStack {
-                
-                HStack {
-                    TextField("Search",
-                              text: $vm.searchText)
-//                    .searchable(text: $vm.searchText)
-                    .padding()
-                    .background(Color.customWindowBack)
-                    .cornerRadius(30)
-                    
-                    
-                    CustomButton(type: .search)
-                }
-                .padding()
-                
-            }
+        HStack {
+            TextField("Search",
+                      text: $vm.searchText)
+            .searchable(text: $vm.searchText)
+            .padding()
+            .background(Color.customWindowBack)
+            .cornerRadius(30)
+            
+            CustomButton(type: .search)
         }
+        .padding()
+        
     }
     
     private var listOfEvents: some View {
@@ -137,37 +116,3 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-//        VStack {
-//            if vm.results.contains(where: {$0.object != nil}) {
-//
-//                //через секцию. контент header footer. Когда появляется footer
-//                //если hasMore loadMore - fetchData
-//
-//                List {
-//                    ForEach(vm.results, id: \.object?.id) { event in
-//                        if let link = event.object?.images?.image,
-//                           let title = event.object?.title,
-//                           let type = event.object?.type,
-//                           let followers = event.object?.favouritesCount,
-//                           let location = event.city,
-//                           let date = event.date
-//                        {
-//                            EventView(imageLink: link,
-//                                      eventTitle:  title,
-//                                      genre: type,
-//                                      followers:  followers,
-//                                      location: location,
-//                                      date: date)
-//
-//                        } else {
-//                            Text("Can't find any events")
-//                                .font(.customFont(type: .semiBold,
-//                                                  size: 20))
-//                        }
-//                    }
-//                }
-//                .task {
-//                    vm.getEvents()
-//                }
-//            }

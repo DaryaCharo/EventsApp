@@ -12,7 +12,25 @@ struct EventCalendarView: View {
     
     var body: some View {
         VStack {
-            //calendar
+            HStack {
+                Header(title: "My Calendar Event")
+                Spacer()
+            }
+            
+            DatePicker("Enter your birthday", selection: $vm.date)
+                .datePickerStyle(.graphical)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.customPurple)
+                .padding(.horizontal)
+            
+        }
+    }
+    
+    private var listOfEventsOnCurrentDate: some View {
+        VStack {
+//            ForEach(, id: \.) { event in
+//                
+//            }
         }
     }
 }

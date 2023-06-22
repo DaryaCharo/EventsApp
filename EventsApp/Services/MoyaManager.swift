@@ -95,7 +95,7 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                     }
                     
                 case .failure(let error):
-                    continuation.resume(with: .failure(error))
+                    continuation.resume(throwing: error)
                 }
             }
         }

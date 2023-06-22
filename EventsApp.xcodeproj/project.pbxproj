@@ -47,11 +47,12 @@
 		E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F0D2A3A56A00021100E /* MapView.swift */; };
 		E39A2F102A3A57490021100E /* EventCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F0F2A3A57490021100E /* EventCalendarView.swift */; };
 		E39A2F122A3A58F90021100E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2F112A3A58F90021100E /* ProfileView.swift */; };
+		E39B20C52A4371960020499F /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B20C42A4371960020499F /* Header.swift */; };
+		E39B20C72A437CF40020499F /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B20C62A437CF40020499F /* EventManager.swift */; };
 		E3A8228F2A40CBE400D15FD1 /* UserFirebaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A8228E2A40CBE400D15FD1 /* UserFirebaseData.swift */; };
 		E3F8EDC52A3B6E0B00F1A312 /* FeaturedEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */; };
 		E3F8EDC82A3B710500F1A312 /* ButtonsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDC72A3B710500F1A312 /* ButtonsStyle.swift */; };
 		E3F8EDCB2A3B781F00F1A312 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDCA2A3B781F00F1A312 /* EventView.swift */; };
-		E3F8EDCE2A3B78F200F1A312 /* EventVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDCD2A3B78F200F1A312 /* EventVM.swift */; };
 		E3F8EDD52A3B951D00F1A312 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDD42A3B951D00F1A312 /* SettingsView.swift */; };
 		E3F8EDDA2A3B958700F1A312 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDD92A3B958700F1A312 /* ProfileVM.swift */; };
 		E3F8EDDE2A3C64BC00F1A312 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDDD2A3C64BC00F1A312 /* CustomButton.swift */; };
@@ -70,6 +71,7 @@
 		E3F8EE012A3F241400F1A312 /* CustomButtonVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EE002A3F241400F1A312 /* CustomButtonVM.swift */; };
 		E3F8EE042A3F567700F1A312 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EE032A3F567700F1A312 /* SearchView.swift */; };
 		E3F8EE0B2A409D5A00F1A312 /* EventCalendarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EE0A2A409D5A00F1A312 /* EventCalendarVM.swift */; };
+		E3FF228C2A4479BC003BDE9B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FF228B2A4479BC003BDE9B /* EditProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,11 +110,12 @@
 		E39A2F0D2A3A56A00021100E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E39A2F0F2A3A57490021100E /* EventCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarView.swift; sourceTree = "<group>"; };
 		E39A2F112A3A58F90021100E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E39B20C42A4371960020499F /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		E39B20C62A437CF40020499F /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		E3A8228E2A40CBE400D15FD1 /* UserFirebaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFirebaseData.swift; sourceTree = "<group>"; };
 		E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedEventsView.swift; sourceTree = "<group>"; };
 		E3F8EDC72A3B710500F1A312 /* ButtonsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsStyle.swift; sourceTree = "<group>"; };
 		E3F8EDCA2A3B781F00F1A312 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
-		E3F8EDCD2A3B78F200F1A312 /* EventVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVM.swift; sourceTree = "<group>"; };
 		E3F8EDD42A3B951D00F1A312 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E3F8EDD92A3B958700F1A312 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		E3F8EDDD2A3C64BC00F1A312 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		E3F8EE002A3F241400F1A312 /* CustomButtonVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonVM.swift; sourceTree = "<group>"; };
 		E3F8EE032A3F567700F1A312 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		E3F8EE0A2A409D5A00F1A312 /* EventCalendarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarVM.swift; sourceTree = "<group>"; };
+		E3FF228B2A4479BC003BDE9B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +196,7 @@
 		E39A2E852A2F21BA0021100E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E39B20C42A4371960020499F /* Header.swift */,
 				E39A2F032A39EC3C0021100E /* SplashScreenView.swift */,
 				E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */,
 				E3F8EE022A3F241A00F1A312 /* CustomButton */,
@@ -223,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				E385BCEB2A40CA30007C84B4 /* UserInfo.swift */,
+				E39B20C62A437CF40020499F /* EventManager.swift */,
 				E39A2EA02A2FD0E40021100E /* Data */,
 			);
 			path = Model;
@@ -286,6 +292,7 @@
 				E3F8EDD12A3B7FE200F1A312 /* EventCalendar */,
 				E3F8EE072A3F568400F1A312 /* Search */,
 				E3F8EDD82A3B952C00F1A312 /* Settings */,
+				E3FF22892A44797B003BDE9B /* EditProfile */,
 				E3F8EDF52A3DC79300F1A312 /* Favourite */,
 				E3F8EDF62A3DC7A200F1A312 /* Notification */,
 				E3F8EDED2A3CBCF000F1A312 /* Authorisation */,
@@ -306,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				E3F8EDCA2A3B781F00F1A312 /* EventView.swift */,
-				E3F8EDCD2A3B78F200F1A312 /* EventVM.swift */,
 			);
 			path = EventCard;
 			sourceTree = "<group>";
@@ -433,6 +439,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		E3FF22892A44797B003BDE9B /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E3FF228B2A4479BC003BDE9B /* EditProfileView.swift */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -524,7 +538,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3F8EDCE2A3B78F200F1A312 /* EventVM.swift in Sources */,
 				E39A2E952A2F22AE0021100E /* EventProvider.swift in Sources */,
 				E3F8EDF42A3DC79000F1A312 /* FavouriteView.swift in Sources */,
 				E39A2EFF2A3792A00021100E /* Color + Extension.swift in Sources */,
@@ -541,6 +554,7 @@
 				E3F8EDCB2A3B781F00F1A312 /* EventView.swift in Sources */,
 				E3F8EE0B2A409D5A00F1A312 /* EventCalendarVM.swift in Sources */,
 				E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */,
+				E39B20C52A4371960020499F /* Header.swift in Sources */,
 				E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */,
 				E39A2EC12A335D960021100E /* EventFields.swift in Sources */,
 				E3F8EDDE2A3C64BC00F1A312 /* CustomButton.swift in Sources */,
@@ -552,6 +566,7 @@
 				E39A2ED32A34BD6E0021100E /* CurrentDayEvents.swift in Sources */,
 				E39A2EF52A3778150021100E /* (null) in Sources */,
 				E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */,
+				E39B20C72A437CF40020499F /* EventManager.swift in Sources */,
 				E39A2EEF2A3634940021100E /* EventResult.swift in Sources */,
 				E3F8EDFC2A3F186200F1A312 /* EventNoteView.swift in Sources */,
 				E3F8EDE02A3CB73600F1A312 /* SettingsVM.swift in Sources */,
@@ -563,6 +578,7 @@
 				E39A2F002A3792A00021100E /* Font + Extension.swift in Sources */,
 				E39A2F102A3A57490021100E /* EventCalendarView.swift in Sources */,
 				E39A2F122A3A58F90021100E /* ProfileView.swift in Sources */,
+				E3FF228C2A4479BC003BDE9B /* EditProfileView.swift in Sources */,
 				E39A2ED52A34C2060021100E /* ExpandList.swift in Sources */,
 				E39A2EF12A375F690021100E /* (null) in Sources */,
 				E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */,

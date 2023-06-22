@@ -8,5 +8,10 @@
 import SwiftUI
 
 final class EventCalendarVM: ObservableObject {
-    @Published var date = Date()
+    @Published var date = Date.now
+    lazy var eventManager: EventManagerProtocol = {
+       EventManager()
+    }()
+    
+    
 }

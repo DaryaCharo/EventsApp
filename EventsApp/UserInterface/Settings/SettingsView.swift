@@ -29,15 +29,37 @@ struct SettingsView: View {
             List(Settings.allCases, id: \.self) { setting in
                 HStack(spacing: 0) {
                     NavigationLink {
-//                        vm.goToPage(type: setting)
+                        
                     } label: {
-                        Text(setting.getText)
+                        Label {
+                            Text(setting.getText)
+                                .padding(.leading)
+                        } icon: {
+                            Image(systemName: setting.getIcon)
+                                .frame(width: 25, height: 25)
+                                .padding(10)
+                                .foregroundColor(.customPurple)
+                                .background(Color.customPurple.opacity(0.2))
+                                .clipShape(Circle())
+                                .padding(8)
+                        }
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: 60)
+            }
+            .listStyle(.inset)
+            .fullScreenCover(item: $vm.settings) { setting in
+                switch vm.settings {
+                case .editProfile:
+                    HomeView()
+                case .notification:
+                    NotificationView()
+                case .signOut:
+                    SignInView()
+                case .none:
+                    Text("none")
+                }
             }
         }
-        .listStyle(.inset)
     }
 }
 

@@ -30,6 +30,9 @@ struct CustomButton: View {
                 Image(systemName: "gearshape.fill")
                     .foregroundColor(.customPurple)
             }
+//            .fullScreenCover(item: $vm.showView) { _ in
+//                SettingsView()
+//            }
         case .notification:
             Button {
                 
@@ -81,8 +84,4 @@ struct Buttons_Previews: PreviewProvider {
     static var previews: some View {
         CustomButton(type: .notification)
     }
-}
-
-enum ButtonType {
-    case back, settings, notification, favourite, search, filter, navigation, changePhoto
 }

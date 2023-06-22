@@ -7,19 +7,20 @@
 
 //пользовательские данные хранить в переменных
 
-
 import SwiftUI
 import Combine
 
 final class HomeVM: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     
-    let moyaManager = MoyaAPIManager()
+    //под большим вопросом, потому что мне нужен резалтс в нескольких местах, но я имею доступ только в функциям и выходит какая-то не очень штука
+    lazy var eventManager: EventManagerProtocol = {
+       EventManager()
+    }()
+    
     @Published var results: [CurrentDayEvents] = []
     @Published var categories: [Categories] = []
-    var count = 0
-    var page = ""
-    @Published var showView: ShowingView?
+    
     @Published var searchText: String = ""
     
     init () {
@@ -32,55 +33,30 @@ final class HomeVM: ObservableObject {
             .store(in: &cancellable)
     }
     
-    //MARK: - getEvents
-    
-    func getEvents() {
-        //main actor
-        DispatchQueue.main.async {
-            Task {
-                do {
-                    let data = try await self.moyaManager.getEventResults(numberOfEvents: self.count,
-                                                                          page: self.page,
-                                                                          results: self.results)
-                    self.results += data.results
-                    
-                    let categoriesData = try await self.moyaManager.getCategories(categories: self.categories)
-                    self.categories += categoriesData
-                } catch {
-                    print(error)
-                }
-            }
+//    //MARK: - getEvents
+
+    func fillResults() {
+        Task {
+            results = await eventManager.getEvents()
         }
     }
     
     //MARK: -getEventByCategory
     
     func getEventWithCategory(category: String) {
-        //в зависимости от жанра ивента выдавать только этот ивент
-        //        switch ~categories { ... }
+        Task {
+            categories = await eventManager.getCategories()
+        }
     }
     
     
     //MARK: - favourite
     
     func countFavourite() -> String {
-        "(\(count))"
+        ""
     }
     
     deinit {
         cancellable.removeAll()
-    }
-}
-
-enum ShowingView: Identifiable {
-    case notification, favourite
-    
-    var id: Int {
-        switch self {
-        case .notification:
-            return 1
-        case .favourite:
-            return 2
-        }
     }
 }
