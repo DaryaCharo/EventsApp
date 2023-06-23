@@ -9,20 +9,11 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    static func customColor(type: CustomColors) -> Color {
-        Color(type.getColor)
-    }
-}
-
-enum CustomColors {
-    case base, yellow
+    static let customPurple = Color("customPurple")
+    static let customYellow = Color("customYellow")
+    static let customRed = Color("customRed")
+    static let customPink = Color("customPink")
+    static let customWindowBack = Color("customWindowBack")
+    static let dateBack = Color("dateBack")
     
-    var getColor: String {
-        switch self {
-        case .base:
-            return "base"
-        case .yellow:
-            return "yellow"
-        }
-    }
 }
