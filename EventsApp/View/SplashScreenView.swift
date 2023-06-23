@@ -36,17 +36,16 @@ struct SplashScreenView: View {
             }
             .scaleEffect(size)
             .opacity(opacity)
-            .onAppear {
-                withAnimation(.easeIn(duration: 1.2)) {
-                    self.size = 0.9
-                    self.opacity = 1
-                }
-            }
+            
             Spacer()
             strokeCircle
                 .padding(.bottom, 30)
         }
         .onAppear {
+            withAnimation(.easeIn(duration: 1.2)) {
+                self.size = 0.9
+                self.opacity = 1
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.isActive.toggle()
             }

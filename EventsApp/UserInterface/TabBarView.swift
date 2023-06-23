@@ -12,29 +12,24 @@ struct TabBarView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("",
-                          image: "Home")
+                    Image("Home")
 
                 }
             EventNoteView()
                 .tabItem {
-                    Label("",
-                          image: "Notification")
+                    Image("Notification")
                 }
             MapView()
                 .tabItem {
-                    Label("",
-                          image: "Map")
+                    Image("Map")
                 }
             EventCalendarView()
                 .tabItem {
-                    Label("",
-                          image: "Calendar")
+                    Image("Calendar")
                 }
             ProfileView()
                 .tabItem {
-                    Label("",
-                          image: "Profile")
+                    Image("Profile")
                 }
         }
     }
