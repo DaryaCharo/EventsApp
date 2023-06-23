@@ -18,18 +18,16 @@ struct EventView: View {
     
     var body: some View {
         ZStack {
+            KFImage(URL(string: imageLink))
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity,
+                       maxHeight: .infinity)
             VStack {
-                KFImage(URL(string: imageLink))
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(20)
-                    .frame(maxWidth: .infinity)
-                
                 Spacer()
-                
                 Rectangle()
                     .foregroundColor(.customWindowBack)
-                    .frame(maxWidth: .infinity, maxHeight: 150)
+                    .frame(maxWidth: .infinity, maxHeight: 100)
             }
                 VStack {
                     eventInfo
@@ -39,8 +37,8 @@ struct EventView: View {
         .background(Color.customWindowBack)
         .cornerRadius(20)
         .shadow(radius: 1)
-        .frame(maxWidth: .infinity,
-               maxHeight: 400)
+        .frame(maxWidth: 300,
+               maxHeight: 350)
         .padding()
     }
     
@@ -60,7 +58,7 @@ struct EventView: View {
             
             Text(eventTitle)
                 .font(.customFont(type: .bold,
-                                  size: 18))
+                                  size: 16))
                 .lineLimit(3)
                 .frame(maxWidth: .infinity,
                        maxHeight: 50,

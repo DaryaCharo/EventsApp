@@ -35,18 +35,14 @@ final class HomeVM: ObservableObject {
     
 //    //MARK: - getEvents
 
-    func fillResults() {
-        Task {
-            results = await eventManager.getEvents()
-        }
+    @MainActor func fillResults() async {
+        results = await eventManager.getEvents()
     }
     
     //MARK: -getEventByCategory
     
-    func getEventWithCategory(category: String) {
-        Task {
-            categories = await eventManager.getCategories()
-        }
+    @MainActor func getEventWithCategory() async {
+        categories = await eventManager.getCategories()
     }
     
     

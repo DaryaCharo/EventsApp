@@ -18,6 +18,8 @@ struct HomeView: View {
             
             featureEvent
             
+            listOfEvents
+            
             eventsList
         }
     }
@@ -31,23 +33,31 @@ struct HomeView: View {
     //                //если hasMore loadMore - fetchData
     private var eventsList: some View {
         VStack {
-            ScrollView {
+            Text("Today's Events")
+                .font(.customFont(type: .semiBold,
+                                  size: 25))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+            ScrollView(.horizontal,
+                       showsIndicators: false) {
                 if vm.results.contains(where: {$0.object != nil}) {
-                    ForEach(vm.results, id: \.object?.id) { object in
-                        if let link = object.object?.images?.image,
-                           let title = object.object?.title,
-                           let type = object.object?.type,
-                           let followers = object.object?.favouritesCount,
-                           let location = object.city,
-                           let date = object.date
-                        {
-                            EventView(imageLink: link,
-                                      eventTitle:  title,
-                                      genre: type,
-                                      followers:  followers,
-                                      location: location,
-                                      date: date)
-                            .padding(.bottom)
+                    HStack {
+                        ForEach(vm.results, id: \.object?.id) { object in
+                            if let link = object.object?.images?.image,
+                               let title = object.object?.title,
+                               let type = object.object?.type,
+                               let followers = object.object?.favouritesCount,
+                               let location = object.city,
+                               let date = object.date
+                            {
+                                EventView(imageLink: link,
+                                          eventTitle:  title,
+                                          genre: type,
+                                          followers:  followers,
+                                          location: location,
+                                          date: date)
+                                .padding(.bottom)
+                            }
                         }
                     }
                 } else {
@@ -58,7 +68,8 @@ struct HomeView: View {
             }
         }
         .task {
-            vm.fillResults()
+            await vm.fillResults()
+            await vm.getEventWithCategory()
         }
     }
     
@@ -99,15 +110,22 @@ struct HomeView: View {
     }
     
     private var listOfEvents: some View {
-        ScrollView {
-            ForEach(vm.categories, id: \.id) { category in
-                Button {
-                    vm.getEventWithCategory(category: category.name ?? "")
-                } label: {
-                    Text(category.name ?? "")
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(vm.categories, id: \.id) { category in
+                    
+                    Button {
+                        
+                    } label: {
+                        Text(category.name ?? "none")
+                    }
+                    .padding(5)
+                    .buttonStyle(BorderedButtonStyle())
+                    .foregroundColor(.customPurple)
                 }
             }
         }
+        .padding(.horizontal)
     }
 }
 
