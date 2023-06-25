@@ -14,8 +14,6 @@ struct HomeView: View {
         VStack {
             header
             
-            searchAndFilter
-            
             featureEvent
             
             listOfEvents
@@ -25,8 +23,10 @@ struct HomeView: View {
     }
     
     private var featureEvent: some View {
+        
         FeaturedEventsView(title: "Feature Event",
                            eventImage: "")
+        
     }
     
     //                //через секцию. контент header footer. Когда появляется footer
@@ -34,27 +34,30 @@ struct HomeView: View {
     private var eventsList: some View {
         VStack {
             Text("Today's Events")
+
                 .font(.customFont(type: .semiBold,
                                   size: 25))
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity,
+                       alignment: .leading)
                 .padding()
+            
             ScrollView(.horizontal,
                        showsIndicators: false) {
                 if vm.results.contains(where: {$0.object != nil}) {
                     HStack {
-                        ForEach(vm.results, id: \.object?.id) { object in
-                            if let link = object.object?.images?.image,
-                               let title = object.object?.title,
-                               let type = object.object?.type,
-                               let followers = object.object?.favouritesCount,
-                               let location = object.city,
-                               let date = object.date
+                        ForEach(vm.results, id: \.object?.id) { result in
+                            if let imageLink = result.object?.images?.image,
+                               let title = result.object?.title,
+                               let type = result.object?.type,
+                               let followers = result.object?.favouritesCount,
+                               let address = result.object?.place?.address,
+                               let date = result.date
                             {
-                                EventView(imageLink: link,
+                                EventView(imageLink: imageLink,
                                           eventTitle:  title,
                                           genre: type,
                                           followers:  followers,
-                                          location: location,
+                                          location: address,
                                           date: date)
                                 .padding(.bottom)
                             }
@@ -92,21 +95,6 @@ struct HomeView: View {
                 .buttonStyle(UserInteractionButtonsStyle())
                 .padding(.trailing)
         }
-    }
-    
-    private var searchAndFilter: some View {
-        HStack {
-            TextField("Search",
-                      text: $vm.searchText)
-            .searchable(text: $vm.searchText)
-            .padding()
-            .background(Color.customWindowBack)
-            .cornerRadius(30)
-            
-            CustomButton(type: .search)
-        }
-        .padding()
-        
     }
     
     private var listOfEvents: some View {

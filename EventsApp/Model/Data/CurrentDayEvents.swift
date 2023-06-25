@@ -27,7 +27,6 @@ struct CurrentDayEvents: Decodable {
         
         self.lang = try container.decodeIfPresent(String.self,
                                                   forKey: CurrentDayEvents.CodingKeys.lang)
-        
         self.object = try container.decodeIfPresent(CurrentEvent.self,
                                                     forKey: CurrentDayEvents.CodingKeys.object)
         self.textFormat = try container.decodeIfPresent(String.self,
@@ -37,16 +36,12 @@ struct CurrentDayEvents: Decodable {
         self.city = try container.decodeIfPresent(String.self,
                                                   forKey: CurrentDayEvents.CodingKeys.city)
         
-        self.date = try container.decodeIfPresent(String.self,
-                                                  forKey: CurrentDayEvents.CodingKeys.date)
-        
-        if let dateValue = try? container.decodeIfPresent(Date.self,
-                                                            forKey: CurrentDayEvents.CodingKeys.date) {
-            self.date = dateValue.description
-        } else {
+//        if let dateValue = try? container.decodeIfPresent(Date.self,
+//                                                            forKey: CurrentDayEvents.CodingKeys.date) {
+//            self.date = dateValue.description
+//        } else {
             self.date = try container.decodeIfPresent(String.self,
                                                                 forKey: CurrentDayEvents.CodingKeys.date)
-        }
-        
+//        }
     }
 }

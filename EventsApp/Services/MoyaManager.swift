@@ -46,14 +46,16 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
         return NetworkLoggerPlugin(configuration: configuration)
     }()
     
+    //MARK: - getResults
+    
     func getEventResults(numberOfEvents count: Int,
                          page: String?,
                          results: [CurrentDayEvents],
                          lang: String = "ru",
                          textFormat: String = "text",
                          location: String = "msk",
-                         date: String = "2023-06-14",
-                         expand: String = "object") async throws -> EventResult {
+                         date: String = Date.now.ISO8601Format(), //временно
+                         expand: String = "object,place") async throws -> EventResult {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getEventResult(count: count,
                                                     page: page,
@@ -81,6 +83,8 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
         }
     }
     
+    //MARK: - getCategories
+    
     func getCategories(categories: [Categories]) async throws -> [Categories] {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getEventGenres(categories: categories)) { result in
@@ -88,8 +92,8 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                 case .success(let response):
                     
                     do {
-                        let results = try response.map([Categories].self)
-                        continuation.resume(with: .success(results))
+                        let categories = try response.map([Categories].self)
+                        continuation.resume(returning: categories)
                     } catch {
                         continuation.resume(throwing: error)
                     }
@@ -130,6 +134,4 @@ struct Constants {
     
     static var eventCategories = "/event-categories/"
     static var placesCategories = "/place-categories/"
-    
-    static var placesURL = "v=2.0&tree=searchTreeId&method=place.getForMap&cityId=1"
 }

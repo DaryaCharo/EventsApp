@@ -18,18 +18,18 @@ struct EventView: View {
     
     var body: some View {
         ZStack {
-            KFImage(URL(string: imageLink))
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: .infinity,
-                       maxHeight: .infinity)
             VStack {
-                Spacer()
-                Rectangle()
-                    .foregroundColor(.customWindowBack)
-                    .frame(maxWidth: .infinity, maxHeight: 100)
+                KFImage(URL(string: imageLink))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity,
+                           maxHeight: .infinity,
+                           alignment: .top)
+                    .background(Color.red)
             }
+            
                 VStack {
+                    dateView
                     eventInfo
                 }
             }
@@ -44,26 +44,17 @@ struct EventView: View {
     
     private var eventInfo: some View {
         VStack {
-            Text(date)
-                .font(.customFont(type: .regular,
-                                  size: 16))
-                .padding(10)
-                .foregroundColor(.customPurple)
-                .background(Color.dateBack)
-                .cornerRadius(10)
-                .frame(maxWidth: .infinity,
-                       alignment: .trailing)
-            
             Spacer()
             
             Text(eventTitle)
-                .font(.customFont(type: .bold,
-                                  size: 16))
+                .font(.customFont(type: .semiBold,
+                                  size: 18))
                 .lineLimit(3)
                 .frame(maxWidth: .infinity,
                        maxHeight: 50,
                        alignment: .leading)
                 .padding(.top)
+                .padding(.horizontal)
             
             HStack {
                 Text(genre)
@@ -86,6 +77,7 @@ struct EventView: View {
             }
             .frame(maxWidth: .infinity,
                    alignment: .leading)
+            .padding(.horizontal)
             
             HStack {
                 Label {
@@ -103,10 +95,28 @@ struct EventView: View {
                 
                 CustomButton(type: .favourite)
             }
+            .padding(.horizontal)
+            .padding(.bottom)
         }
-        .padding([.leading, .trailing], 30)
-        .padding(.bottom, 18)
-        .padding(.top, 50)
+        .background(Color.customWindowBack)
+        .padding(.top, 100)
+        
+    }
+    
+    private var dateView: some View {
+        VStack {
+            Text(date)
+                .font(.customFont(type: .regular,
+                                  size: 16))
+                .padding(10)
+                .foregroundColor(.customPurple)
+                .background(Color.dateBack)
+                .cornerRadius(10)
+                .frame(maxWidth: .infinity,
+                       alignment: .trailing)
+                .padding(.trailing)
+        }
+        .padding(.top, 30)
     }
 }
 

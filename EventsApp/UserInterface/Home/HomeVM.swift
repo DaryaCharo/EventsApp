@@ -20,6 +20,7 @@ final class HomeVM: ObservableObject {
     
     @Published var results: [CurrentDayEvents] = []
     @Published var categories: [Categories] = []
+    @Published var places: [Place] = []
     
     @Published var searchText: String = ""
     

@@ -22,6 +22,7 @@ struct CurrentEvent: Decodable {
     let poster: [EventImages]?
     let genres: [Genres]?
     let ageRestriction: String?
+    let place: Place?
     
     init(from decoder: Decoder) throws {
         let container: KeyedDecodingContainer<CurrentEvent.CodingKeys> = try decoder.container(keyedBy: CurrentEvent.CodingKeys.self)
@@ -30,6 +31,8 @@ struct CurrentEvent: Decodable {
                                        forKey: CurrentEvent.CodingKeys.id)
         self.type = try container.decode(String.self,
                                          forKey: CurrentEvent.CodingKeys.type)
+        self.place = try container.decode(Place.self,
+                                          forKey: CurrentEvent.CodingKeys.place)
         self.title = try container.decodeIfPresent(String.self,
                                                    forKey: CurrentEvent.CodingKeys.title)
         self.favouritesCount = try container.decodeIfPresent(Int.self,
@@ -63,7 +66,7 @@ struct CurrentEvent: Decodable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, title, description, country, year, genres, poster,
+        case id, title, description, country, year, genres, poster, place,
              images = "first_image",
              dateRange = "daterange",
              type = "ctype",

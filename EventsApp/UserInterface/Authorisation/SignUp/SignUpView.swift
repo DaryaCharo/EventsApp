@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignUp: View {
+struct SignUpView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +15,6 @@ struct SignUp: View {
 
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {
-        SignUp()
+        SignUpView()
     }
 }
