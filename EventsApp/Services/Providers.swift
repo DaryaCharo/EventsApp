@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
+import GoogleSignIn
 
 final class Providers {
     private let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -19,19 +20,61 @@ final class Providers {
     }()
     private var validation: ValidationStatus?
     
-    //MARK: - SignUp -
+    //MARK: - Sign in
     
-    func singUp(email: String,
-                password: String) {
-        guard validation == .accepted else { return }
-        authorisation.createUser(withEmail: email,
-                                 password: password) { authResult, error in
-            UserDefaults.setValue(true,
-                                  forKey: "IsUserSignIn")
+    @MainActor func signIn(providerType: ProviderType,
+                           email: String,
+                           pass: String) async {
+        
+        switch providerType {
+        case .firebase:
+             authorisation.signIn(withEmail: email,
+                                 password: pass) { [weak self] authResult, error in
+                guard let self = self,
+                      self.validation == .accepted else { return }
+//                 UserDefaults.value(forKey: "UserSignIn") = true
+            }
+        case .google:
+            guard let clientID = authorisation.app?.options.clientID,
+                  let presentingViewController = (UIApplication.shared.connectedScenes.first
+                                                  as? UIWindowScene)?.windows.first?.rootViewController else { return }
+            
+            // Create Google SignIn configuration object
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.configuration = config
+            
+            do {
+                let user = try await GIDSignIn.sharedInstance.signIn(withPresenting:
+                                                                        presentingViewController).user
+                guard let idToken = user.idToken else { return }
+                let credential = GoogleAuthProvider.credential(withIDToken: idToken.description,
+                                                               accessToken: user.accessToken.tokenString)
+                let result = try await authorisation.signIn(with: credential)
+                
+                UserDefaults.setValue(result.user, forKey: "GoogleUser")
+                if let user = UserDefaults.value(forKey: "GoogleUser") as? User,
+                   user != result.user {
+                    try await Firestore.setValue(user.getIDToken(),
+                                                 forKey: user.email ?? "User token")
+                }
+            } catch {
+                print(error)
+            }
         }
     }
     
-    //MARK: - SignOut -
+    //MARK:  SignUp
+    
+    func singUp(user: User) {
+        guard validation == .accepted,
+        let email = user.email else { return }
+        authorisation.createUser(withEmail: email,
+                                 password: user.description) { authResult, error in
+//            userIsSignIn = true
+        }
+    }
+    
+    //MARK:  SignOut
     
     func signOut() {
         do {
@@ -41,7 +84,7 @@ final class Providers {
         }
     }
     
-    //MARK: - validation -
+    //MARK:  validation
     
     func signInValidate(email: String,
                         pass: String) {
@@ -71,3 +114,6 @@ enum ValidationStatus {
     case accepted, denied
 }
 
+enum ProviderType {
+    case google, firebase
+}

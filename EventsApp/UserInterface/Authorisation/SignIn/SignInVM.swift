@@ -20,8 +20,6 @@ final class SignInVM: ObservableObject {
     @Published var email = ""
     @Published var pass = ""
     
-    
-    
     init() {
         $email
             .removeDuplicates()
@@ -33,14 +31,13 @@ final class SignInVM: ObservableObject {
             .store(in: &cancellable)
     }
     
-    func continueWithEmail() {
-        guard providers.signInValidate(email: email,
-                                       pass: pass) else { return }
-        Task {
-            await providers.signIn(providerType: .firebase,
+    @MainActor func continueWithEmail() async {
+        providers.signInValidate(email: email,
+                                 pass: pass)
+        
+        await providers.signIn(providerType: .firebase,
                                    email: email,
                                    pass: pass)
-        }
     }
     
     @MainActor func continueWithGoogle() async {

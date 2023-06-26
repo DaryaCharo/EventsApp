@@ -16,22 +16,22 @@ final class SignUpVM: ObservableObject {
     @Published var pass = ""
     @Published var confPass = ""
     
-    lazy var firebaseProvider: Providers = {
+    lazy var provider: Providers = {
         Providers()
     }()
     
     func signUp() {
-        guard firebaseProvider.signUpValidate(firstName: firstName,
-                                              surname: surname,
-                                              email: email,
-                                              pass: pass,
-                                              confPass: confPass) else { return }
+        provider.signUpValidate(firstName: firstName,
+                                surname: surname,
+                                email: email,
+                                pass: pass,
+                                confPass: confPass)
         
         let user = UsersData(firstName: firstName,
                              surname: surname,
                              email: email,
                              pass: pass)
         
-        firebaseProvider.signUp(user: user)
+        provider.signUp(user: user)
     }
 }
