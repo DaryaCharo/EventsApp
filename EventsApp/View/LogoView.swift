@@ -12,10 +12,10 @@ struct LogoView: View {
         VStack {
             Image("Logo")
                 .resizable()
-                .frame(maxWidth: 100, maxHeight: 100)
+                .frame(maxWidth: 90, maxHeight: 90)
             Text("Acara")
                 .font(.customFont(type: .extraBold,
-                                  size: 50))
+                                  size: 40))
                 .foregroundColor(.customPurple).opacity(0.9)
         }
     }

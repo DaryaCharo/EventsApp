@@ -18,8 +18,8 @@ struct SecureTextFieldView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(textFieldName)
-                .font(.customFont(type: .regular,
-                                       size: 12))
+                .font(.customFont(type: .semiBold,
+                                       size: 14))
                 .foregroundColor(.gray)
                 .padding(.leading, 24)
             SecureField(placeholder, text: $vm.text)
@@ -28,8 +28,7 @@ struct SecureTextFieldView: View {
                 
                 .padding(.vertical, 14)
                 .padding(.horizontal, 16)
-                .background(Color.green)
-                .border(Color.red)
+                .background(Color.customWindowBack)
                 .cornerRadius(24)
                 .padding(.horizontal, 24)
         }

@@ -21,6 +21,7 @@ final class HomeVM: ObservableObject {
     @Published var results: [CurrentDayEvents] = []
     @Published var categories: [Categories] = []
     @Published var places: [Place] = []
+    var showFavView: ShowFavView?
     
     @Published var searchText: String = ""
     
@@ -55,5 +56,15 @@ final class HomeVM: ObservableObject {
     
     deinit {
         cancellable.removeAll()
+    }
+}
+
+enum ShowFavView: Identifiable {
+    case favourite
+    var id: Int {
+        switch self {
+        case .favourite:
+            return 1
+        }
     }
 }

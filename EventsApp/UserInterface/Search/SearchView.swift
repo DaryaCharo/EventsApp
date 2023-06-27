@@ -21,20 +21,10 @@ struct SearchView: View {
                 
                 Spacer()
             }
-            
-            HStack {
-                TextField("Search",
-                          text: $searchText)
-                .padding()
-                .background(Color.customWindowBack)
-                .cornerRadius(30)
-                
-                CustomButton(type: .search)
-            }
-            .padding()
-            
             listOfResults
         }
+        .searchable(text: $searchText,
+                    placement: .navigationBarDrawer)
     }
     
     private var listOfResults: some View {

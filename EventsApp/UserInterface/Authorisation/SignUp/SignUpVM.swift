@@ -10,8 +10,6 @@ import Combine
 
 final class SignUpVM: ObservableObject {
     @Published var isSignUp = Bool()
-    @Published var firstName = ""
-    @Published var surname = ""
     @Published var email = ""
     @Published var pass = ""
     @Published var confPass = ""
@@ -21,17 +19,15 @@ final class SignUpVM: ObservableObject {
     }()
     
     func signUp() {
-        provider.signUpValidate(firstName: firstName,
-                                surname: surname,
-                                email: email,
+        provider.signUpValidate(email: email,
                                 pass: pass,
                                 confPass: confPass)
         
-        let user = UsersData(firstName: firstName,
-                             surname: surname,
-                             email: email,
+        let user = UsersData(email: email,
                              pass: pass)
         
-        provider.signUp(user: user)
+        //не очень понимаю, почему не видит
+//        provider.signUp(email: email,
+//                        pass: pass)
     }
 }

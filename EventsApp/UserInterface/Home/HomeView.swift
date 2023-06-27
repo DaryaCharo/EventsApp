@@ -67,6 +67,9 @@ struct HomeView: View {
                     Text("Can't find any events")
                         .font(.customFont(type: .semiBold,
                                           size: 20))
+                        .frame(maxWidth: .infinity,
+                               alignment: .center)
+                        .padding()
                 }
             }
         }
@@ -83,7 +86,6 @@ struct HomeView: View {
             Spacer()
             
             CustomButton(type: .notification)
-                .buttonStyle(UserInteractionButtonsStyle())
             //                .fullScreenCover(item: $vm.showView) { item in
             //                    switch item {
             //                    case .notification:
@@ -91,8 +93,18 @@ struct HomeView: View {
             //                    case .favourite:
             //                        FavouriteView()
             //                    }
-            CustomButton(type: .favourite)
-                .buttonStyle(UserInteractionButtonsStyle())
+            Button {
+                
+            } label: {
+                Image(systemName: "bookmark.fill")
+                    .foregroundColor(.customPurple)
+            }
+            .buttonStyle(UserInteractionButtonsStyle())
+            .fullScreenCover(item: $vm.showFavView) { _ in
+                FavouriteView()
+            }
+            
+            CustomButton(type: .search)
                 .padding(.trailing)
         }
     }

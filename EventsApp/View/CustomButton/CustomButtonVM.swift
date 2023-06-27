@@ -20,7 +20,7 @@ final class CustomButtonVM: ObservableObject {
 
 enum ButtonType: Identifiable {
     case back, settings, notification, favourite, search, filter, navigation, changePhoto
-//}
+
     var id: Int {
         switch self {
         case .notification:

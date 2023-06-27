@@ -31,7 +31,6 @@
 		E39A2EE52A35C0DC0021100E /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E39A2ED92A35C0DC0021100E /* SourceSansPro-Semibold.otf */; };
 		E39A2EE72A35C0DC0021100E /* SourceSansPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = E39A2EDB2A35C0DC0021100E /* SourceSansPro-Black.otf */; };
 		E39A2EEB2A35C0DC0021100E /* SourceSansPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E39A2EDF2A35C0DC0021100E /* SourceSansPro-Light.otf */; };
-		E39A2EED2A35C0DC0021100E /* SourceSansPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E39A2EE12A35C0DC0021100E /* SourceSansPro-Bold.otf */; };
 		E39A2EEF2A3634940021100E /* EventResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EEE2A3634940021100E /* EventResults.swift */; };
 		E39A2EF12A375F690021100E /* (null) in Sources */ = {isa = PBXBuildFile; };
 		E39A2EF32A37780C0021100E /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -103,7 +102,6 @@
 		E39A2ED92A35C0DC0021100E /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		E39A2EDB2A35C0DC0021100E /* SourceSansPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Black.otf"; sourceTree = "<group>"; };
 		E39A2EDF2A35C0DC0021100E /* SourceSansPro-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Light.otf"; sourceTree = "<group>"; };
-		E39A2EE12A35C0DC0021100E /* SourceSansPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.otf"; sourceTree = "<group>"; };
 		E39A2EEE2A3634940021100E /* EventResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResults.swift; sourceTree = "<group>"; };
 		E39A2EFA2A3780450021100E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E39A2EFB2A37830F0021100E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				E39A2EDB2A35C0DC0021100E /* SourceSansPro-Black.otf */,
-				E39A2EE12A35C0DC0021100E /* SourceSansPro-Bold.otf */,
 				E39A2ED62A35C0DC0021100E /* SourceSansPro-ExtraLight.otf */,
 				E39A2EDF2A35C0DC0021100E /* SourceSansPro-Light.otf */,
 				E39A2ED82A35C0DC0021100E /* SourceSansPro-Regular.otf */,
@@ -555,7 +552,6 @@
 				E3E745D72A45D353005FA631 /* GoogleService-Info.plist in Resources */,
 				E39A2E7C2A2F21B50021100E /* Assets.xcassets in Resources */,
 				E39A2EEB2A35C0DC0021100E /* SourceSansPro-Light.otf in Resources */,
-				E39A2EED2A35C0DC0021100E /* SourceSansPro-Bold.otf in Resources */,
 				E39A2EE52A35C0DC0021100E /* SourceSansPro-Semibold.otf in Resources */,
 				E39A2EE22A35C0DC0021100E /* SourceSansPro-ExtraLight.otf in Resources */,
 				E39A2EE72A35C0DC0021100E /* SourceSansPro-Black.otf in Resources */,

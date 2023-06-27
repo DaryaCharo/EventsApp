@@ -15,14 +15,10 @@ class TextFieldVM: ObservableObject {
 }
 
 enum TextFieldText {
-    case firstName, lastName, email, pass, confirmPass
+    case email, pass, confirmPass
     
     var textFieldName: String {
         switch self {
-        case .firstName:
-            return "First name"
-        case .lastName:
-            return "Last name"
         case .email:
             return "Email"
         case .pass:
@@ -34,10 +30,6 @@ enum TextFieldText {
     
     var placeholder: String {
         switch self {
-        case .firstName:
-            return "Enter your first name"
-        case .lastName:
-            return "Enter your last name"
         case .email:
             return "Enter your email"
         case .pass:

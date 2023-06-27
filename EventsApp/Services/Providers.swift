@@ -28,11 +28,11 @@ final class Providers {
         
         switch providerType {
         case .firebase:
-             authorisation.signIn(withEmail: email,
+            authorisation.signIn(withEmail: email,
                                  password: pass) { [weak self] authResult, error in
                 guard let self = self,
                       self.validation == .accepted else { return }
-//                 UserDefaults.value(forKey: "UserSignIn") = true
+                //                 UserDefaults.value(forKey: "UserSignIn") = true
             }
         case .google:
             guard let clientID = authorisation.app?.options.clientID,
@@ -65,12 +65,13 @@ final class Providers {
     
     //MARK:  SignUp
     
-    func singUp(user: User) {
-        guard validation == .accepted,
-        let email = user.email else { return }
+    func singUp(email: String,
+                pass: String) {
+        guard validation == .accepted else { return }
+        
         authorisation.createUser(withEmail: email,
-                                 password: user.description) { authResult, error in
-//            userIsSignIn = true
+                                 password: pass) { authResult, error in
+            //            userIsSignIn = true
         }
     }
     
@@ -95,14 +96,10 @@ final class Providers {
         validation = .accepted
     }
     
-    func signUpValidate(firstName: String,
-                        surname: String,
-                        email: String,
+    func signUpValidate(email: String,
                         pass: String,
                         confPass: String) {
-        guard firstName.trimmingCharacters(in: .whitespaces).isEmpty,
-              surname.trimmingCharacters(in: .whitespaces).isEmpty,
-              email.range(of: emailRegex, options: .regularExpression) != nil,
+        guard email.range(of: emailRegex, options: .regularExpression) != nil,
               pass.range(of: passRegex, options: .regularExpression) != nil,
               confPass.trimmingCharacters(in: .whitespaces).isEmpty,
               confPass != pass else { return validation = .denied }
@@ -116,4 +113,8 @@ enum ValidationStatus {
 
 enum ProviderType {
     case google, firebase
+}
+
+enum DataStatus {
+    case unloaded, loading, fetchData
 }
