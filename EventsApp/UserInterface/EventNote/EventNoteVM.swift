@@ -8,5 +8,18 @@
 import SwiftUI
 
 final class EventNoteVM: ObservableObject {
-    //доставать избранные из db и заносить в таблицу
+    lazy var eventManager: EventManagerProtocol = {
+        EventManager()
+    }()
+    
+    @Published var results: [CurrentDayEvents] = []
+    @Published var places: [Place] = []
+    
+    //    //MARK: - getEvents
+    
+    @MainActor func fillResults() async {
+        results = await eventManager.getEvents()
+    }
 }
+
+

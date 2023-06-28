@@ -9,14 +9,23 @@ import Foundation
 import Moya
 
 protocol MoyaAPIManagerProtocol: AnyObject {
-    func getEventResults(numberOfEvents count: Int,
-                         page: String?,
-                         results: [CurrentDayEvents],
-                         lang: String,
-                         textFormat: String,
-                         location: String,
-                         date: String,
-                         expand: String) async throws -> EventResult
+    func getCurrentEvents(numberOfEvents count: Int,
+                          page: String?,
+                          results: [CurrentDayEvents],
+                          lang: String,
+                          textFormat: String,
+                          location: String,
+                          date: String,
+                          expand: String) async throws -> EventResult
+    
+    func getEvents(numberOfEvents count: Int,
+                   page: String?,
+                   results: [CurrentDayEvents],
+                   lang: String,
+                   textFormat: String,
+                   location: String,
+                   expand: String,
+                   actualSince: Int) async throws -> EventResult
     
     func getCategories(categories: [Categories]) async throws -> [Categories]
 }
@@ -46,9 +55,46 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
         return NetworkLoggerPlugin(configuration: configuration)
     }()
     
-    //MARK: - getResults
+    //MARK: - getEvents
     
-    func getEventResults(numberOfEvents count: Int,
+    func getEvents(numberOfEvents count: Int,
+                   page: String?,
+                   results: [CurrentDayEvents],
+                   lang: String = "ru",
+                   textFormat: String = "text",
+                   location: String = "msk",
+                   expand: String = "object,place",
+                   actualSince: Int = Int(Date.now.timeIntervalSince1970)) async throws -> EventResult {
+        return try await withCheckedThrowingContinuation { continuation in
+            eventsProvider.request(.getEvents(count: count,
+                                                    page: page,
+                                                    results: results,
+                                                    lang: lang,
+                                                    textFormat: textFormat,
+                                                    location: location,
+                                                    expand: expand,
+                                                    actualSince: actualSince)) { result in
+                
+                switch result {
+                case .success(let response):
+                    
+                    do {
+                        let results = try response.map(EventResult.self)
+                        continuation.resume(returning: results)
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                    
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    //MARK: - getCurrentEvents
+    
+    func getCurrentEvents(numberOfEvents count: Int,
                          page: String?,
                          results: [CurrentDayEvents],
                          lang: String = "ru",
@@ -57,7 +103,7 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                          date: String = Date.now.ISO8601Format(), //временно
                          expand: String = "object,place") async throws -> EventResult {
         return try await withCheckedThrowingContinuation { continuation in
-            eventsProvider.request(.getEventResult(count: count,
+            eventsProvider.request(.getCurrentEvents(count: count,
                                                     page: page,
                                                     results: results,
                                                     lang: lang,
@@ -130,7 +176,6 @@ struct Constants {
     static var eventOfTheDayURL = "/events-of-the-day/"
     static var eventsURL = "/events/"
     static var movieShowingsURL = "/movie-showings/"
-    static var listOfSingers = "/agents/"
     
     static var eventCategories = "/event-categories/"
     static var placesCategories = "/place-categories/"

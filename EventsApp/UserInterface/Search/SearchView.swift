@@ -13,18 +13,11 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                CustomButton(type: .back)
-                
-                Text("Search")
-                    .font(.customFont(type: .semiBold, size: 24))
-                
-                Spacer()
-            }
+            HeaderWithBackBtn(title: "Search")
             listOfResults
         }
-        .searchable(text: $searchText,
-                    placement: .navigationBarDrawer)
+//        .searchable(text: $searchText,
+//                    placement: .navigationBarDrawer)
     }
     
     private var listOfResults: some View {

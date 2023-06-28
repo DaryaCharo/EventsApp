@@ -13,7 +13,6 @@ import Combine
 final class HomeVM: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     
-    //под большим вопросом, потому что мне нужен резалтс в нескольких местах, но я имею доступ только в функциям и выходит какая-то не очень штука
     lazy var eventManager: EventManagerProtocol = {
        EventManager()
     }()
@@ -38,7 +37,7 @@ final class HomeVM: ObservableObject {
 //    //MARK: - getEvents
 
     @MainActor func fillResults() async {
-        results = await eventManager.getEvents()
+        results = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())
     }
     
     //MARK: -getEventByCategory

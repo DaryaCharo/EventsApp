@@ -22,7 +22,7 @@ final class Providers {
     
     //MARK: - Sign in
     
-    @MainActor func signIn(providerType: ProviderType,
+    func signIn(providerType: ProviderType,
                            email: String,
                            pass: String) async {
         
@@ -36,7 +36,7 @@ final class Providers {
             }
         case .google:
             guard let clientID = authorisation.app?.options.clientID,
-                  let presentingViewController = (UIApplication.shared.connectedScenes.first
+                  let presentingViewController = await (UIApplication.shared.connectedScenes.first
                                                   as? UIWindowScene)?.windows.first?.rootViewController else { return }
             
             // Create Google SignIn configuration object

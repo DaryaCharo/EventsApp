@@ -9,14 +9,23 @@ import Foundation
 import Moya
 
 enum Events {
-    case getEventResult(count: Int,
-                        page: String?,
-                        results: [CurrentDayEvents],
-                        lang: String?,
-                        textFormat: String?,
-                        location: String?,
-                        date: String?,
-                        expand: String)
+    case getCurrentEvents(count: Int,
+                          page: String?,
+                          results: [CurrentDayEvents],
+                          lang: String?,
+                          textFormat: String?,
+                          location: String?,
+                          date: String?,
+                          expand: String)
+    
+    case getEvents(count: Int,
+                   page: String?,
+                   results: [CurrentDayEvents],
+                   lang: String?,
+                   textFormat: String?,
+                   location: String?,
+                   expand: String,
+                   actualSince: Int?)
     
     case getEventGenres(categories: [Categories])
 }
@@ -24,30 +33,32 @@ enum Events {
 extension Events: TargetType {
     var baseURL: URL {
         switch self {
-        case .getEventResult, .getEventGenres:
+        case .getCurrentEvents, .getEvents, .getEventGenres:
             return URL(string: Constants.baseURL)!
         }
     }
     
     var path: String {
         switch self {
-        case .getEventResult:
+        case .getCurrentEvents:
             return Constants.eventOfTheDayURL
         case .getEventGenres:
             return Constants.eventCategories
+        case .getEvents:
+            return Constants.eventsURL
         }
     }
     var parameters: [String: Any]? {
         var params = [String: Any]()
         switch self {
-        case .getEventResult(let count,
-                             let page,
-                             let results,
-                             let lang,
-                             let textFormat,
-                             let location,
-                             let date,
-                             let expand):
+        case .getCurrentEvents(let count,
+                               let page,
+                               let results,
+                               let lang,
+                               let textFormat,
+                               let location,
+                               let date,
+                               let expand):
             params["count"] = count
             params["next"] = page
             params["results"] = results
@@ -56,6 +67,23 @@ extension Events: TargetType {
             params["location"] = location
             params["date"] = date
             params["expand"] = expand
+            
+        case .getEvents(let count,
+                        let page,
+                        let results,
+                        let lang,
+                        let textFormat,
+                        let location,
+                        let expand,
+                        let actualSince):
+            params["count"] = count
+            params["next"] = page
+            params["results"] = results
+            params["lang"] = lang
+            params["text_format"] = textFormat
+            params["location"] = location
+            params["expand"] = expand
+            params["actualSince"] = actualSince
             
         case .getEventGenres(let categories):
             params["categories"] = categories

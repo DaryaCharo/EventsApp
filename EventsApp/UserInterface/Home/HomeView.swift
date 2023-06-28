@@ -11,15 +11,20 @@ struct HomeView: View {
     @StateObject var vm = HomeVM()
     
     var body: some View {
-        VStack {
-            header
-            
-            featureEvent
-            
-            listOfEvents
-            
-            eventsList
+        ScrollView(.vertical,
+                   showsIndicators: false) {
+            VStack {
+                header
+                
+                //random event from the feature date
+                featureEvent
+                
+                listOfEvents
+                
+                eventsList
+            }
         }
+        .padding(.top)
     }
     
     private var featureEvent: some View {
@@ -28,13 +33,11 @@ struct HomeView: View {
                            eventImage: "")
         
     }
-    
-    //                //через секцию. контент header footer. Когда появляется footer
-    //                //если hasMore loadMore - fetchData
+
     private var eventsList: some View {
         VStack {
             Text("Today's Events")
-
+            
                 .font(.customFont(type: .semiBold,
                                   size: 25))
                 .frame(maxWidth: .infinity,
@@ -64,7 +67,7 @@ struct HomeView: View {
                         }
                     }
                 } else {
-                    Text("Can't find any events")
+                    Text("Can't find any events on this day")
                         .font(.customFont(type: .semiBold,
                                           size: 20))
                         .frame(maxWidth: .infinity,
@@ -81,18 +84,11 @@ struct HomeView: View {
     
     private var header: some View {
         HStack {
-            Header(title: "Home")
+            HeaderWithLogo(title: "Home")
             
             Spacer()
             
             CustomButton(type: .notification)
-            //                .fullScreenCover(item: $vm.showView) { item in
-            //                    switch item {
-            //                    case .notification:
-            //                        NotificationView()
-            //                    case .favourite:
-            //                        FavouriteView()
-            //                    }
             Button {
                 
             } label: {

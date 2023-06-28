@@ -25,7 +25,6 @@ struct EventView: View {
                     .frame(maxWidth: .infinity,
                            maxHeight: .infinity,
                            alignment: .top)
-                    .background(Color.red)
             }
             
                 VStack {

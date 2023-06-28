@@ -31,7 +31,7 @@ final class SignInVM: ObservableObject {
             .store(in: &cancellable)
     }
     
-    @MainActor func continueWithEmail() async {
+    func continueWithEmail() async {
         providers.signInValidate(email: email,
                                  pass: pass)
         
@@ -40,7 +40,7 @@ final class SignInVM: ObservableObject {
                                    pass: pass)
     }
     
-    @MainActor func continueWithGoogle() async {
+    func continueWithGoogle() async {
         await providers.signIn(providerType: .google,
                                email: "",
                                pass: "")
