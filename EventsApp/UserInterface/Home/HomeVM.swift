@@ -36,13 +36,13 @@ final class HomeVM: ObservableObject {
     
 //    //MARK: - getEvents
 
-    @MainActor func fillResults() async {
+    func fillResults() async {
         results = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())
     }
     
     //MARK: -getEventByCategory
     
-    @MainActor func getEventWithCategory() async {
+    func getEventWithCategory() async {
         categories = await eventManager.getCategories()
     }
     

@@ -8,9 +8,9 @@
 import SwiftUI
 
 protocol EventManagerProtocol {
-    @MainActor func getCurrentEvents(date: String) async -> [CurrentDayEvents]
-    @MainActor func getEvents() async -> [CurrentDayEvents]
-    @MainActor func getCategories() async -> [Categories]
+    func getCurrentEvents(date: String) async -> [CurrentDayEvents]
+    func getEvents() async -> [CurrentDayEvents]
+    func getCategories() async -> [Categories]
 }
 
 final class EventManager: EventManagerProtocol {
@@ -22,7 +22,7 @@ final class EventManager: EventManagerProtocol {
     private var page = ""
     private var ids: [Int] = []
     
-    @MainActor func getEvents() async -> [CurrentDayEvents] {
+    func getEvents() async -> [CurrentDayEvents] {
         do {
             let data = try await self.moyaManager.getCurrentEvents(numberOfEvents: self.count,
                                                                   page: self.page,
@@ -34,7 +34,7 @@ final class EventManager: EventManagerProtocol {
         return results
     }
     
-    @MainActor func getCurrentEvents(date: String) async -> [CurrentDayEvents] {
+    func getCurrentEvents(date: String) async -> [CurrentDayEvents] {
         do {
             let data = try await self.moyaManager.getCurrentEvents(numberOfEvents: self.count,
                                                                   page: self.page,
@@ -47,7 +47,7 @@ final class EventManager: EventManagerProtocol {
         return results
     }
     
-    @MainActor func getCategories() async -> [Categories] {
+    func getCategories() async -> [Categories] {
         do {
             let categoriesData = try await self.moyaManager.getCategories(categories: categories)
             categories.append(contentsOf: categoriesData)

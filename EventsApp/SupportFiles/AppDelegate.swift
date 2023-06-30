@@ -8,12 +8,20 @@
 import GoogleSignIn
 import FirebaseCore
 import SwiftUI
+import GoogleMaps
+import GooglePlaces
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
+    
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        if let apiKey = Bundle.main.object(forInfoDictionaryKey: "APIKey") as? String {
+            GMSServices.provideAPIKey(apiKey)
+            GMSPlacesClient.provideAPIKey(apiKey)
+        }
         return true
     }
     

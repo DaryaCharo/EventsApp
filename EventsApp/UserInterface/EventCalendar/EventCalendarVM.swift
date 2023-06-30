@@ -16,7 +16,7 @@ final class EventCalendarVM: ObservableObject {
     
     //    //MARK: - getEvents
     
-    @MainActor func fillResults() async {
+    func fillResults() async {
         results = await eventManager.getCurrentEvents(date: date.ISO8601Format())
     }
 }

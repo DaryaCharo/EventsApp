@@ -48,6 +48,10 @@
 		E39B20C72A437CF40020499F /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B20C62A437CF40020499F /* EventManager.swift */; };
 		E3A8228F2A40CBE400D15FD1 /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A8228E2A40CBE400D15FD1 /* Providers.swift */; };
 		E3BE4F732A4C5583007FEC7E /* HeaderWithBackBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */; };
+		E3BE4F782A4D8A12007FEC7E /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E3BE4F772A4D8A12007FEC7E /* GoogleMaps */; };
+		E3BE4F7A2A4D8A12007FEC7E /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = E3BE4F792A4D8A12007FEC7E /* GooglePlaces */; };
+		E3BE4F7C2A4D8B23007FEC7E /* MapVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */; };
+		E3BE4F7E2A4DC036007FEC7E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */; };
 		E3E745D02A456E26005FA631 /* CurrentEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745CF2A456E26005FA631 /* CurrentEvent.swift */; };
 		E3E745D22A45D2D7005FA631 /* TextFiledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745D12A45D2D7005FA631 /* TextFiledView.swift */; };
 		E3E745D52A45D304005FA631 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745D42A45D304005FA631 /* LogoView.swift */; };
@@ -117,6 +121,8 @@
 		E39B20C62A437CF40020499F /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		E3A8228E2A40CBE400D15FD1 /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
 		E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWithBackBtn.swift; sourceTree = "<group>"; };
+		E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVM.swift; sourceTree = "<group>"; };
+		E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		E3E745CF2A456E26005FA631 /* CurrentEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEvent.swift; sourceTree = "<group>"; };
 		E3E745D12A45D2D7005FA631 /* TextFiledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFiledView.swift; sourceTree = "<group>"; };
 		E3E745D42A45D304005FA631 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 			files = (
 				E3E745E22A4747FB005FA631 /* GoogleSignInSwift in Frameworks */,
 				E39A2E8E2A2F221B0021100E /* RealmSwift in Frameworks */,
+				E3BE4F782A4D8A12007FEC7E /* GoogleMaps in Frameworks */,
 				E3E745E02A4747FB005FA631 /* GoogleSignIn in Frameworks */,
 				E39A2E8C2A2F221B0021100E /* Realm in Frameworks */,
 				E36509F02A420304008FC035 /* Kingfisher in Frameworks */,
@@ -158,6 +165,7 @@
 				E3F8EDE52A3CB8EF00F1A312 /* FirebaseFirestore in Frameworks */,
 				E3F8EDE32A3CB8EF00F1A312 /* FirebaseAuth in Frameworks */,
 				E3F8EDE72A3CB8EF00F1A312 /* FirebaseFirestoreSwift in Frameworks */,
+				E3BE4F7A2A4D8A12007FEC7E /* GooglePlaces in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +380,8 @@
 			isa = PBXGroup;
 			children = (
 				E39A2F0D2A3A56A00021100E /* MapView.swift */,
+				E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */,
+				E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -497,6 +507,8 @@
 				E36509EF2A420304008FC035 /* Kingfisher */,
 				E3E745DF2A4747FB005FA631 /* GoogleSignIn */,
 				E3E745E12A4747FB005FA631 /* GoogleSignInSwift */,
+				E3BE4F772A4D8A12007FEC7E /* GoogleMaps */,
+				E3BE4F792A4D8A12007FEC7E /* GooglePlaces */,
 			);
 			productName = EventsApp;
 			productReference = E39A2E742A2F21B40021100E /* EventsApp.app */;
@@ -532,6 +544,7 @@
 				E3F8EDE12A3CB8EF00F1A312 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E36509EE2A420304008FC035 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E3E745DE2A4747FB005FA631 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				E3BE4F762A4D8A12007FEC7E /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */,
 			);
 			productRefGroup = E39A2E752A2F21B40021100E /* Products */;
 			projectDirPath = "";
@@ -575,11 +588,13 @@
 				E3F8EDFE2A3F186D00F1A312 /* EventNoteVM.swift in Sources */,
 				E3F8EDD52A3B951D00F1A312 /* SettingsView.swift in Sources */,
 				E3E745D02A456E26005FA631 /* CurrentEvent.swift in Sources */,
+				E3BE4F7E2A4DC036007FEC7E /* MapViewRepresentable.swift in Sources */,
 				E3F8EDC82A3B710500F1A312 /* ButtonsStyle.swift in Sources */,
 				E3F8EE042A3F567700F1A312 /* SearchView.swift in Sources */,
 				E39A2F082A3A39B80021100E /* HomeVM.swift in Sources */,
 				E3F8EDCB2A3B781F00F1A312 /* EventView.swift in Sources */,
 				E3F8EE0B2A409D5A00F1A312 /* EventCalendarVM.swift in Sources */,
+				E3BE4F7C2A4D8B23007FEC7E /* MapVM.swift in Sources */,
 				E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */,
 				E39B20C52A4371960020499F /* HeaderWithLogo.swift in Sources */,
 				E3BE4F732A4C5583007FEC7E /* HeaderWithBackBtn.swift in Sources */,
@@ -845,6 +860,14 @@
 				minimumVersion = 15.0.0;
 			};
 		};
+		E3BE4F762A4D8A12007FEC7E /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/YAtechnologies/GoogleMaps-SP.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		E3E745DE2A4747FB005FA631 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -883,6 +906,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E39A2E9D2A2FCF330021100E /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		E3BE4F772A4D8A12007FEC7E /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3BE4F762A4D8A12007FEC7E /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
+			productName = GoogleMaps;
+		};
+		E3BE4F792A4D8A12007FEC7E /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3BE4F762A4D8A12007FEC7E /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
+			productName = GooglePlaces;
 		};
 		E3E745DF2A4747FB005FA631 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
