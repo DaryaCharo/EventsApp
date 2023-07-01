@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
-import Combine
+import Firebase
 
 final class SignUpVM: ObservableObject {
     @Published var isSignUp = Bool()
     @Published var email = ""
+    @Published var name = ""
     @Published var pass = ""
     @Published var confPass = ""
     
@@ -18,16 +19,17 @@ final class SignUpVM: ObservableObject {
         Providers()
     }()
     
-    func signUp() {
+    func signUp() async {
         provider.signUpValidate(email: email,
                                 pass: pass,
                                 confPass: confPass)
+        await provider.singUp(email: email,
+                              pass: pass)
+    }
+    
+    func createUser(email: String,
+                    password: String,
+                    nickname: String) async throws {
         
-        let user = UsersData(email: email,
-                             pass: pass)
-        
-        //не очень понимаю, почему не видит
-//        provider.signUp(email: email,
-//                        pass: pass)
     }
 }

@@ -14,7 +14,7 @@ final class HomeVM: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     
     lazy var eventManager: EventManagerProtocol = {
-       EventManager()
+        EventManager()
     }()
     
     @Published var results: [CurrentDayEvents] = []
@@ -34,16 +34,24 @@ final class HomeVM: ObservableObject {
             .store(in: &cancellable)
     }
     
-//    //MARK: - getEvents
-
+    //    //MARK: - getEvents
+    
     func fillResults() async {
-        results = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())
+        let result = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())
+        await MainActor.run {
+            results = result
+        }
+        
     }
     
     //MARK: -getEventByCategory
     
     func getEventWithCategory() async {
-        categories = await eventManager.getCategories()
+        let result = await eventManager.getCategories()
+        await MainActor.run {
+            categories = result
+        }
+        
     }
     
     

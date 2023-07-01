@@ -25,8 +25,8 @@ final class EventManager: EventManagerProtocol {
     func getEvents() async -> [CurrentDayEvents] {
         do {
             let data = try await self.moyaManager.getCurrentEvents(numberOfEvents: self.count,
-                                                                  page: self.page,
-                                                                  results: self.results)
+                                                                   page: self.page,
+                                                                   results: self.results)
             results.append(contentsOf: data.results)
         } catch {
             print(error)
@@ -37,9 +37,9 @@ final class EventManager: EventManagerProtocol {
     func getCurrentEvents(date: String) async -> [CurrentDayEvents] {
         do {
             let data = try await self.moyaManager.getCurrentEvents(numberOfEvents: self.count,
-                                                                  page: self.page,
-                                                                  results: self.results,
-                                                                  date: date)
+                                                                   page: self.page,
+                                                                   results: self.results,
+                                                                   date: date)
             results.append(contentsOf: data.results)
         } catch {
             print(error)

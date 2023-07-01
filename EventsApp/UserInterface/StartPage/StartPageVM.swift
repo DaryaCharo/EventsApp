@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Firebase
 
 final class StartPageVM: ObservableObject {
-    @Published var isSignIn = false
-    
+    @Published var userSession: FirebaseAuth.User? //to know if user sign in
+    @Published var currentUser: User?
     
 }

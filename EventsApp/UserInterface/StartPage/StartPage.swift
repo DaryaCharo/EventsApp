@@ -13,12 +13,13 @@ struct StartPage: View {
     
     var body: some View {
         VStack {
-            if vm.isSignIn {
+            if vm.userSession != nil{
                 HomeView()
             } else {
                 SignInView()
             }
-//            vm.isSignIn ? HomeView() : SignInView()
+            
+//            vm.userSession != nil ? HomeView() : SignInView()
         }
     }
 }

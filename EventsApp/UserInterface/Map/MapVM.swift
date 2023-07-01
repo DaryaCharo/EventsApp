@@ -38,8 +38,11 @@ final class MapVM: ObservableObject {
     
     //    //MARK: - getEvents
     
-    @MainActor func fillResults() async {
-        results = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())
+    func fillResults() async {
+        let result = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())
+        await MainActor.run {
+            results = result
+        }
     }
 }
 

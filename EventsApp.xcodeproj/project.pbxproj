@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E36509F02A420304008FC035 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E36509EF2A420304008FC035 /* Kingfisher */; };
-		E385BCEC2A40CA30007C84B4 /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385BCEB2A40CA30007C84B4 /* UsersData.swift */; };
+		E385BCEC2A40CA30007C84B4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385BCEB2A40CA30007C84B4 /* UserData.swift */; };
 		E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E772A2F21B40021100E /* EventsAppApp.swift */; };
 		E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E792A2F21B40021100E /* StartPage.swift */; };
 		E39A2E7C2A2F21B50021100E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39A2E7B2A2F21B50021100E /* Assets.xcassets */; };
@@ -53,14 +53,12 @@
 		E3BE4F7C2A4D8B23007FEC7E /* MapVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */; };
 		E3BE4F7E2A4DC036007FEC7E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */; };
 		E3E745D02A456E26005FA631 /* CurrentEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745CF2A456E26005FA631 /* CurrentEvent.swift */; };
-		E3E745D22A45D2D7005FA631 /* TextFiledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745D12A45D2D7005FA631 /* TextFiledView.swift */; };
+		E3E745D22A45D2D7005FA631 /* InputFiledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745D12A45D2D7005FA631 /* InputFiledView.swift */; };
 		E3E745D52A45D304005FA631 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745D42A45D304005FA631 /* LogoView.swift */; };
 		E3E745D72A45D353005FA631 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3E745D62A45D353005FA631 /* GoogleService-Info.plist */; };
 		E3E745DB2A4746C6005FA631 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745DA2A4746C6005FA631 /* SignInView.swift */; };
 		E3E745E02A4747FB005FA631 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = E3E745DF2A4747FB005FA631 /* GoogleSignIn */; };
 		E3E745E22A4747FB005FA631 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3E745E12A4747FB005FA631 /* GoogleSignInSwift */; };
-		E3E745E42A474C18005FA631 /* TextFieldVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745E32A474C18005FA631 /* TextFieldVM.swift */; };
-		E3E745E62A474CAB005FA631 /* SecureTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745E52A474CAB005FA631 /* SecureTextFieldView.swift */; };
 		E3F8EDC52A3B6E0B00F1A312 /* FeaturedEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */; };
 		E3F8EDC82A3B710500F1A312 /* ButtonsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDC72A3B710500F1A312 /* ButtonsStyle.swift */; };
 		E3F8EDCB2A3B781F00F1A312 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDCA2A3B781F00F1A312 /* EventView.swift */; };
@@ -85,7 +83,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E385BCEB2A40CA30007C84B4 /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
+		E385BCEB2A40CA30007C84B4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E39A2E742A2F21B40021100E /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39A2E772A2F21B40021100E /* EventsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAppApp.swift; sourceTree = "<group>"; };
 		E39A2E792A2F21B40021100E /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
@@ -124,12 +122,10 @@
 		E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVM.swift; sourceTree = "<group>"; };
 		E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
 		E3E745CF2A456E26005FA631 /* CurrentEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEvent.swift; sourceTree = "<group>"; };
-		E3E745D12A45D2D7005FA631 /* TextFiledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFiledView.swift; sourceTree = "<group>"; };
+		E3E745D12A45D2D7005FA631 /* InputFiledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFiledView.swift; sourceTree = "<group>"; };
 		E3E745D42A45D304005FA631 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		E3E745D62A45D353005FA631 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3E745DA2A4746C6005FA631 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
-		E3E745E32A474C18005FA631 /* TextFieldVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldVM.swift; sourceTree = "<group>"; };
-		E3E745E52A474CAB005FA631 /* SecureTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldView.swift; sourceTree = "<group>"; };
 		E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedEventsView.swift; sourceTree = "<group>"; };
 		E3F8EDC72A3B710500F1A312 /* ButtonsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsStyle.swift; sourceTree = "<group>"; };
 		E3F8EDCA2A3B781F00F1A312 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
@@ -222,7 +218,7 @@
 				E3E745D42A45D304005FA631 /* LogoView.swift */,
 				E39A2F032A39EC3C0021100E /* SplashScreenView.swift */,
 				E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */,
-				E3E745D32A45D2F2005FA631 /* TextField */,
+				E3E745D32A45D2F2005FA631 /* InputField */,
 				E3F8EE022A3F241A00F1A312 /* CustomButton */,
 				E3F8EDCC2A3B78CB00F1A312 /* EventCard */,
 			);
@@ -252,7 +248,7 @@
 		E39A2E962A2F23A60021100E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E385BCEB2A40CA30007C84B4 /* UsersData.swift */,
+				E385BCEB2A40CA30007C84B4 /* UserData.swift */,
 				E39B20C62A437CF40020499F /* EventManager.swift */,
 				E39A2EA02A2FD0E40021100E /* Data */,
 			);
@@ -303,14 +299,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E3E745D32A45D2F2005FA631 /* TextField */ = {
+		E3E745D32A45D2F2005FA631 /* InputField */ = {
 			isa = PBXGroup;
 			children = (
-				E3E745D12A45D2D7005FA631 /* TextFiledView.swift */,
-				E3E745E32A474C18005FA631 /* TextFieldVM.swift */,
-				E3E745E52A474CAB005FA631 /* SecureTextFieldView.swift */,
+				E3E745D12A45D2D7005FA631 /* InputFiledView.swift */,
 			);
-			path = TextField;
+			path = InputField;
 			sourceTree = "<group>";
 		};
 		E3F8EDC62A3B6E2100F1A312 /* UserInterface */ = {
@@ -605,7 +599,7 @@
 				E39A2E932A2F22520021100E /* MoyaManager.swift in Sources */,
 				E39A2F042A39EC3C0021100E /* SplashScreenView.swift in Sources */,
 				E39A2EC32A34884F0021100E /* Dates.swift in Sources */,
-				E3E745D22A45D2D7005FA631 /* TextFiledView.swift in Sources */,
+				E3E745D22A45D2D7005FA631 /* InputFiledView.swift in Sources */,
 				E39A2ED32A34BD6E0021100E /* CurrentDayEvents.swift in Sources */,
 				E39A2EF52A3778150021100E /* (null) in Sources */,
 				E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */,
@@ -615,12 +609,10 @@
 				E3F8EDE02A3CB73600F1A312 /* SettingsVM.swift in Sources */,
 				E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */,
 				E39A2F062A3A39AE0021100E /* HomeView.swift in Sources */,
-				E3E745E62A474CAB005FA631 /* SecureTextFieldView.swift in Sources */,
-				E385BCEC2A40CA30007C84B4 /* UsersData.swift in Sources */,
+				E385BCEC2A40CA30007C84B4 /* UserData.swift in Sources */,
 				E39A2EF32A37780C0021100E /* (null) in Sources */,
 				E3F8EDF02A3CBD5100F1A312 /* SignUpView.swift in Sources */,
 				E3E745DB2A4746C6005FA631 /* SignInView.swift in Sources */,
-				E3E745E42A474C18005FA631 /* TextFieldVM.swift in Sources */,
 				E39A2F002A3792A00021100E /* Font + Extension.swift in Sources */,
 				E39A2F102A3A57490021100E /* EventCalendarView.swift in Sources */,
 				E39A2F122A3A58F90021100E /* ProfileView.swift in Sources */,

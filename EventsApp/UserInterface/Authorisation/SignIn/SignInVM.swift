@@ -9,7 +9,6 @@ import Combine
 import SwiftUI
 
 final class SignInVM: ObservableObject {
-    @Published var rememberUser = Bool()
     private var cancellable = Set<AnyCancellable>()
     private lazy  var providers: Providers = {
         Providers()
@@ -26,7 +25,6 @@ final class SignInVM: ObservableObject {
             .sink { [weak self] email in
                 guard let self = self else { return }
                 self.signUpVM.email = email
-                print(email)
             }
             .store(in: &cancellable)
     }
@@ -36,8 +34,8 @@ final class SignInVM: ObservableObject {
                                  pass: pass)
         
         await providers.signIn(providerType: .firebase,
-                                   email: email,
-                                   pass: pass)
+                               email: email,
+                               pass: pass)
     }
     
     func continueWithGoogle() async {
@@ -51,6 +49,13 @@ final class SignInVM: ObservableObject {
     }
 }
 
-enum ShowView {
-    case homeView, signUpView
+enum ShowView: Identifiable {
+    var id: Int {
+        switch self {
+        case .homeView:
+            return 1
+        }
+    }
+    
+    case homeView
 }

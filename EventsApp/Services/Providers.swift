@@ -20,58 +20,64 @@ final class Providers {
     }()
     private var validation: ValidationStatus?
     
-    //MARK: - Sign in
+    //MARK:  SignUp
     
-    func signIn(providerType: ProviderType,
+    func singUp(email: String,
+                pass: String) async {
+        guard validation == .accepted else { return }
+        
+        await MainActor.run {
+            authorisation.createUser(withEmail: email,
+                                     password: pass) { authResult, error in
+                
+                Firestore.setValuesForKeys(["ID" : authResult?.user.uid ?? UUID(),
+                                            "Email Address" : email,
+                                            "Nickname" : authResult?.user.displayName ?? "No nickname",
+                                            "Password" : pass])
+            }
+        }
+    }
+    
+    //MARK: - Sign in
+    //@MainActor for Google Authorisation
+    @MainActor func signIn(providerType: ProviderType,
                            email: String,
                            pass: String) async {
         
         switch providerType {
         case .firebase:
-            authorisation.signIn(withEmail: email,
-                                 password: pass) { [weak self] authResult, error in
-                guard let self = self,
-                      self.validation == .accepted else { return }
-                //                 UserDefaults.value(forKey: "UserSignIn") = true
+            await MainActor.run {
+                authorisation.signIn(withEmail: email,
+                                     password: pass) { [weak self] authResult, error in
+                    guard let self = self,
+                          self.validation == .accepted else { return }
+                }
             }
         case .google:
             guard let clientID = authorisation.app?.options.clientID,
-                  let presentingViewController = await (UIApplication.shared.connectedScenes.first
+                  let presentingViewController = (UIApplication.shared.connectedScenes.first
                                                   as? UIWindowScene)?.windows.first?.rootViewController else { return }
-            
             // Create Google SignIn configuration object
-            let config = GIDConfiguration(clientID: clientID)
-            GIDSignIn.sharedInstance.configuration = config
+            GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)
+            
             
             do {
                 let user = try await GIDSignIn.sharedInstance.signIn(withPresenting:
                                                                         presentingViewController).user
                 guard let idToken = user.idToken else { return }
-                let credential = GoogleAuthProvider.credential(withIDToken: idToken.description,
-                                                               accessToken: user.accessToken.tokenString)
-                let result = try await authorisation.signIn(with: credential)
                 
-                UserDefaults.setValue(result.user, forKey: "GoogleUser")
+                let authResult = try await authorisation.signIn(with: GoogleAuthProvider.credential(withIDToken: idToken.description,
+                                                                                                    accessToken: user.accessToken.tokenString))
+                
+                UserDefaults.setValue(authResult.user, forKey: "GoogleUser")
                 if let user = UserDefaults.value(forKey: "GoogleUser") as? User,
-                   user != result.user {
+                   user != authResult.user {
                     try await Firestore.setValue(user.getIDToken(),
                                                  forKey: user.email ?? "User token")
                 }
             } catch {
                 print(error)
             }
-        }
-    }
-    
-    //MARK:  SignUp
-    
-    func singUp(email: String,
-                pass: String) {
-        guard validation == .accepted else { return }
-        
-        authorisation.createUser(withEmail: email,
-                                 password: pass) { authResult, error in
-            //            userIsSignIn = true
         }
     }
     

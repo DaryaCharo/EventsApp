@@ -19,7 +19,7 @@ struct SignInView: View {
                 .font(.customFont(type: .semiBold,
                                   size: 20))
             
-            emailAndPass
+            formFields
             signInButton
             
             Text("or continue with")
@@ -37,12 +37,14 @@ struct SignInView: View {
     
     private var googleButton: some View {
         Button {
-
+            Task {
+                await vm.continueWithGoogle()
+            }
         } label: {
             Label {
                 Text("Continue with Google")
                     .font(.customFont(type: .semiBold,
-                                           size: 16))
+                                      size: 16))
                     .foregroundColor(.black)
                     .padding(.vertical, 18)
             } icon: {
@@ -55,57 +57,55 @@ struct SignInView: View {
             .background(Color.customWindowBack)
             .cornerRadius(10)
         }
-        .task {
-            await vm.continueWithGoogle()
-        }
     }
     
     private var signInButton: some View {
         Button {
-            
+            Task {
+                await vm.continueWithEmail()
+            }
         } label: {
-             Text("Sign In")
+            Text("Sign In")
                 .font(.customFont(type: .semiBold,
                                   size: 18))
+                .frame(maxWidth: .infinity)
         }
         .buttonStyle(FillButtonStyle())
+        .padding(.horizontal)
+        .fullScreenCover(item: $vm.showView) { view in
+            HomeView()
+        }
     }
     
-    private var emailAndPass:some View {
+    private var formFields:some View {
         VStack {
-            TextFieldView(textFieldName: TextFieldText.email.textFieldName,
-                          placeholder: TextFieldText.email.placeholder,
-                          text: $vm.email)
+            InputFieldView(title: InputFieldText.email.title,
+                           placeholder: InputFieldText.email.placeholder,
+                           text: $vm.email)
             
-            SecureTextFieldView(textFieldName: TextFieldText.pass.textFieldName,
-                                placeholder: TextFieldText.pass.placeholder,
-                                text: $vm.pass)
+            InputFieldView(title: InputFieldText.pass.title,
+                           placeholder: InputFieldText.pass.placeholder,
+                           text: $vm.pass,
+                           isSecureField: .secure)
         }
         .padding(.vertical, 16)
-    }
-    
-    private var rememberUserSwitcher: some View {
-        Toggle(isOn: $vm.rememberUser) {
-            Text("Remember me")
-                .font(.customFont(type: .semiBold,
-                                  size: 16))
-            
-        }
     }
     
     private var signUpLink: some View {
         NavigationLink {
             SignUpView()
+                .navigationBarBackButtonHidden()
         } label: {
             HStack {
                 Text("Don't have an account? ") +
                 Text("Sign Up").foregroundColor(.customPurple)
+                    .bold()
             }
             .frame(maxWidth: .infinity)
             .font(.customFont(type: .semiBold,
                               size: 20))
             .foregroundColor(.gray)
-            .padding(.horizontal, 16)
+            .padding(.horizontal)
         }
     }
 }
