@@ -28,7 +28,7 @@ struct EventNoteView: View {
     //через секцию. контент header footer. Когда появляется footer
     //если hasMore loadMore - fetchData
     
-    //сделать запрос на лист ивентов. Когда я получаю лист ивентов, то во вью влить доп запрос ивента по его id
+    //список всех грядущих ивентов начиная с сегодняшнего дня
     private var listOfEvents: some View {
         VStack {
             if vm.results.contains(where: {$0.object != nil}) {
@@ -46,7 +46,7 @@ struct EventNoteView: View {
                                       genre: type,
                                       followers:  followers,
                                       location: address,
-                                      date: date)
+                                      stringDate: date)
                             .padding(.bottom)
                         }
                     }

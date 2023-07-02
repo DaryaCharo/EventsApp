@@ -15,7 +15,7 @@ protocol MoyaAPIManagerProtocol: AnyObject {
                           lang: String,
                           textFormat: String,
                           location: String,
-                          date: String,
+                          date: String?,
                           expand: String) async throws -> EventResult
     
     func getEvents(numberOfEvents count: Int,
@@ -100,7 +100,7 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                          lang: String = "ru",
                          textFormat: String = "text",
                          location: String = "msk",
-                         date: String = Date.now.ISO8601Format(), //временно
+                         date: String?,
                          expand: String = "object,place") async throws -> EventResult {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getCurrentEvents(count: count,

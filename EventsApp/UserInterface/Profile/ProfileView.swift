@@ -15,7 +15,9 @@ struct ProfileView: View {
             header
             
             avatar
+            Spacer()
             bio
+            Spacer()
         }
     }
     

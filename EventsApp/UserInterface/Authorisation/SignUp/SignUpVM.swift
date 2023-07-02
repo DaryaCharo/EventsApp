@@ -19,11 +19,11 @@ final class SignUpVM: ObservableObject {
         Providers()
     }()
     
-    func signUp() async {
+    func signUp() {
         provider.signUpValidate(email: email,
                                 pass: pass,
                                 confPass: confPass)
-        await provider.singUp(email: email,
+        provider.singUp(email: email,
                               pass: pass)
     }
     

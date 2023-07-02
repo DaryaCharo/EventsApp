@@ -56,7 +56,7 @@ struct EventCalendarView: View {
                                           genre: type,
                                           followers:  followers,
                                           location: address,
-                                          date: date)
+                                          stringDate: date)
                                 .padding(.bottom)
                             }
                         }

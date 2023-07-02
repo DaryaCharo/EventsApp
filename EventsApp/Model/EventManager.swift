@@ -26,7 +26,8 @@ final class EventManager: EventManagerProtocol {
         do {
             let data = try await self.moyaManager.getCurrentEvents(numberOfEvents: self.count,
                                                                    page: self.page,
-                                                                   results: self.results)
+                                                                   results: self.results,
+                                                                   date: .none)
             results.append(contentsOf: data.results)
         } catch {
             print(error)

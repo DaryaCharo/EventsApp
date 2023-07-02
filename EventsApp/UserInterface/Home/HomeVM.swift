@@ -18,6 +18,7 @@ final class HomeVM: ObservableObject {
     }()
     
     @Published var results: [CurrentDayEvents] = []
+    @Published var featureEventsResults: [CurrentDayEvents] = []
     @Published var categories: [Categories] = []
     @Published var places: [Place] = []
     var showFavView: ShowFavView?
@@ -34,7 +35,17 @@ final class HomeVM: ObservableObject {
             .store(in: &cancellable)
     }
     
-    //    //MARK: - getEvents
+    func setRandomFeatureEvent() async {
+        guard let featureDate = Calendar.current.date(byAdding: .day, value: 7, to: Date.now) else { return }
+        print(featureDate)
+        print(Date.now)
+        let result = await eventManager.getCurrentEvents(date: featureDate.ISO8601Format())
+        await MainActor.run {
+            featureEventsResults = result
+        }
+    }
+    
+    //MARK: - getEvents
     
     func fillResults() async {
         let result = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())

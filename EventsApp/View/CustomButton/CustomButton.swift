@@ -31,9 +31,9 @@ struct CustomButton: View {
                     .foregroundColor(.customPurple)
             }
             .buttonStyle(UserInteractionButtonsStyle())
-//            .fullScreenCover(item: $vm.showView) { _ in
-//                SettingsView()
-//            }
+            //            .fullScreenCover(item: $vm.showView) { _ in
+            //                SettingsView()
+            //            }
         case .notification:
             Button {
                 
@@ -42,9 +42,9 @@ struct CustomButton: View {
                     .foregroundColor(.customPurple)
             }
             .buttonStyle(UserInteractionButtonsStyle())
-//            .fullScreenCover(item: $vm.showView) { _ in
-//                NotificationView()
-//            }
+            //            .fullScreenCover(item: $vm.showView) { _ in
+            //                NotificationView()
+            //            }
         case .favourite:
             Button {
                 vm.makeFavourite()
@@ -60,9 +60,9 @@ struct CustomButton: View {
                     .foregroundColor(.customPurple)
             }
             .buttonStyle(UserInteractionButtonsStyle())
-//            .fullScreenCover(item: $vm.showView) { _ in
-//                SearchView(searchText: .constant(""))
-//            }
+            //            .fullScreenCover(item: $vm.showView) { _ in
+            //                SearchView(searchText: .constant(""))
+            //            }
         case .filter:
             Button {
                 
@@ -89,6 +89,7 @@ struct CustomButton: View {
             }
         }
     }
+    
 }
 
 struct Buttons_Previews: PreviewProvider {

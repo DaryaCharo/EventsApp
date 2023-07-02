@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E33A9EA92A51E028005A4902 /* FullEventInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A9EA82A51E028005A4902 /* FullEventInfoView.swift */; };
 		E36509F02A420304008FC035 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E36509EF2A420304008FC035 /* Kingfisher */; };
 		E385BCEC2A40CA30007C84B4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385BCEB2A40CA30007C84B4 /* UserData.swift */; };
 		E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E772A2F21B40021100E /* EventsAppApp.swift */; };
@@ -83,6 +84,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E33A9EA82A51E028005A4902 /* FullEventInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEventInfoView.swift; sourceTree = "<group>"; };
 		E385BCEB2A40CA30007C84B4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E39A2E742A2F21B40021100E /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39A2E772A2F21B40021100E /* EventsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAppApp.swift; sourceTree = "<group>"; };
@@ -168,6 +170,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E33A9EAC2A51E041005A4902 /* FullEventInfo */ = {
+			isa = PBXGroup;
+			children = (
+				E33A9EA82A51E028005A4902 /* FullEventInfoView.swift */,
+			);
+			path = FullEventInfo;
+			sourceTree = "<group>";
+		};
+		E357734D2A50AE3C00496EE1 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				E39B20C42A4371960020499F /* HeaderWithLogo.swift */,
+				E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		E357734E2A50AE4D00496EE1 /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				E3E745D42A45D304005FA631 /* LogoView.swift */,
+			);
+			path = Logo;
+			sourceTree = "<group>";
+		};
+		E357734F2A50AE5600496EE1 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E39A2F032A39EC3C0021100E /* SplashScreenView.swift */,
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		E35773502A50AE6200496EE1 /* FeautureEvents */ = {
+			isa = PBXGroup;
+			children = (
+				E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */,
+			);
+			path = FeautureEvents;
+			sourceTree = "<group>";
+		};
+		E35773512A50B22600496EE1 /* EventsCards */ = {
+			isa = PBXGroup;
+			children = (
+				E35773502A50AE6200496EE1 /* FeautureEvents */,
+				E3F8EDCC2A3B78CB00F1A312 /* EventCard */,
+			);
+			path = EventsCards;
+			sourceTree = "<group>";
+		};
 		E39A2E6B2A2F21B40021100E = {
 			isa = PBXGroup;
 			children = (
@@ -213,14 +265,13 @@
 		E39A2E852A2F21BA0021100E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E39B20C42A4371960020499F /* HeaderWithLogo.swift */,
-				E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */,
-				E3E745D42A45D304005FA631 /* LogoView.swift */,
-				E39A2F032A39EC3C0021100E /* SplashScreenView.swift */,
-				E3F8EDC42A3B6E0B00F1A312 /* FeaturedEventsView.swift */,
+				E357734D2A50AE3C00496EE1 /* Header */,
+				E357734E2A50AE4D00496EE1 /* Logo */,
+				E357734F2A50AE5600496EE1 /* SplashScreen */,
 				E3E745D32A45D2F2005FA631 /* InputField */,
 				E3F8EE022A3F241A00F1A312 /* CustomButton */,
-				E3F8EDCC2A3B78CB00F1A312 /* EventCard */,
+				E33A9EAC2A51E041005A4902 /* FullEventInfo */,
+				E35773512A50B22600496EE1 /* EventsCards */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -593,6 +644,7 @@
 				E39B20C52A4371960020499F /* HeaderWithLogo.swift in Sources */,
 				E3BE4F732A4C5583007FEC7E /* HeaderWithBackBtn.swift in Sources */,
 				E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */,
+				E33A9EA92A51E028005A4902 /* FullEventInfoView.swift in Sources */,
 				E3F8EDDE2A3C64BC00F1A312 /* CustomButton.swift in Sources */,
 				E3F8EE012A3F241400F1A312 /* CustomButtonVM.swift in Sources */,
 				E3F8EDF22A3CBD5E00F1A312 /* SignUpVM.swift in Sources */,
