@@ -21,10 +21,10 @@ struct UserInteractionButtonsStyle: ButtonStyle {
 struct FillButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
+            .padding(12)
             .background(Color.customPurple)
             .cornerRadius(30)
             .foregroundColor(.white)
-            .padding(.horizontal, 24)
     }
 }
 

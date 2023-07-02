@@ -30,6 +30,7 @@ struct CustomButton: View {
                 Image(systemName: "gearshape.fill")
                     .foregroundColor(.customPurple)
             }
+            .buttonStyle(UserInteractionButtonsStyle())
 //            .fullScreenCover(item: $vm.showView) { _ in
 //                SettingsView()
 //            }
@@ -40,6 +41,10 @@ struct CustomButton: View {
                 Image(systemName: "bell.fill")
                     .foregroundColor(.customPurple)
             }
+            .buttonStyle(UserInteractionButtonsStyle())
+//            .fullScreenCover(item: $vm.showView) { _ in
+//                NotificationView()
+//            }
         case .favourite:
             Button {
                 vm.makeFavourite()
@@ -47,13 +52,17 @@ struct CustomButton: View {
                 Image(systemName: vm.isFavourite ? "bookmark.fill" : "bookmark")
                     .foregroundColor(.customPurple)
             }
+            .buttonStyle(UserInteractionButtonsStyle())
         case .search:
             Button {
-                
             } label: {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.customPurple)
             }
+            .buttonStyle(UserInteractionButtonsStyle())
+//            .fullScreenCover(item: $vm.showView) { _ in
+//                SearchView(searchText: .constant(""))
+//            }
         case .filter:
             Button {
                 
@@ -61,12 +70,14 @@ struct CustomButton: View {
                 Image(systemName: "list.star")
                     .foregroundColor(.customPurple)
             }
+            .buttonStyle(UserInteractionButtonsStyle())
         case.navigation:
             Button {
                 
             } label: {
                 Image("Navigation")
             }
+            .buttonStyle(UserInteractionButtonsStyle())
         case .changePhoto:
             Button {
                 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Header: View {
+struct HeaderWithLogo: View {
     @State var title: String
     
     var body: some View {
@@ -29,6 +29,6 @@ struct Header: View {
 
 struct Header_Previews: PreviewProvider {
     static var previews: some View {
-        Header(title: "")
+        HeaderWithLogo(title: "")
     }
 }

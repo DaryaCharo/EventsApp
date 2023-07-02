@@ -9,7 +9,17 @@ import SwiftUI
 
 struct NotificationView: View {
     var body: some View {
-        Text("Notification View")
+        HeaderWithBackBtn(title: "Notifications")
+    }
+    
+    private var listOfNotifications: some View {
+        ScrollView(.vertical,
+                   showsIndicators: false) {
+            VStack {
+                
+            }
+        }
+        .padding(.top)
     }
 }
 

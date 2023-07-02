@@ -15,13 +15,16 @@ struct ProfileView: View {
             header
             
             avatar
+            bio
         }
     }
     
-    private var profile: some View {
+    private var bio: some View {
         VStack {
-            //отмеченные в favourite events?
+            Text("Info about me")
         }
+        .frame(maxWidth: .infinity)
+        .padding()
     }
     
     private var avatar: some View {

@@ -9,14 +9,23 @@ import Foundation
 import Moya
 
 protocol MoyaAPIManagerProtocol: AnyObject {
-    func getEventResults(numberOfEvents count: Int,
-                         page: String?,
-                         results: [CurrentDayEvents],
-                         lang: String,
-                         textFormat: String,
-                         location: String,
-                         date: String,
-                         expand: String) async throws -> EventResult
+    func getCurrentEvents(numberOfEvents count: Int,
+                          page: String?,
+                          results: [CurrentDayEvents],
+                          lang: String,
+                          textFormat: String,
+                          location: String,
+                          date: String,
+                          expand: String) async throws -> EventResult
+    
+    func getEvents(numberOfEvents count: Int,
+                   page: String?,
+                   results: [CurrentDayEvents],
+                   lang: String,
+                   textFormat: String,
+                   location: String,
+                   expand: String,
+                   actualSince: Int) async throws -> EventResult
     
     func getCategories(categories: [Categories]) async throws -> [Categories]
 }
@@ -46,16 +55,55 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
         return NetworkLoggerPlugin(configuration: configuration)
     }()
     
-    func getEventResults(numberOfEvents count: Int,
+    //MARK: - getEvents
+    
+    func getEvents(numberOfEvents count: Int,
+                   page: String?,
+                   results: [CurrentDayEvents],
+                   lang: String = "ru",
+                   textFormat: String = "text",
+                   location: String = "msk",
+                   expand: String = "object,place",
+                   actualSince: Int = Int(Date.now.timeIntervalSince1970)) async throws -> EventResult {
+        return try await withCheckedThrowingContinuation { continuation in
+            eventsProvider.request(.getEvents(count: count,
+                                                    page: page,
+                                                    results: results,
+                                                    lang: lang,
+                                                    textFormat: textFormat,
+                                                    location: location,
+                                                    expand: expand,
+                                                    actualSince: actualSince)) { result in
+                
+                switch result {
+                case .success(let response):
+                    
+                    do {
+                        let results = try response.map(EventResult.self)
+                        continuation.resume(returning: results)
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                    
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    //MARK: - getCurrentEvents
+    
+    func getCurrentEvents(numberOfEvents count: Int,
                          page: String?,
                          results: [CurrentDayEvents],
                          lang: String = "ru",
                          textFormat: String = "text",
                          location: String = "msk",
-                         date: String = "2023-06-14",
-                         expand: String = "object") async throws -> EventResult {
+                         date: String = Date.now.ISO8601Format(), //временно
+                         expand: String = "object,place") async throws -> EventResult {
         return try await withCheckedThrowingContinuation { continuation in
-            eventsProvider.request(.getEventResult(count: count,
+            eventsProvider.request(.getCurrentEvents(count: count,
                                                     page: page,
                                                     results: results,
                                                     lang: lang,
@@ -81,6 +129,8 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
         }
     }
     
+    //MARK: - getCategories
+    
     func getCategories(categories: [Categories]) async throws -> [Categories] {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getEventGenres(categories: categories)) { result in
@@ -88,8 +138,8 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                 case .success(let response):
                     
                     do {
-                        let results = try response.map([Categories].self)
-                        continuation.resume(with: .success(results))
+                        let categories = try response.map([Categories].self)
+                        continuation.resume(returning: categories)
                     } catch {
                         continuation.resume(throwing: error)
                     }
@@ -126,10 +176,7 @@ struct Constants {
     static var eventOfTheDayURL = "/events-of-the-day/"
     static var eventsURL = "/events/"
     static var movieShowingsURL = "/movie-showings/"
-    static var listOfSingers = "/agents/"
     
     static var eventCategories = "/event-categories/"
     static var placesCategories = "/place-categories/"
-    
-    static var placesURL = "v=2.0&tree=searchTreeId&method=place.getForMap&cityId=1"
 }

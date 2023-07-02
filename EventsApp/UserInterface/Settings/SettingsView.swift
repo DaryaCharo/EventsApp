@@ -12,14 +12,8 @@ struct SettingsView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                CustomButton(type: .back)
-                
-                Text("Settings")
-                    .font(.customFont(type: .semiBold, size: 24))
-                
-                Spacer()
-            }
+            HeaderWithBackBtn(title: "Settings")
+            
             listOfSettings
         }
     }

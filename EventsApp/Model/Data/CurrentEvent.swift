@@ -15,6 +15,7 @@ struct CurrentEvent: Decodable {
     let description: String?
     let dateRange: Dates?
     let images: EventImages?
+    let actualSince: Int?
     //for movies
     let country: String?
     let year: Int?
@@ -22,6 +23,7 @@ struct CurrentEvent: Decodable {
     let poster: [EventImages]?
     let genres: [Genres]?
     let ageRestriction: String?
+    let place: Place?
     
     init(from decoder: Decoder) throws {
         let container: KeyedDecodingContainer<CurrentEvent.CodingKeys> = try decoder.container(keyedBy: CurrentEvent.CodingKeys.self)
@@ -30,6 +32,8 @@ struct CurrentEvent: Decodable {
                                        forKey: CurrentEvent.CodingKeys.id)
         self.type = try container.decode(String.self,
                                          forKey: CurrentEvent.CodingKeys.type)
+        self.place = try container.decode(Place.self,
+                                          forKey: CurrentEvent.CodingKeys.place)
         self.title = try container.decodeIfPresent(String.self,
                                                    forKey: CurrentEvent.CodingKeys.title)
         self.favouritesCount = try container.decodeIfPresent(Int.self,
@@ -42,6 +46,8 @@ struct CurrentEvent: Decodable {
                                                        forKey: CurrentEvent.CodingKeys.dateRange)
         self.images = try container.decodeIfPresent(EventImages.self,
                                                     forKey: CurrentEvent.CodingKeys.images)
+        self.actualSince = try container.decodeIfPresent(Int.self,
+                                                         forKey: CurrentEvent.CodingKeys.actualSince)
         self.country = try container.decodeIfPresent(String.self,
                                                      forKey: CurrentEvent.CodingKeys.country)
         self.year = try container.decodeIfPresent(Int.self,
@@ -54,17 +60,18 @@ struct CurrentEvent: Decodable {
                                                     forKey: CurrentEvent.CodingKeys.genres)
         
         if let intValue = try? container.decodeIfPresent(Int.self,
-                                                            forKey: CurrentEvent.CodingKeys.ageRestriction) {
+                                                         forKey: CurrentEvent.CodingKeys.ageRestriction) {
             self.ageRestriction = intValue.description
         } else {
             self.ageRestriction = try container.decodeIfPresent(String.self,
                                                                 forKey: CurrentEvent.CodingKeys.ageRestriction)
         }
     }
-
+    
     enum CodingKeys: String, CodingKey {
-        case id, title, description, country, year, genres, poster,
+        case id, title, description, country, year, genres, poster, place,
              images = "first_image",
+             actualSince = "actual_since",
              dateRange = "daterange",
              type = "ctype",
              runningTime = "running_time",

@@ -9,7 +9,19 @@ import SwiftUI
 
 struct FavouriteView: View {
     var body: some View {
-        Text("Favourite view")
+        ScrollView {
+            VStack {
+                HeaderWithBackBtn(title: "Favourite events")
+                
+                listOfFavEvents
+            }
+        }
+    }
+
+    private var listOfFavEvents: some View {
+        VStack {
+            
+        }
     }
 }
 

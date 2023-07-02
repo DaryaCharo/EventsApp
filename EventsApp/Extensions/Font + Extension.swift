@@ -21,7 +21,6 @@ enum FontType {
          light,
          regular,
          semiBold,
-         bold,
          extraBold
     
     var getFont: String {
@@ -34,8 +33,6 @@ enum FontType {
             return "SourceSansPro-Regular"
         case .semiBold:
             return "SourceSansPro-Semibold"
-        case .bold:
-            return "SourceSansPro-Bold"
         case .extraBold:
             return "SourceSansPro-Black"
         }

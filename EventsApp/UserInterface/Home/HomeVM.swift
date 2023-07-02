@@ -13,13 +13,14 @@ import Combine
 final class HomeVM: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     
-    //под большим вопросом, потому что мне нужен резалтс в нескольких местах, но я имею доступ только в функциям и выходит какая-то не очень штука
     lazy var eventManager: EventManagerProtocol = {
-       EventManager()
+        EventManager()
     }()
     
     @Published var results: [CurrentDayEvents] = []
     @Published var categories: [Categories] = []
+    @Published var places: [Place] = []
+    var showFavView: ShowFavView?
     
     @Published var searchText: String = ""
     
@@ -33,16 +34,24 @@ final class HomeVM: ObservableObject {
             .store(in: &cancellable)
     }
     
-//    //MARK: - getEvents
-
-    @MainActor func fillResults() async {
-        results = await eventManager.getEvents()
+    //    //MARK: - getEvents
+    
+    func fillResults() async {
+        let result = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())
+        await MainActor.run {
+            results = result
+        }
+        
     }
     
     //MARK: -getEventByCategory
     
-    @MainActor func getEventWithCategory() async {
-        categories = await eventManager.getCategories()
+    func getEventWithCategory() async {
+        let result = await eventManager.getCategories()
+        await MainActor.run {
+            categories = result
+        }
+        
     }
     
     
@@ -54,5 +63,15 @@ final class HomeVM: ObservableObject {
     
     deinit {
         cancellable.removeAll()
+    }
+}
+
+enum ShowFavView: Identifiable {
+    case favourite
+    var id: Int {
+        switch self {
+        case .favourite:
+            return 1
+        }
     }
 }

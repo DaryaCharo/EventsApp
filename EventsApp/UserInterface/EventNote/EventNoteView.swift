@@ -8,23 +8,77 @@
 import SwiftUI
 
 struct EventNoteView: View {
+    @StateObject var vm = EventNoteVM()
+    
     var body: some View {
+        ScrollView(.vertical) {
+            VStack {
+                header
+                
+                buttons
+                listOfEvents
+            }
+        }
+        .task {
+            await vm.fillResults()
+        }
+    }
+    
+    
+    //через секцию. контент header footer. Когда появляется footer
+    //если hasMore loadMore - fetchData
+    
+    //сделать запрос на лист ивентов. Когда я получаю лист ивентов, то во вью влить доп запрос ивента по его id
+    private var listOfEvents: some View {
+        VStack {
+            if vm.results.contains(where: {$0.object != nil}) {
+                HStack {
+                    ForEach(vm.results, id: \.object?.id) { result in
+                        if let imageLink = result.object?.images?.image,
+                           let title = result.object?.title,
+                           let type = result.object?.type,
+                           let followers = result.object?.favouritesCount,
+                           let address = result.object?.place?.address,
+                           let date = result.date
+                        {
+                            EventView(imageLink: imageLink,
+                                      eventTitle:  title,
+                                      genre: type,
+                                      followers:  followers,
+                                      location: address,
+                                      date: date)
+                            .padding(.bottom)
+                        }
+                    }
+                }
+            } else {
+                Text("Can't find any events on this day")
+                    .font(.customFont(type: .semiBold,
+                                      size: 20))
+                    .frame(maxWidth: .infinity,
+                           alignment: .center)
+                    .padding()
+            }
+        }
+    }
+    
+    private var header: some View {
         VStack {
             HStack {
-                Image("Logo")
-                    .resizable()
-                    .frame(width: 35, height: 35)
-                    .padding(.leading, 10)
-                Text("Event List")
-                    .font(.customFont(type: .semiBold,
-                                      size: 24))
-                    .padding(.leading, 5)
+                HeaderWithLogo(title: "Event List")
                 Spacer()
                 
                 CustomButton(type: .search)
                     .padding(.trailing)
                     .buttonStyle(UserInteractionButtonsStyle())
             }
+        }
+        .padding(.top)
+    }
+    
+    private var buttons: some View {
+        ScrollView(.horizontal) {
+            
         }
     }
 }

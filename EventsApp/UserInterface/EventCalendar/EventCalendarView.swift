@@ -11,26 +11,68 @@ struct EventCalendarView: View {
     @StateObject private var vm = EventCalendarVM()
     
     var body: some View {
-        VStack {
-            HStack {
-                Header(title: "My Calendar Event")
-                Spacer()
+        ScrollView {
+            VStack {
+                header
+                calendar
+                listOfEventsOnCurrentDate
             }
-            
-            DatePicker("Enter your birthday", selection: $vm.date)
-                .datePickerStyle(.graphical)
-                .frame(maxWidth: .infinity)
-                .foregroundColor(.customPurple)
-                .padding(.horizontal)
-            
         }
+        .padding(.top)
+    }
+    
+    private var header: some View {
+        HStack {
+            HeaderWithLogo(title: "My Calendar Event")
+            Spacer()
+        }
+        .padding(.top)
+    }
+    
+    private var calendar: some View {
+        DatePicker("Calendar", selection: $vm.date)
+            .datePickerStyle(.graphical)
+            .frame(maxWidth: .infinity)
+            .foregroundColor(.customPurple)
+            .padding(.horizontal)
     }
     
     private var listOfEventsOnCurrentDate: some View {
         VStack {
-//            ForEach(, id: \.) { event in
-//                
-//            }
+            ScrollView(.horizontal,
+                       showsIndicators: false) {
+                if vm.results.contains(where: {$0.object != nil}) {
+                    HStack {
+                        ForEach(vm.results, id: \.object?.id) { result in
+                            if let imageLink = result.object?.images?.image,
+                               let title = result.object?.title,
+                               let type = result.object?.type,
+                               let followers = result.object?.favouritesCount,
+                               let address = result.object?.place?.address,
+                               let date = result.date
+                            {
+                                EventView(imageLink: imageLink,
+                                          eventTitle:  title,
+                                          genre: type,
+                                          followers:  followers,
+                                          location: address,
+                                          date: date)
+                                .padding(.bottom)
+                            }
+                        }
+                    }
+                } else {
+                    Text("Can't find any events on this day")
+                        .font(.customFont(type: .semiBold,
+                                          size: 20))
+                        .frame(maxWidth: .infinity,
+                               alignment: .center)
+                        .padding()
+                }
+            }
+        }
+        .task {
+            await vm.fillResults()
         }
     }
 }

@@ -10,8 +10,13 @@ import SwiftUI
 final class EventCalendarVM: ObservableObject {
     @Published var date = Date.now
     lazy var eventManager: EventManagerProtocol = {
-       EventManager()
+        EventManager()
     }()
+    @Published var results: [CurrentDayEvents] = []
     
+    //    //MARK: - getEvents
     
+    func fillResults() async {
+        results = await eventManager.getCurrentEvents(date: date.ISO8601Format())
+    }
 }

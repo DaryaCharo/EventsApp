@@ -13,28 +13,11 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                CustomButton(type: .back)
-                
-                Text("Search")
-                    .font(.customFont(type: .semiBold, size: 24))
-                
-                Spacer()
-            }
-            
-            HStack {
-                TextField("Search",
-                          text: $searchText)
-                .padding()
-                .background(Color.customWindowBack)
-                .cornerRadius(30)
-                
-                CustomButton(type: .search)
-            }
-            .padding()
-            
+            HeaderWithBackBtn(title: "Search")
             listOfResults
         }
+//        .searchable(text: $searchText,
+//                    placement: .navigationBarDrawer)
     }
     
     private var listOfResults: some View {
