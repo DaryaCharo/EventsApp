@@ -35,9 +35,7 @@ struct SignUpView: View {
     
     private var signUpButton: some View {
         Button {
-            Task {
-                await vm.signUp()
-            }
+            signUp()
         } label: {
             Text("Sign Up")
                 .font(.customFont(type: .semiBold,
@@ -46,6 +44,11 @@ struct SignUpView: View {
         }
         .buttonStyle(FillButtonStyle())
         .padding(.horizontal)
+    }
+    private func signUp() {
+        Task {
+            await vm.signUp()
+        }
     }
     
     private var signUpLink: some View {

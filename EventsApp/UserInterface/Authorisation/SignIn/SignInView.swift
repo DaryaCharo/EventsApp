@@ -37,9 +37,7 @@ struct SignInView: View {
     
     private var googleButton: some View {
         Button {
-            Task {
-                await vm.continueWithGoogle()
-            }
+            googleSignIn()
         } label: {
             Label {
                 Text("Continue with Google")
@@ -58,12 +56,15 @@ struct SignInView: View {
             .cornerRadius(10)
         }
     }
+    private func googleSignIn() {
+        Task {
+            await vm.continueWithGoogle()
+        }
+    }
     
     private var signInButton: some View {
         Button {
-            Task {
-                await vm.continueWithEmail()
-            }
+            signIn()
         } label: {
             Text("Sign In")
                 .font(.customFont(type: .semiBold,
@@ -74,6 +75,11 @@ struct SignInView: View {
         .padding(.horizontal)
         .fullScreenCover(item: $vm.showView) { view in
             HomeView()
+        }
+    }
+    private func signIn() {
+        Task {
+            await vm.continueWithEmail()
         }
     }
     

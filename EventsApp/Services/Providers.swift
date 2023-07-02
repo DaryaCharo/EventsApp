@@ -23,7 +23,7 @@ final class Providers {
     //MARK:  SignUp
     
     func singUp(email: String,
-                pass: String) async {
+                pass: String) {
         guard validation == .accepted else { return }
         
         await MainActor.run {

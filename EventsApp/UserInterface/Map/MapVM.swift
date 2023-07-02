@@ -20,11 +20,6 @@ final class MapVM: ObservableObject {
     
     var camera = GMSCameraPosition.camera(withLatitude: CitiesCoordinates.moscow.latitude,
                                           longitude: CitiesCoordinates.moscow.longitude, zoom: 5.5)
-    var mapView: GMSMapView {
-        let mapView = GMSMapView.map(withFrame: CGRect.zero,
-                                     camera: camera)
-        return mapView
-    }
     
     func findPlaceOnTheMap(lat: Double,
                            lon: Double) {

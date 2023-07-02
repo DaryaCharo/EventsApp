@@ -11,6 +11,11 @@ import SwiftUI
 
 struct MapView: View {
     @StateObject var vm = MapVM()
+    private var map: GMSMapView {
+        let mapView = GMSMapView.map(withFrame: CGRect.zero,
+                                     camera: vm.camera)
+        return mapView
+    }
     
     var body: some View {
         ZStack {
@@ -20,12 +25,11 @@ struct MapView: View {
             await vm.fillResults()
         }
     }
-    
+
     private var mapView: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                // Map
-//                MapViewRepresentable(markers: $vm.$markers)
+                
             }
         }
     }
