@@ -36,6 +36,7 @@ final class SignInVM: ObservableObject {
         await providers.signIn(providerType: .firebase,
                                email: email,
                                pass: pass)
+        showView = .homeView
     }
     
     func continueWithGoogle() async {
@@ -47,15 +48,17 @@ final class SignInVM: ObservableObject {
     deinit {
         cancellable.removeAll()
     }
+    
+    enum ShowView: Identifiable {
+        var id: Int {
+            switch self {
+            case .homeView:
+                return 1
+            }
+        }
+        
+        case homeView
+    }
 }
 
-enum ShowView: Identifiable {
-    var id: Int {
-        switch self {
-        case .homeView:
-            return 1
-        }
-    }
-    
-    case homeView
-}
+

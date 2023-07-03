@@ -14,78 +14,57 @@ struct CustomButton: View {
     @State var type: ButtonType
     
     var body: some View {
-        switch type {
-        case .back:
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "arrow.left")
-                    .foregroundColor(.customPurple)
+        VStack {
+            switch type {
+            case .back:
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .foregroundColor(.customPurple)
+                }
+                .padding()
+            case .settings:
+                Button {
+                    vm.showView = .settings
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                        .foregroundColor(.customPurple)
+                }
+                .buttonStyle(UserInteractionButtonsStyle())
+            case .notification:
+                Button {
+                    vm.showView = .notification
+                } label: {
+                    Image(systemName: "bell.fill")
+                        .foregroundColor(.customPurple)
+                }
+                .buttonStyle(UserInteractionButtonsStyle())
+            case .favourite:
+                Button {
+                    vm.makeFavourite()
+                } label: {
+                    Image(systemName: vm.isFavourite ? "bookmark.fill" : "bookmark")
+                        .foregroundColor(.customPurple)
+                }
+                .buttonStyle(UserInteractionButtonsStyle())
+            case .search:
+                Button {
+                    vm.showView = .search
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.customPurple)
+                }
+                .buttonStyle(UserInteractionButtonsStyle())
             }
-            .padding()
-        case .settings:
-            Button {
-                
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .foregroundColor(.customPurple)
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
-//            .fullScreenCover(item: $vm.showView) { _ in
-//                SettingsView()
-//            }
-        case .notification:
-            Button {
-                
-            } label: {
-                Image(systemName: "bell.fill")
-                    .foregroundColor(.customPurple)
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
-//            .fullScreenCover(item: $vm.showView) { _ in
-//                NotificationView()
-//            }
-        case .favourite:
-            Button {
-                vm.makeFavourite()
-            } label: {
-                Image(systemName: vm.isFavourite ? "bookmark.fill" : "bookmark")
-                    .foregroundColor(.customPurple)
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
-        case .search:
-            Button {
-            } label: {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.customPurple)
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
-//            .fullScreenCover(item: $vm.showView) { _ in
-//                SearchView(searchText: .constant(""))
-//            }
-        case .filter:
-            Button {
-                
-            } label: {
-                Image(systemName: "list.star")
-                    .foregroundColor(.customPurple)
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
-        case.navigation:
-            Button {
-                
-            } label: {
-                Image("Navigation")
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
-        case .changePhoto:
-            Button {
-                
-            } label: {
-                Image(systemName: "pencil.circle.fill")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.customPurple)
+        }
+        .fullScreenCover(item: $vm.showView) { view in
+            if view == .settings {
+                SettingsView()
+            } else if view == .notification {
+                NotificationView()
+            } else if view == .search {
+                SearchView(searchText: .constant(""))
             }
         }
     }

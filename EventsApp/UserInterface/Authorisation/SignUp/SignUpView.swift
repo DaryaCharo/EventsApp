@@ -45,6 +45,7 @@ struct SignUpView: View {
         .buttonStyle(FillButtonStyle())
         .padding(.horizontal)
     }
+    //если выносить таск на рутовую вью, то signUp срабатывает на link, то есть не на нужную кнопку, а на ссылку
     private func signUp() {
         Task {
             await vm.signUp()
