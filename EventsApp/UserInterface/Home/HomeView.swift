@@ -26,7 +26,7 @@ struct HomeView: View {
         }
         .padding(.top)
         .fullScreenCover(item: $vm.showView) { event in
-            NotificationView()
+            FavouriteView()
         }
     }
     

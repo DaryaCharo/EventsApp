@@ -59,12 +59,15 @@ struct CustomButton: View {
             }
         }
         .fullScreenCover(item: $vm.showView) { view in
-            if view == .settings {
-                SettingsView()
-            } else if view == .notification {
+            switch vm.showView {
+            case .notification:
                 NotificationView()
-            } else if view == .search {
+            case .search:
                 SearchView(searchText: .constant(""))
+            case .settings:
+                SettingsView()
+            case .none:
+                HomeView()
             }
         }
     }
