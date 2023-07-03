@@ -33,6 +33,9 @@ struct SignInView: View {
             
             Spacer()
         }
+        .fullScreenCover(item: $vm.showView) { view in
+            HomeView()
+        }
     }
     
     private var googleButton: some View {
@@ -44,17 +47,17 @@ struct SignInView: View {
                     .font(.customFont(type: .semiBold,
                                       size: 16))
                     .foregroundColor(.black)
-                    .padding(.vertical, 18)
+                    .padding()
             } icon: {
                 Image("Icon - Google")
                     .frame(width: 24,
                            height: 24)
             }
-            .padding(.horizontal, 15)
-            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity)
             .background(Color.customWindowBack)
-            .cornerRadius(10)
+            .cornerRadius(30)
         }
+        .padding(.horizontal)
     }
     private func googleSignIn() {
         Task {
@@ -73,9 +76,6 @@ struct SignInView: View {
         }
         .buttonStyle(FillButtonStyle())
         .padding(.horizontal)
-        .fullScreenCover(item: $vm.showView) { view in
-            HomeView()
-        }
     }
     private func signIn() {
         Task {

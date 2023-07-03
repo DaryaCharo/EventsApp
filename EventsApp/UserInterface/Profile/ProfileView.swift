@@ -41,7 +41,14 @@ struct ProfileView: View {
                     .shadow(radius: 1)
                     
                 
-                CustomButton(type: .changePhoto)
+                Button {
+                    
+                } label: {
+                    Image(systemName: "pencil.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.customPurple)
+                }
                     .frame(maxWidth: 100, maxHeight: 100,
                            alignment: .bottomTrailing)
             }

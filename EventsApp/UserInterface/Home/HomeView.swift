@@ -25,6 +25,9 @@ struct HomeView: View {
             }
         }
         .padding(.top)
+        .fullScreenCover(item: $vm.showView) { event in
+            FavouriteView()
+        }
     }
     
     private var featureEvent: some View {
@@ -89,16 +92,14 @@ struct HomeView: View {
             Spacer()
             
             CustomButton(type: .notification)
+            
             Button {
-                
+                vm.showView = .favourite
             } label: {
                 Image(systemName: "bookmark.fill")
                     .foregroundColor(.customPurple)
             }
             .buttonStyle(UserInteractionButtonsStyle())
-            .fullScreenCover(item: $vm.showFavView) { _ in
-                FavouriteView()
-            }
             
             CustomButton(type: .search)
                 .padding(.trailing)

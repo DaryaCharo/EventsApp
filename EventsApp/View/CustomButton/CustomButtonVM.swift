@@ -9,36 +9,29 @@ import SwiftUI
 
 final class CustomButtonVM: ObservableObject {
     @Published var isFavourite = false
-    @Published var showView: ButtonType?
+    @Published var showView: ShowView?
     
     func makeFavourite() {
         isFavourite.toggle()
         
         //add to favourite list
     }
-}
-
-enum ButtonType: Identifiable {
-    case back, settings, notification, favourite, search, filter, navigation, changePhoto
-
-    var id: Int {
-        switch self {
-        case .notification:
-            return 1
-        case .favourite:
-            return 2
-        case .back:
-            return 3
-        case .settings:
-            return 4
-        case .search:
-            return 5
-        case .filter:
-            return 6
-        case .navigation:
-            return 7
-        case .changePhoto:
-            return 8
+    
+    enum ShowView: Identifiable  {
+        case settings, notification, search
+        var id: Int {
+            switch self {
+            case .notification:
+                return 1
+            case .settings:
+                return 2
+            case .search:
+                return 3
+            }
         }
     }
+}
+
+enum ButtonType {
+    case back, settings, notification, favourite, search
 }
