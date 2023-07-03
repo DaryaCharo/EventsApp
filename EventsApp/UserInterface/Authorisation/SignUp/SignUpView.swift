@@ -35,7 +35,7 @@ struct SignUpView: View {
     
     private var signUpButton: some View {
         Button {
-            signUp()
+            vm.signUp()
         } label: {
             Text("Sign Up")
                 .font(.customFont(type: .semiBold,

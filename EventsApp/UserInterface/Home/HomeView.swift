@@ -15,8 +15,7 @@ struct HomeView: View {
                    showsIndicators: false) {
             VStack {
                 header
-                
-                //random event from the feature date
+    
                 featureEvent
                 
                 listOfEvents
@@ -31,16 +30,25 @@ struct HomeView: View {
     }
     
     private var featureEvent: some View {
-        
-        FeaturedEventsView(title: "Feature Event",
-                           eventImage: "")
-        
+        VStack {
+            ForEach(vm.featureEventsResults, id: \.object?.id) { result in
+                if let imageLink = result.object?.images?.image,
+                   let title = result.object?.title
+                {
+                    FeaturedEventsView(title: title,
+                                       eventImage: imageLink)
+                }
+            }
+        }
+        .frame(alignment: .leading)
+        .task {
+            await vm.setRandomFeatureEvent()
+        }
     }
-
+    
     private var eventsList: some View {
         VStack {
             Text("Today's Events")
-            
                 .font(.customFont(type: .semiBold,
                                   size: 25))
                 .frame(maxWidth: .infinity,
@@ -64,7 +72,7 @@ struct HomeView: View {
                                           genre: type,
                                           followers:  followers,
                                           location: address,
-                                          date: date)
+                                          stringDate: date)
                                 .padding(.bottom)
                             }
                         }
@@ -112,7 +120,7 @@ struct HomeView: View {
                 ForEach(vm.categories, id: \.id) { category in
                     
                     Button {
-                        
+                        //show current type
                     } label: {
                         Text(category.name ?? "none")
                     }

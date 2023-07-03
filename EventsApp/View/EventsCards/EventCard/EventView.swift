@@ -14,7 +14,7 @@ struct EventView: View {
     @State var genre: String
     @State var followers: Int
     @State var location: String
-    @State var date: String
+    @State var stringDate: String
     
     var body: some View {
         ZStack {
@@ -26,12 +26,11 @@ struct EventView: View {
                            maxHeight: .infinity,
                            alignment: .top)
             }
-            
-                VStack {
-                    dateView
-                    eventInfo
-                }
+            VStack {
+                dateView
+                eventInfo
             }
+        }
         
         .background(Color.customWindowBack)
         .cornerRadius(20)
@@ -104,7 +103,7 @@ struct EventView: View {
     
     private var dateView: some View {
         VStack {
-            Text(date)
+            Text(stringDate)
                 .font(.customFont(type: .regular,
                                   size: 16))
                 .padding(10)
@@ -126,6 +125,6 @@ struct EventView_Previews: PreviewProvider {
                   genre: "Genre",
                   followers: 0,
                   location: "Location",
-                  date: "dd, MM")
+                  stringDate: "dd, MM")
     }
 }

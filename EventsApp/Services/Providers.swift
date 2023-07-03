@@ -25,16 +25,14 @@ final class Providers {
     func singUp(email: String,
                 pass: String) async {
         guard validation == .accepted else { return }
-        
-        await MainActor.run {
-            authorisation.createUser(withEmail: email,
-                                     password: pass) { authResult, error in
-                
-                Firestore.setValuesForKeys(["ID" : authResult?.user.uid ?? UUID(),
-                                            "Email Address" : email,
-                                            "Nickname" : authResult?.user.displayName ?? "No nickname",
-                                            "Password" : pass])
-            }
+        authorisation.createUser(withEmail: email,
+                                 password: pass) { authResult, error in
+            
+            Firestore.setValuesForKeys(["ID" : authResult?.user.uid ?? UUID(),
+                                        "Email Address" : email,
+                                        "Nickname" : authResult?.user.displayName ?? "No nickname",
+                                        "Password" : pass])
+            
         }
     }
     

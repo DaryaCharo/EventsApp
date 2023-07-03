@@ -42,15 +42,13 @@ struct SettingsView: View {
             }
             .listStyle(.inset)
             .fullScreenCover(item: $vm.settings) { setting in
-                switch vm.settings {
+                switch setting {
                 case .editProfile:
                     HomeView()
                 case .notification:
                     NotificationView()
                 case .signOut:
                     SignInView()
-                case .none:
-                    Text("none")
                 }
             }
         }

@@ -71,6 +71,7 @@ struct CustomButton: View {
             }
         }
     }
+    
 }
 
 struct Buttons_Previews: PreviewProvider {
