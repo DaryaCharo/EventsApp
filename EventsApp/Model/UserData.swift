@@ -8,14 +8,9 @@
 import Foundation
 
 struct UserData: Identifiable, Codable {
-    var id: Int
+    var id: String
     var email: String
-    var nickname: String
+    var fullname: String
 }
 
-extension UserData {
-    static var userData = UserData(id: 0,
-                                   email: "princessaninzya@gmail.com",
-                                   nickname: "Moderator")
-}
 

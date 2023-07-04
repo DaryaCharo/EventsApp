@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
@@ -14,6 +16,8 @@ import GoogleSignIn
 final class Providers {
     private let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
     private let passRegex = "/^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]+$/"
+    var userSession: FirebaseAuth.User?
+    var currentUser: UserData?
     private let authorisation = Auth.auth()
     private lazy var fireDB: Firestore = {
         Firestore.firestore()
@@ -23,16 +27,25 @@ final class Providers {
     //MARK:  SignUp
     
     func singUp(email: String,
-                pass: String) async {
-        guard validation == .accepted else { return }
+                pass: String,
+                fullname: String) async {
+        signUpValidate(email: email,
+                       pass: pass,
+                       confPass: pass)
         await MainActor.run {
             authorisation.createUser(withEmail: email,
-                                     password: pass) { authResult, error in
-                
-                Firestore.setValuesForKeys(["ID" : authResult?.user.uid ?? UUID(),
-                                            "Email Address" : email,
-                                            "Nickname" : authResult?.user.displayName ?? "No nickname",
-                                            "Password" : pass])
+                                     password: pass) { [ weak self ] authResult, error in
+                guard let self = self else { return }
+                self.userSession = authResult?.user
+                let user = UserData(id: authResult?.user.uid ?? "",
+                                    email: email,
+                                    fullname: fullname)
+                do {
+                    let encodedUser = try Firestore.Encoder().encode(user)
+                    fireDB.collection("users").document(user.id).setData(encodedUser)
+                } catch {
+                    print(error)
+                }
             }
         }
     }
@@ -46,6 +59,8 @@ final class Providers {
         switch providerType {
         case .firebase:
             await MainActor.run {
+                signInValidate(email: email,
+                               pass: pass)
                 authorisation.signIn(withEmail: email,
                                      password: pass) { [weak self] authResult, error in
                     guard let self = self,
@@ -69,11 +84,15 @@ final class Providers {
                                                                                                     accessToken: user.accessToken.tokenString))
                 
                 UserDefaults.setValue(authResult.user, forKey: "GoogleUser")
-                if let user = UserDefaults.value(forKey: "GoogleUser") as? User,
-                   user != authResult.user {
-                    try await Firestore.setValue(user.getIDToken(),
-                                                 forKey: user.email ?? "User token")
-                }
+                guard let user = UserDefaults.value(forKey: "GoogleUser") as? User,
+                      user != authResult.user else { return }
+                self.userSession = authResult.user
+                let firestoreUser = UserData(id: authResult.user.uid,
+                                    email: authResult.user.email ?? "",
+                                    fullname: authResult.user.displayName ?? "")
+                let encodedUser = try Firestore.Encoder().encode(firestoreUser)
+                
+                try await fireDB.collection("googleUsers").document(user.getIDToken()).setData(encodedUser)
             } catch {
                 print(error)
             }

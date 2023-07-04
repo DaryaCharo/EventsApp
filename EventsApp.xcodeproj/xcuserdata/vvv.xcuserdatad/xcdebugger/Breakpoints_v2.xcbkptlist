@@ -3,4 +3,84 @@
    uuid = "7F6D4762-A5D0-42A1-99EF-1B16D85334F8"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DAF6C029-90F0-4B8F-B1A8-F82074FBB204"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/Services/Providers.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "singUp(email:pass:fullname:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DAF6C029-90F0-4B8F-B1A8-F82074FBB204 - 1f4bf808d06a928e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 @Swift.MainActor @Sendable () -&gt; () in EventsApp.Providers.singUp(email: Swift.String, pass: Swift.String, nickname: Swift.String) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1068">
+               </Location>
+               <Location
+                  uuid = "DAF6C029-90F0-4B8F-B1A8-F82074FBB204 - 1f4bf808d06a928e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 @Swift.MainActor @Sendable () -&gt; () in EventsApp.Providers.singUp(email: Swift.String, pass: Swift.String, nickname: Swift.String) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "434">
+               </Location>
+               <Location
+                  uuid = "DAF6C029-90F0-4B8F-B1A8-F82074FBB204 - f22d31c0c341b18f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 @Swift.MainActor @Sendable () -&gt; () in EventsApp.Providers.singUp(email: Swift.String, pass: Swift.String, fullname: Swift.String) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "377">
+               </Location>
+               <Location
+                  uuid = "DAF6C029-90F0-4B8F-B1A8-F82074FBB204 - f22d31c0c341b1ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 @Swift.MainActor @Sendable () -&gt; () in EventsApp.Providers.singUp(email: Swift.String, pass: Swift.String, fullname: Swift.String) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "377">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

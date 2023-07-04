@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @StateObject var vm = SignUpVM()
+    @ObservedObject var vm = AuthVM()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -74,9 +74,9 @@ struct SignUpView: View {
             InputFieldView(title: InputFieldText.email.title,
                            placeholder: InputFieldText.email.placeholder,
                            text: $vm.email)
-            InputFieldView(title: InputFieldText.nickname.title,
-                           placeholder: InputFieldText.nickname.placeholder,
-                           text: $vm.name)
+            InputFieldView(title: InputFieldText.fullname.title,
+                           placeholder: InputFieldText.fullname.placeholder,
+                           text: $vm.fullname)
             InputFieldView(title: InputFieldText.pass.title,
                            placeholder: InputFieldText.pass.placeholder,
                            text: $vm.pass,

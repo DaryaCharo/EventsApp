@@ -18,7 +18,6 @@
 		E39A2E932A2F22520021100E /* MoyaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E922A2F22520021100E /* MoyaManager.swift */; };
 		E39A2E952A2F22AE0021100E /* EventProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E942A2F22AE0021100E /* EventProvider.swift */; };
 		E39A2E9F2A2FCF330021100E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = E39A2E9E2A2FCF330021100E /* Moya */; };
-		E39A2EBD2A3254AF0021100E /* StartPageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EBC2A3254AF0021100E /* StartPageVM.swift */; };
 		E39A2EC32A34884F0021100E /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EC22A34884F0021100E /* Dates.swift */; };
 		E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EC62A348BD70021100E /* Adress&Coordinates.swift */; };
 		E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EC82A348CFA0021100E /* EventOrder.swift */; };
@@ -48,6 +47,7 @@
 		E39B20C72A437CF40020499F /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B20C62A437CF40020499F /* EventManager.swift */; };
 		E3A8228F2A40CBE400D15FD1 /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A8228E2A40CBE400D15FD1 /* Providers.swift */; };
 		E3B32CAD2A544D82004BDD44 /* FullEventInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B32CAC2A544D82004BDD44 /* FullEventInfoView.swift */; };
+		E3B32CB22A5458F8004BDD44 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B32CB12A5458F8004BDD44 /* AuthVM.swift */; };
 		E3BE4F732A4C5583007FEC7E /* HeaderWithBackBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */; };
 		E3BE4F782A4D8A12007FEC7E /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E3BE4F772A4D8A12007FEC7E /* GoogleMaps */; };
 		E3BE4F7A2A4D8A12007FEC7E /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = E3BE4F792A4D8A12007FEC7E /* GooglePlaces */; };
@@ -70,9 +70,7 @@
 		E3F8EDE32A3CB8EF00F1A312 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E3F8EDE22A3CB8EF00F1A312 /* FirebaseAuth */; };
 		E3F8EDE52A3CB8EF00F1A312 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E3F8EDE42A3CB8EF00F1A312 /* FirebaseFirestore */; };
 		E3F8EDE72A3CB8EF00F1A312 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3F8EDE62A3CB8EF00F1A312 /* FirebaseFirestoreSwift */; };
-		E3F8EDEB2A3CBCE100F1A312 /* SignInVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDEA2A3CBCE100F1A312 /* SignInVM.swift */; };
 		E3F8EDF02A3CBD5100F1A312 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDEF2A3CBD5100F1A312 /* SignUpView.swift */; };
-		E3F8EDF22A3CBD5E00F1A312 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDF12A3CBD5E00F1A312 /* SignUpVM.swift */; };
 		E3F8EDF42A3DC79000F1A312 /* FavouriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDF32A3DC79000F1A312 /* FavouriteView.swift */; };
 		E3F8EDF82A3DC7B300F1A312 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDF72A3DC7B300F1A312 /* NotificationView.swift */; };
 		E3F8EDFC2A3F186200F1A312 /* EventNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F8EDFB2A3F186200F1A312 /* EventNoteView.swift */; };
@@ -92,7 +90,6 @@
 		E39A2E7E2A2F21B50021100E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E39A2E922A2F22520021100E /* MoyaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaManager.swift; sourceTree = "<group>"; };
 		E39A2E942A2F22AE0021100E /* EventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProvider.swift; sourceTree = "<group>"; };
-		E39A2EBC2A3254AF0021100E /* StartPageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageVM.swift; sourceTree = "<group>"; };
 		E39A2EC22A34884F0021100E /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		E39A2EC62A348BD70021100E /* Adress&Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adress&Coordinates.swift"; sourceTree = "<group>"; };
 		E39A2EC82A348CFA0021100E /* EventOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOrder.swift; sourceTree = "<group>"; };
@@ -120,6 +117,7 @@
 		E39B20C62A437CF40020499F /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		E3A8228E2A40CBE400D15FD1 /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
 		E3B32CAC2A544D82004BDD44 /* FullEventInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEventInfoView.swift; sourceTree = "<group>"; };
+		E3B32CB12A5458F8004BDD44 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
 		E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWithBackBtn.swift; sourceTree = "<group>"; };
 		E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVM.swift; sourceTree = "<group>"; };
 		E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
@@ -135,9 +133,7 @@
 		E3F8EDD92A3B958700F1A312 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		E3F8EDDD2A3C64BC00F1A312 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		E3F8EDDF2A3CB73600F1A312 /* SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = "<group>"; };
-		E3F8EDEA2A3CBCE100F1A312 /* SignInVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVM.swift; sourceTree = "<group>"; };
 		E3F8EDEF2A3CBD5100F1A312 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		E3F8EDF12A3CBD5E00F1A312 /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
 		E3F8EDF32A3DC79000F1A312 /* FavouriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteView.swift; sourceTree = "<group>"; };
 		E3F8EDF72A3DC7B300F1A312 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		E3F8EDFB2A3F186200F1A312 /* EventNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNoteView.swift; sourceTree = "<group>"; };
@@ -361,6 +357,7 @@
 		E3F8EDC62A3B6E2100F1A312 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				E39A2F092A3A55AA0021100E /* TabBarView.swift */,
 				E3F8EDD32A3B857800F1A312 /* StartPage */,
 				E3F8EDCF2A3B7FD300F1A312 /* Home */,
 				E3F8EDFF2A3F187100F1A312 /* EventNote */,
@@ -373,7 +370,6 @@
 				E3F8EDF52A3DC79300F1A312 /* Favourite */,
 				E3F8EDF62A3DC7A200F1A312 /* Notification */,
 				E3F8EDED2A3CBCF000F1A312 /* Authorisation */,
-				E39A2F092A3A55AA0021100E /* TabBarView.swift */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -435,7 +431,6 @@
 			isa = PBXGroup;
 			children = (
 				E39A2E792A2F21B40021100E /* StartPage.swift */,
-				E39A2EBC2A3254AF0021100E /* StartPageVM.swift */,
 			);
 			path = StartPage;
 			sourceTree = "<group>";
@@ -453,7 +448,6 @@
 			isa = PBXGroup;
 			children = (
 				E3E745DA2A4746C6005FA631 /* SignInView.swift */,
-				E3F8EDEA2A3CBCE100F1A312 /* SignInVM.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -463,6 +457,7 @@
 			children = (
 				E3F8EDEC2A3CBCE700F1A312 /* SignIn */,
 				E3F8EDEE2A3CBD2400F1A312 /* SignUp */,
+				E3B32CB12A5458F8004BDD44 /* AuthVM.swift */,
 			);
 			path = Authorisation;
 			sourceTree = "<group>";
@@ -471,7 +466,6 @@
 			isa = PBXGroup;
 			children = (
 				E3F8EDEF2A3CBD5100F1A312 /* SignUpView.swift */,
-				E3F8EDF12A3CBD5E00F1A312 /* SignUpVM.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -628,7 +622,6 @@
 				E3F8EDF42A3DC79000F1A312 /* FavouriteView.swift in Sources */,
 				E39A2EFF2A3792A00021100E /* Color + Extension.swift in Sources */,
 				E39A2F0A2A3A55AA0021100E /* TabBarView.swift in Sources */,
-				E39A2EBD2A3254AF0021100E /* StartPageVM.swift in Sources */,
 				E3F8EDDA2A3B958700F1A312 /* ProfileVM.swift in Sources */,
 				E3F8EDFE2A3F186D00F1A312 /* EventNoteVM.swift in Sources */,
 				E3F8EDD52A3B951D00F1A312 /* SettingsView.swift in Sources */,
@@ -646,7 +639,6 @@
 				E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */,
 				E3F8EDDE2A3C64BC00F1A312 /* CustomButton.swift in Sources */,
 				E3F8EE012A3F241400F1A312 /* CustomButtonVM.swift in Sources */,
-				E3F8EDF22A3CBD5E00F1A312 /* SignUpVM.swift in Sources */,
 				E39A2E932A2F22520021100E /* MoyaManager.swift in Sources */,
 				E39A2F042A39EC3C0021100E /* SplashScreenView.swift in Sources */,
 				E39A2EC32A34884F0021100E /* Dates.swift in Sources */,
@@ -654,6 +646,7 @@
 				E39A2ED32A34BD6E0021100E /* CurrentDayEvents.swift in Sources */,
 				E39A2EF52A3778150021100E /* (null) in Sources */,
 				E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */,
+				E3B32CB22A5458F8004BDD44 /* AuthVM.swift in Sources */,
 				E39B20C72A437CF40020499F /* EventManager.swift in Sources */,
 				E39A2EEF2A3634940021100E /* EventResults.swift in Sources */,
 				E3F8EDFC2A3F186200F1A312 /* EventNoteView.swift in Sources */,
@@ -672,7 +665,6 @@
 				E3B32CAD2A544D82004BDD44 /* FullEventInfoView.swift in Sources */,
 				E39A2EF12A375F690021100E /* (null) in Sources */,
 				E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */,
-				E3F8EDEB2A3CBCE100F1A312 /* SignInVM.swift in Sources */,
 				E3A8228F2A40CBE400D15FD1 /* Providers.swift in Sources */,
 				E39A2EFC2A37830F0021100E /* AppDelegate.swift in Sources */,
 				E3F8EDC52A3B6E0B00F1A312 /* FeaturedEventsView.swift in Sources */,

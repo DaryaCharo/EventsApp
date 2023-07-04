@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    @StateObject var vm = SignInVM()
+    @ObservedObject var vm = AuthVM()
     
     var body: some View {
         VStack {
