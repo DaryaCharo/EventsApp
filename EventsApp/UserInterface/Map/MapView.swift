@@ -11,6 +11,8 @@ import SwiftUI
 
 struct MapView: View {
     @StateObject var vm = MapVM()
+    @State var lat = CitiesCoordinates.moscow.latitude
+    @State var lon = CitiesCoordinates.moscow.longitude
     private var map: GMSMapView {
         let mapView = GMSMapView.map(withFrame: CGRect.zero,
                                      camera: vm.camera)

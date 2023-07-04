@@ -18,7 +18,10 @@ final class EventNoteVM: ObservableObject {
     //    //MARK: - getEvents
     
     func fillResults() async {
-        results = await eventManager.getEvents()
+        let result = await eventManager.getEvents()
+        await MainActor.run {
+            results = result
+        }
     }
 }
 

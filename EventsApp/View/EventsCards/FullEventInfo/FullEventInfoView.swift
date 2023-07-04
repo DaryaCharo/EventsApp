@@ -9,21 +9,19 @@ import SwiftUI
 import Kingfisher
 
 struct FullEventInfoView: View {
+    @State private var showMap: ShowMap?
     @Binding var event: CurrentEvent?
-    @Binding var isFavourite: Bool
+    @State var isFavourite = false
     
     var body: some View {
         VStack {
             ZStack {
-                backButton
-                
                 KFImage(URL(string: event?.images?.image ?? "Image"))
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: .infinity,
                            maxHeight: .infinity)
             }
-            .background(Color.red)
             .frame(maxWidth: .infinity,
                    maxHeight: 250,
                    alignment: .top)
@@ -171,7 +169,7 @@ struct FullEventInfoView: View {
                 
                 //move to map
                 Button {
-                    
+                    showMap = .map
                 } label: {
                     Text("See on Map")
                         .font(.headline)
@@ -184,29 +182,26 @@ struct FullEventInfoView: View {
             }
         }
         .padding(.vertical)
+        .fullScreenCover(item: $showMap) { _ in
+            MapView(lat: event?.place?.coords?.lat ??
+                    CitiesCoordinates.moscow.latitude,
+                    lon: event?.place?.coords?.lat ??
+                    CitiesCoordinates.moscow.longitude)
+        }
     }
     
-    private var backButton: some View {
-        VStack {
-            HStack {
-                CustomButton(type: .back)
-                    .frame(alignment: .leading)
-                    .background(.white.opacity(0.9))
-                    .clipShape(Circle())
-                
-                Spacer()
-            }
-            .padding()
-            .frame(alignment: .topLeading)
-            
-            Spacer()
+    enum ShowMap: Identifiable {
+        case map
+        
+        var id: Int {
+            return 1
         }
     }
 }
 
-struct EventFullInfoView_Previews: PreviewProvider {
+struct FullEventInfoView_Previews: PreviewProvider {
     static var previews: some View {
         FullEventInfoView(event: .constant(.none),
-                          isFavourite: .constant(false))
+                          isFavourite: false)
     }
 }

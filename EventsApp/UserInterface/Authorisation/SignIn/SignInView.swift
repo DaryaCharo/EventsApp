@@ -33,9 +33,6 @@ struct SignInView: View {
             
             Spacer()
         }
-        .fullScreenCover(item: $vm.showView) { view in
-            HomeView()
-        }
     }
     
     private var googleButton: some View {

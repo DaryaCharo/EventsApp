@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E33A9EA92A51E028005A4902 /* FullEventInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A9EA82A51E028005A4902 /* FullEventInfoView.swift */; };
 		E36509F02A420304008FC035 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E36509EF2A420304008FC035 /* Kingfisher */; };
 		E385BCEC2A40CA30007C84B4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385BCEB2A40CA30007C84B4 /* UserData.swift */; };
 		E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E772A2F21B40021100E /* EventsAppApp.swift */; };
@@ -48,6 +47,7 @@
 		E39B20C52A4371960020499F /* HeaderWithLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B20C42A4371960020499F /* HeaderWithLogo.swift */; };
 		E39B20C72A437CF40020499F /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39B20C62A437CF40020499F /* EventManager.swift */; };
 		E3A8228F2A40CBE400D15FD1 /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A8228E2A40CBE400D15FD1 /* Providers.swift */; };
+		E3B32CAD2A544D82004BDD44 /* FullEventInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B32CAC2A544D82004BDD44 /* FullEventInfoView.swift */; };
 		E3BE4F732A4C5583007FEC7E /* HeaderWithBackBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */; };
 		E3BE4F782A4D8A12007FEC7E /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E3BE4F772A4D8A12007FEC7E /* GoogleMaps */; };
 		E3BE4F7A2A4D8A12007FEC7E /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = E3BE4F792A4D8A12007FEC7E /* GooglePlaces */; };
@@ -84,7 +84,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E33A9EA82A51E028005A4902 /* FullEventInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEventInfoView.swift; sourceTree = "<group>"; };
 		E385BCEB2A40CA30007C84B4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E39A2E742A2F21B40021100E /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39A2E772A2F21B40021100E /* EventsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAppApp.swift; sourceTree = "<group>"; };
@@ -120,6 +119,7 @@
 		E39B20C42A4371960020499F /* HeaderWithLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWithLogo.swift; sourceTree = "<group>"; };
 		E39B20C62A437CF40020499F /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		E3A8228E2A40CBE400D15FD1 /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
+		E3B32CAC2A544D82004BDD44 /* FullEventInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullEventInfoView.swift; sourceTree = "<group>"; };
 		E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWithBackBtn.swift; sourceTree = "<group>"; };
 		E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVM.swift; sourceTree = "<group>"; };
 		E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
@@ -170,14 +170,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E33A9EAC2A51E041005A4902 /* FullEventInfo */ = {
-			isa = PBXGroup;
-			children = (
-				E33A9EA82A51E028005A4902 /* FullEventInfoView.swift */,
-			);
-			path = FullEventInfo;
-			sourceTree = "<group>";
-		};
 		E357734D2A50AE3C00496EE1 /* Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +206,7 @@
 		E35773512A50B22600496EE1 /* EventsCards */ = {
 			isa = PBXGroup;
 			children = (
+				E3B32CAE2A544D88004BDD44 /* FullEventInfo */,
 				E35773502A50AE6200496EE1 /* FeautureEvents */,
 				E3F8EDCC2A3B78CB00F1A312 /* EventCard */,
 			);
@@ -270,7 +263,6 @@
 				E357734F2A50AE5600496EE1 /* SplashScreen */,
 				E3E745D32A45D2F2005FA631 /* InputField */,
 				E3F8EE022A3F241A00F1A312 /* CustomButton */,
-				E33A9EAC2A51E041005A4902 /* FullEventInfo */,
 				E35773512A50B22600496EE1 /* EventsCards */,
 			);
 			path = View;
@@ -348,6 +340,14 @@
 				E39A2EFE2A3792A00021100E /* Font + Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E3B32CAE2A544D88004BDD44 /* FullEventInfo */ = {
+			isa = PBXGroup;
+			children = (
+				E3B32CAC2A544D82004BDD44 /* FullEventInfoView.swift */,
+			);
+			path = FullEventInfo;
 			sourceTree = "<group>";
 		};
 		E3E745D32A45D2F2005FA631 /* InputField */ = {
@@ -644,7 +644,6 @@
 				E39B20C52A4371960020499F /* HeaderWithLogo.swift in Sources */,
 				E3BE4F732A4C5583007FEC7E /* HeaderWithBackBtn.swift in Sources */,
 				E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */,
-				E33A9EA92A51E028005A4902 /* FullEventInfoView.swift in Sources */,
 				E3F8EDDE2A3C64BC00F1A312 /* CustomButton.swift in Sources */,
 				E3F8EE012A3F241400F1A312 /* CustomButtonVM.swift in Sources */,
 				E3F8EDF22A3CBD5E00F1A312 /* SignUpVM.swift in Sources */,
@@ -670,6 +669,7 @@
 				E39A2F122A3A58F90021100E /* ProfileView.swift in Sources */,
 				E3FF228C2A4479BC003BDE9B /* EditProfileView.swift in Sources */,
 				E39A2ED52A34C2060021100E /* ExpandList.swift in Sources */,
+				E3B32CAD2A544D82004BDD44 /* FullEventInfoView.swift in Sources */,
 				E39A2EF12A375F690021100E /* (null) in Sources */,
 				E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */,
 				E3F8EDEB2A3CBCE100F1A312 /* SignInVM.swift in Sources */,

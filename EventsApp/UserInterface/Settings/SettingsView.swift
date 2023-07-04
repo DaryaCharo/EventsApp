@@ -23,7 +23,14 @@ struct SettingsView: View {
             List(Settings.allCases, id: \.self) { setting in
                 HStack(spacing: 0) {
                     NavigationLink {
-                        
+                        switch setting {
+                        case .editProfile:
+                            HomeView()
+                        case .notification:
+                            NotificationView()
+                        case .signOut:
+                            SignInView()
+                        }
                     } label: {
                         Label {
                             Text(setting.getText)
@@ -41,16 +48,6 @@ struct SettingsView: View {
                 }
             }
             .listStyle(.inset)
-            .fullScreenCover(item: $vm.settings) { setting in
-                switch setting {
-                case .editProfile:
-                    HomeView()
-                case .notification:
-                    NotificationView()
-                case .signOut:
-                    SignInView()
-                }
-            }
         }
     }
 }

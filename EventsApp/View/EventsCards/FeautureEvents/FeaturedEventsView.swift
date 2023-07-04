@@ -9,8 +9,10 @@ import SwiftUI
 import Kingfisher
 
 struct FeaturedEventsView: View {
-    @State var title: String
-    @State var eventImage: String
+    @ObservedObject var vm = HomeVM()
+    @Binding var title: String
+    @Binding var eventImage: String
+    @State var showInfo: ShowInfo?
     
     var body: some View {
         ZStack {
@@ -32,6 +34,10 @@ struct FeaturedEventsView: View {
         .frame(maxWidth: 300,
                maxHeight: 350)
         .padding()
+        .sheet(item: $showInfo) { view in
+            FullEventInfoView(event: .constant(vm.featuredEvent),
+                              isFavourite: false)
+        }
     }
     
     private var titleText: some View {
@@ -46,7 +52,7 @@ struct FeaturedEventsView: View {
     
     private var button: some View {
         Button {
-            //go to info page
+            showInfo = .fullInfoView
         } label: {
             Text("Learn more")
                 .font(.customFont(type: .semiBold,
@@ -61,7 +67,15 @@ struct FeaturedEventsView: View {
 
 struct FeaturedEvents_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedEventsView(title: "Title",
-                           eventImage: "")
+        FeaturedEventsView(title: .constant(""),
+                           eventImage: .constant(""))
+    }
+}
+
+enum ShowInfo: Identifiable {
+    case fullInfoView
+    
+    var id: Int {
+        return 1
     }
 }

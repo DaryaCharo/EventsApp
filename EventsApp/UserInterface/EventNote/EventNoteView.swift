@@ -14,8 +14,6 @@ struct EventNoteView: View {
         ScrollView(.vertical) {
             VStack {
                 header
-                
-                buttons
                 listOfEvents
             }
         }
@@ -24,15 +22,10 @@ struct EventNoteView: View {
         }
     }
     
-    
-    //через секцию. контент header footer. Когда появляется footer
-    //если hasMore loadMore - fetchData
-    
-    //список всех грядущих ивентов начиная с сегодняшнего дня
     private var listOfEvents: some View {
         VStack {
             if vm.results.contains(where: {$0.object != nil}) {
-                HStack {
+                VStack {
                     ForEach(vm.results, id: \.object?.id) { result in
                         if let imageLink = result.object?.images?.image,
                            let title = result.object?.title,
@@ -52,7 +45,7 @@ struct EventNoteView: View {
                     }
                 }
             } else {
-                Text("Can't find any events on this day")
+                Text("Can't find any events")
                     .font(.customFont(type: .semiBold,
                                       size: 20))
                     .frame(maxWidth: .infinity,
@@ -74,12 +67,6 @@ struct EventNoteView: View {
             }
         }
         .padding(.top)
-    }
-    
-    private var buttons: some View {
-        ScrollView(.horizontal) {
-            
-        }
     }
 }
 
