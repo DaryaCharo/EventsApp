@@ -64,8 +64,8 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                    lang: String = "ru",
                    textFormat: String = "text",
                    location: String = "msk",
-                   expand: String = "place,location,dates",
-                   fields: String = "id,place,location,dates",
+                   expand: String = "place,dates",
+                   fields: String = "id,place,dates,description,title,images,favorites_count",
                    actualSince: Int = Int(Date.now.timeIntervalSince1970)) async throws -> EventListResult {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getEvents(count: count,

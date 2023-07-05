@@ -18,7 +18,6 @@ final class EventManager: EventManagerProtocol {
     var currentEventsResult: [CurrentDayEvents] = []
     var listOfEvents: [ListEvent] = []
     var categories: [Categories] = []
-    var places: [PlaceForCurrentEvent] = []
     private var count = 0
     private var page = ""
     private var ids: [Int] = []

@@ -24,23 +24,17 @@ struct EventNoteView: View {
     
     private var listOfEvents: some View {
         VStack {
-            if vm.results.contains(where: {$0.self != nil}) {
+            if vm.results.contains(where: {$0.place != nil}) &&
+                vm.results.contains(where: {$0.dates != nil}){
                 VStack {
                     ForEach(vm.results, id: \.id) { result in
-                        if let imageLink = result.images?.image,
-                           let title = result.title,
-                           let followers = result.favouritesCount,
-                           let address = result.place?.address,
-                           let date = result.dateRange?.start?.description
-                        {
-                            EventView(imageLink: imageLink,
-                                      eventTitle:  title,
-                                      genre: result.genres?.first?.name ?? "",
-                                      followers:  followers,
-                                      location: address,
-                                      stringDate: date)
-                            .padding(.bottom)
-                        }
+                        EventView(imageLink: result.images?.image ?? "",
+                                  eventTitle:  result.title ?? "",
+                                  genre: "event",
+                                  followers:  0,
+                                  location: result.place?.address ?? "",
+                                  stringDate: result.dates?.first?.start?.description ?? "")
+                        .padding(.bottom)
                     }
                 }
             } else {

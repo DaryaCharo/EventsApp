@@ -32,8 +32,8 @@ struct CurrentEvent: Decodable {
                                        forKey: CurrentEvent.CodingKeys.id)
         self.type = try container.decode(String.self,
                                          forKey: CurrentEvent.CodingKeys.type)
-        self.place = try container.decode(PlaceForCurrentEvent.self,
-                                          forKey: CurrentEvent.CodingKeys.place)
+        self.place = try container.decodeIfPresent(PlaceForCurrentEvent.self,
+                                                   forKey: CurrentEvent.CodingKeys.place)
         self.title = try container.decodeIfPresent(String.self,
                                                    forKey: CurrentEvent.CodingKeys.title)
         self.favouritesCount = try container.decodeIfPresent(Int.self,

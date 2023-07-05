@@ -13,7 +13,6 @@ final class EventNoteVM: ObservableObject {
     }()
     
     @Published var results: [ListEvent] = []
-    @Published var places: [PlaceForCurrentEvent] = []
     
     //    //MARK: - getEvents
     
