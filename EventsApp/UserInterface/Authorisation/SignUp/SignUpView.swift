@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @ObservedObject var vm = AuthVM()
+    @StateObject var vm = AuthVM()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -27,7 +27,7 @@ struct SignUpView: View {
                 
                 Spacer()
                 
-                signUpLink
+                signInLink
                     .padding(.vertical)
             }
         }
@@ -48,6 +48,8 @@ struct SignUpView: View {
                                   size: 18))
                 .frame(maxWidth: .infinity)
         }
+        .disabled(formIsValid == .denied)
+        .opacity(formIsValid == .accepted ? 1 : 0.5)
         .buttonStyle(FillButtonStyle())
         .padding(.horizontal)
     }
@@ -58,7 +60,7 @@ struct SignUpView: View {
         }
     }
     
-    private var signUpLink: some View {
+    private var signInLink: some View {
         Button {
             dismiss()
         } label: {
@@ -87,17 +89,38 @@ struct SignUpView: View {
                            placeholder: InputFieldText.pass.placeholder,
                            text: $vm.pass,
                            isSecureField: .secure)
-            InputFieldView(title: InputFieldText.confirmPass.title,
-                           placeholder: InputFieldText.confirmPass.placeholder,
-                           text: $vm.confPass,
-                           isSecureField: .secure)
+            
+            ZStack(alignment: .bottomTrailing) {
+                InputFieldView(title: InputFieldText.confirmPass.title,
+                               placeholder: InputFieldText.confirmPass.placeholder,
+                               text: $vm.confPass,
+                               isSecureField: .secure)
+                if !vm.pass.isEmpty && !vm.confPass.isEmpty {
+                    if vm.pass == vm.confPass {
+                        CheckPassView(type: .checkmark)
+                        
+                    } else {
+                        CheckPassView(type: .xmark)
+                    }
+                }
+            }
         }
     }
-    
 }
 
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
+    }
+}
+
+extension SignUpView: AuthFormProtocol {
+    var formIsValid: ValidationStatus {
+        !vm.fullname.isEmpty &&
+        vm.email.range(of: vm.emailRegex,
+                       options: .regularExpression) != nil &&
+        !vm.pass.isEmpty &&
+        vm.pass.count > 5 &&
+        vm.confPass == vm.pass ? .accepted : .denied
     }
 }

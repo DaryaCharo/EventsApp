@@ -12,10 +12,18 @@ final class ProfileVM: ObservableObject {
         Providers()
     }()
     @Published var showView: ShowView?
+    @Published var fullname = ""
+    @Published var id = ""
+    @Published var email = ""
     
-    func getName() -> String {
-        guard let name = providers.currentUser?.fullname else { return "Me" }
-        return name
+    func getUser() async {
+        await providers.fetchUser()
+        guard let user = providers.currentUser else { return }
+        await MainActor.run {
+            fullname = user.fullname
+            id = user.id
+            email = user.email
+        }
     }
     
     enum ShowView: Identifiable {

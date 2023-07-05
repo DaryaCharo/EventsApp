@@ -9,7 +9,12 @@ import SwiftUI
 import Firebase
 import Combine
 
+protocol AuthFormProtocol {
+    var formIsValid: ValidationStatus { get }
+}
+
 final class AuthVM: ObservableObject {
+    let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
     lazy  var providers: Providers = {
         Providers()
     }()
@@ -49,4 +54,8 @@ final class AuthVM: ObservableObject {
             return 1
         }
     }
+}
+
+enum ValidationStatus {
+    case accepted, denied
 }

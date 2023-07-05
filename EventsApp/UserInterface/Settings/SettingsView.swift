@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject private var vm: SettingsVM = .init()
+    @ObservedObject private var profileVM = ProfileVM()
     
     var body: some View {
         VStack {
@@ -16,34 +17,46 @@ struct SettingsView: View {
             
             listOfSettings
         }
+        .fullScreenCover(item: $vm.showView) { view in
+            switch view {
+            case .editProfile:
+                EditProfileView(id: $profileVM.id,
+                                email: $profileVM.email,
+                                name: $profileVM.fullname)
+            case .notification:
+                EditNotificationView()
+            case .startPage:
+                StartPage()
+            }
+        }
+        .task {
+            await profileVM.getUser()
+        }
     }
     
     private var listOfSettings: some View {
         VStack {
-            List(Settings.allCases, id: \.self) { setting in
-                HStack(spacing: 0) {
-                    NavigationLink {
-                        switch setting {
-                        case .editProfile:
-                            HomeView()
-                        case .notification:
-                            NotificationView()
-                        case .signOut:
-                            SignInView()
-                        }
+            List {
+                Section {
+                    Button {
+                        vm.showView = .editProfile
                     } label: {
-                        Label {
-                            Text(setting.getText)
-                                .padding(.leading)
-                        } icon: {
-                            Image(systemName: setting.getIcon)
-                                .frame(width: 25, height: 25)
-                                .padding(10)
-                                .foregroundColor(.customPurple)
-                                .background(Color.customPurple.opacity(0.2))
-                                .clipShape(Circle())
-                                .padding(8)
-                        }
+                        SettingsLabel(type: .editProfile)
+                    }
+                }
+                Section {
+                    Button {
+                        vm.showView = .notification
+                    } label: {
+                        SettingsLabel(type: .notification)
+                    }
+                }
+                Section {
+                    Button {
+                        vm.showView = .startPage
+                        vm.signOut()
+                    } label: {
+                        SettingsLabel(type: .signOut)
                     }
                 }
             }

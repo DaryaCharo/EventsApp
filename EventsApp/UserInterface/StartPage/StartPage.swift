@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct StartPage: View {
-    
-    @ObservedObject var vm = AuthVM()
+    @StateObject var vm = AuthVM()
     
     var body: some View {
         VStack {

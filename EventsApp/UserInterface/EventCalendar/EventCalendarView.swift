@@ -20,9 +20,7 @@ struct EventCalendarView: View {
         }
         .padding(.top)
         .task {
-            if vm.results.isEmpty {
-                await vm.fillResults()
-            }
+            await vm.getEvents()
         }
     }
     

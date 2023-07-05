@@ -17,6 +17,14 @@ final class HomeVM: ObservableObject {
     @Published var categories: [Categories] = []
     @Published var places: [Place] = []
     
+    func getEvents() async {
+        if results.isEmpty {
+            await fillResults()
+            await getEventWithCategory()
+            await setRandomFeatureEvent()
+        }
+    }
+    
     func setRandomFeatureEvent() async {
         guard let featureDate = Calendar.current.date(byAdding: .day, value: 7, to: Date.now) else { return }
         print(featureDate)

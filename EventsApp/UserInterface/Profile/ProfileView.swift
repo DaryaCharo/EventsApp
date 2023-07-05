@@ -10,7 +10,6 @@ import SwiftUI
 struct ProfileView: View {
     @StateObject private var vm = ProfileVM()
     
-    
     var body: some View {
         VStack {
             header
@@ -21,13 +20,18 @@ struct ProfileView: View {
             Spacer()
         }
         .fullScreenCover(item: $vm.showView) { view in
-            EditProfileView()
+            EditProfileView(id: $vm.id,
+                            email: $vm.email,
+                            name: $vm.fullname)
+        }
+        .task {
+            await vm.getUser()
         }
     }
     
     private var bio: some View {
         VStack {
-            Text("Info about me")
+            Text("My bio")
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -57,7 +61,7 @@ struct ProfileView: View {
                     .frame(maxWidth: 100, maxHeight: 100,
                            alignment: .bottomTrailing)
             }
-            Text(vm.getName())
+            Text(vm.fullname)
                 .font(.customFont(type: .semiBold,
                                   size: 24))
         }

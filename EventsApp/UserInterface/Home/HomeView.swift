@@ -28,12 +28,7 @@ struct HomeView: View {
             FavouriteView()
         }
         .task {
-            if vm.results.isEmpty {
-                await vm.fillResults()
-                await vm.getEventWithCategory()
-                await vm.setRandomFeatureEvent()
-                
-            }
+            await vm.getEvents()
         }
     }
     

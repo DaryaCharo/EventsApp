@@ -18,9 +18,7 @@ struct EventNoteView: View {
             }
         }
         .task {
-            if vm.results.isEmpty {
-                await vm.fillResults()
-            }
+            await vm.getEvents()
         }
     }
     

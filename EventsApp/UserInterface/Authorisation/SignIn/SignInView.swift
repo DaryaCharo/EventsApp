@@ -80,6 +80,8 @@ struct SignInView: View {
                                   size: 18))
                 .frame(maxWidth: .infinity)
         }
+        .disabled(formIsValid == .denied)
+        .opacity(formIsValid == .accepted ? 1 : 0.5)
         .buttonStyle(FillButtonStyle())
         .padding(.horizontal)
         
@@ -126,5 +128,13 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+    }
+}
+
+extension SignInView: AuthFormProtocol {
+    var formIsValid: ValidationStatus {
+        vm.email.range(of: vm.emailRegex, options: .regularExpression) != nil &&
+        !vm.pass.isEmpty &&
+        vm.pass.count > 5 ? .accepted : .denied
     }
 }
