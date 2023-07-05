@@ -15,7 +15,7 @@ final class HomeVM: ObservableObject {
     @Published var results: [CurrentDayEvents] = []
     @Published var featuredEvent: CurrentEvent?
     @Published var categories: [Categories] = []
-    @Published var places: [Place] = []
+    @Published var places: [PlaceForCurrentEvent] = []
     
     func getEvents() async {
         if results.isEmpty {
@@ -27,8 +27,6 @@ final class HomeVM: ObservableObject {
     
     func setRandomFeatureEvent() async {
         guard let featureDate = Calendar.current.date(byAdding: .day, value: 7, to: Date.now) else { return }
-        print(featureDate)
-        print(Date.now)
         let result = await eventManager.getCurrentEvents(date: featureDate.ISO8601Format())
         await MainActor.run {
             featuredEvent = result.randomElement()?.object

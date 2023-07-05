@@ -18,16 +18,14 @@ final class SettingsVM: ObservableObject {
         providers.signOut()
     }
     enum ShowView: Identifiable {
-        case startPage, editProfile, notification
+        case startPage, notification
         
         var id: Int {
             switch self {
             case .startPage:
                 return 1
-            case .editProfile:
-                return 2
             case .notification:
-                return 3
+                return 2
             }
         }
     }

@@ -15,7 +15,6 @@ struct ProfileView: View {
             header
             
             avatar
-            Spacer()
             bio
             Spacer()
         }
@@ -39,32 +38,20 @@ struct ProfileView: View {
     
     private var avatar: some View {
         VStack {
-            ZStack {
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .foregroundColor(.customPurple).opacity(0.6)
-                    .frame(maxWidth: 80, maxHeight: 80)
-                    .padding()
-                    .background(Color.white)
-                    .clipShape(Circle())
-                    .padding()
-                    .shadow(radius: 1)
-                    
-                Button {
-                    vm.showView = .editProfile
-                } label: {
-                    Image(systemName: "pencil.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.customPurple)
-                }
-                    .frame(maxWidth: 100, maxHeight: 100,
-                           alignment: .bottomTrailing)
-            }
+            Image(systemName: "person.fill")
+                .resizable()
+                .foregroundColor(.customPurple).opacity(0.6)
+                .frame(maxWidth: 80, maxHeight: 80)
+                .padding()
+                .background(Color.white)
+                .clipShape(Circle())
+                .padding()
+                .shadow(radius: 1)
             Text(vm.fullname)
                 .font(.customFont(type: .semiBold,
                                   size: 24))
         }
+        .padding(.bottom)
     }
     
     private var header: some View {
@@ -73,6 +60,16 @@ struct ProfileView: View {
             
             Spacer()
             
+            Button {
+                vm.showView = .editProfile
+            } label: {
+                Image(systemName: "pencil")
+                    .imageScale(.large)
+                    .bold()
+                    .foregroundColor(.customPurple)
+            }
+            .buttonStyle(UserInteractionButtonsStyle())
+
             CustomButton(type: .settings)
                 .padding(.trailing)
         }

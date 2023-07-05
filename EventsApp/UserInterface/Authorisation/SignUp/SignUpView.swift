@@ -124,3 +124,5 @@ extension SignUpView: AuthFormProtocol {
         vm.confPass == vm.pass ? .accepted : .denied
     }
 }
+
+

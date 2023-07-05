@@ -20,6 +20,7 @@ final class AuthVM: ObservableObject {
     }()
     private var cancellable = Set<AnyCancellable>()
     @Published var showView: ShowView?
+    @Published var showAlert: AlertTypes?
     @Published var email = ""
     @Published var fullname = ""
     @Published var pass = ""
@@ -52,6 +53,25 @@ final class AuthVM: ObservableObject {
         
         var id: Int {
             return 1
+        }
+    }
+    
+    enum AlertTypes: Identifiable {
+        case email, fullname, pass, confPass, userIsExist
+        
+        var id: Int {
+            switch self {
+            case .email:
+                return 1
+            case .fullname:
+                return 2
+            case .pass:
+                return 3
+            case .confPass:
+                return 4
+            case .userIsExist:
+                return 5
+            }
         }
     }
 }

@@ -33,8 +33,9 @@ struct HomeView: View {
     }
     
     private var featureEvent: some View {
-        FeaturedEventsView(title: .constant(vm.featuredEvent?.title ?? ""),
-                                   eventImage: .constant(vm.featuredEvent?.images?.image ?? ""))
+        FeaturedEventsView(vm: vm,
+                           title: .constant(vm.featuredEvent?.title ?? ""),
+                            eventImage: .constant(vm.featuredEvent?.images?.image ?? ""))
     }
     
     private var eventsList: some View {

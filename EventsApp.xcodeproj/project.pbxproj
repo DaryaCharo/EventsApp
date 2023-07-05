@@ -12,6 +12,7 @@
 		E3980C012A5572B200B1D639 /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3980C002A5572B200B1D639 /* EditNotificationView.swift */; };
 		E3980C032A55737700B1D639 /* SettingsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3980C022A55737700B1D639 /* SettingsLabel.swift */; };
 		E3980C082A558AB000B1D639 /* CheckPassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3980C072A558AB000B1D639 /* CheckPassView.swift */; };
+		E3980C0E2A55A3F900B1D639 /* ListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3980C0D2A55A3F900B1D639 /* ListEvents.swift */; };
 		E39A2E782A2F21B40021100E /* EventsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E772A2F21B40021100E /* EventsAppApp.swift */; };
 		E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2E792A2F21B40021100E /* StartPage.swift */; };
 		E39A2E7C2A2F21B50021100E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E39A2E7B2A2F21B50021100E /* Assets.xcassets */; };
@@ -23,10 +24,8 @@
 		E39A2E9F2A2FCF330021100E /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = E39A2E9E2A2FCF330021100E /* Moya */; };
 		E39A2EC32A34884F0021100E /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EC22A34884F0021100E /* Dates.swift */; };
 		E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EC62A348BD70021100E /* Adress&Coordinates.swift */; };
-		E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2EC82A348CFA0021100E /* EventOrder.swift */; };
 		E39A2ECC2A348D2B0021100E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2ECB2A348D2B0021100E /* Categories.swift */; };
 		E39A2ED32A34BD6E0021100E /* CurrentDayEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2ED22A34BD6E0021100E /* CurrentDayEvents.swift */; };
-		E39A2ED52A34C2060021100E /* ExpandList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A2ED42A34C2060021100E /* ExpandList.swift */; };
 		E39A2EE22A35C0DC0021100E /* SourceSansPro-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = E39A2ED62A35C0DC0021100E /* SourceSansPro-ExtraLight.otf */; };
 		E39A2EE42A35C0DC0021100E /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E39A2ED82A35C0DC0021100E /* SourceSansPro-Regular.otf */; };
 		E39A2EE52A35C0DC0021100E /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E39A2ED92A35C0DC0021100E /* SourceSansPro-Semibold.otf */; };
@@ -89,6 +88,7 @@
 		E3980C002A5572B200B1D639 /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
 		E3980C022A55737700B1D639 /* SettingsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabel.swift; sourceTree = "<group>"; };
 		E3980C072A558AB000B1D639 /* CheckPassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPassView.swift; sourceTree = "<group>"; };
+		E3980C0D2A55A3F900B1D639 /* ListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEvents.swift; sourceTree = "<group>"; };
 		E39A2E742A2F21B40021100E /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39A2E772A2F21B40021100E /* EventsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAppApp.swift; sourceTree = "<group>"; };
 		E39A2E792A2F21B40021100E /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
@@ -98,10 +98,8 @@
 		E39A2E942A2F22AE0021100E /* EventProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProvider.swift; sourceTree = "<group>"; };
 		E39A2EC22A34884F0021100E /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		E39A2EC62A348BD70021100E /* Adress&Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adress&Coordinates.swift"; sourceTree = "<group>"; };
-		E39A2EC82A348CFA0021100E /* EventOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOrder.swift; sourceTree = "<group>"; };
 		E39A2ECB2A348D2B0021100E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		E39A2ED22A34BD6E0021100E /* CurrentDayEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDayEvents.swift; sourceTree = "<group>"; };
-		E39A2ED42A34C2060021100E /* ExpandList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandList.swift; sourceTree = "<group>"; };
 		E39A2ED62A35C0DC0021100E /* SourceSansPro-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-ExtraLight.otf"; sourceTree = "<group>"; };
 		E39A2ED82A35C0DC0021100E /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		E39A2ED92A35C0DC0021100E /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
@@ -247,6 +245,16 @@
 			path = CheckPass;
 			sourceTree = "<group>";
 		};
+		E3980C0C2A55A39600B1D639 /* CurrentEvent */ = {
+			isa = PBXGroup;
+			children = (
+				E39A2ED22A34BD6E0021100E /* CurrentDayEvents.swift */,
+				E3E745CF2A456E26005FA631 /* CurrentEvent.swift */,
+				E3980C0D2A55A3F900B1D639 /* ListEvents.swift */,
+			);
+			path = CurrentEvent;
+			sourceTree = "<group>";
+		};
 		E39A2E6B2A2F21B40021100E = {
 			isa = PBXGroup;
 			children = (
@@ -339,8 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				E39A2EEE2A3634940021100E /* EventResults.swift */,
-				E39A2ED22A34BD6E0021100E /* CurrentDayEvents.swift */,
-				E3E745CF2A456E26005FA631 /* CurrentEvent.swift */,
+				E3980C0C2A55A39600B1D639 /* CurrentEvent */,
 				E39A2ECA2A348D010021100E /* EventParams */,
 			);
 			path = Data;
@@ -364,8 +371,6 @@
 				E39A2EC62A348BD70021100E /* Adress&Coordinates.swift */,
 				E39A2ECB2A348D2B0021100E /* Categories.swift */,
 				E39A2EC22A34884F0021100E /* Dates.swift */,
-				E39A2EC82A348CFA0021100E /* EventOrder.swift */,
-				E39A2ED42A34C2060021100E /* ExpandList.swift */,
 			);
 			path = EventParams;
 			sourceTree = "<group>";
@@ -677,6 +682,7 @@
 				E3BE4F7C2A4D8B23007FEC7E /* MapVM.swift in Sources */,
 				E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */,
 				E39B20C52A4371960020499F /* HeaderWithLogo.swift in Sources */,
+				E3980C0E2A55A3F900B1D639 /* ListEvents.swift in Sources */,
 				E3BE4F732A4C5583007FEC7E /* HeaderWithBackBtn.swift in Sources */,
 				E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */,
 				E3F8EDDE2A3C64BC00F1A312 /* CustomButton.swift in Sources */,
@@ -703,10 +709,8 @@
 				E39A2F102A3A57490021100E /* EventCalendarView.swift in Sources */,
 				E39A2F122A3A58F90021100E /* ProfileView.swift in Sources */,
 				E3FF228C2A4479BC003BDE9B /* EditProfileView.swift in Sources */,
-				E39A2ED52A34C2060021100E /* ExpandList.swift in Sources */,
 				E3B32CAD2A544D82004BDD44 /* FullEventInfoView.swift in Sources */,
 				E39A2EF12A375F690021100E /* (null) in Sources */,
-				E39A2EC92A348CFA0021100E /* EventOrder.swift in Sources */,
 				E3A8228F2A40CBE400D15FD1 /* Providers.swift in Sources */,
 				E3980C082A558AB000B1D639 /* CheckPassView.swift in Sources */,
 				E39A2EFC2A37830F0021100E /* AppDelegate.swift in Sources */,

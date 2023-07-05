@@ -8,7 +8,7 @@
 import Foundation
 
 struct Dates: Decodable {
-    let start: Date?
+    let start: String?
     let end: Date?
     let isStart: Bool
     let isContinue: Bool
@@ -16,9 +16,8 @@ struct Dates: Decodable {
     let schedules: [Data]
     
     enum CodingKeys: String, CodingKey {
-        case schedules,
-             start,
-             end,
+        case schedules, end,
+             start = "start_date",
              isStart = "is_startless",
              isContinue = "is_continuous",
              isEnd = "is_endless"

@@ -16,16 +16,17 @@ protocol MoyaAPIManagerProtocol: AnyObject {
                           textFormat: String,
                           location: String,
                           date: String?,
-                          expand: String) async throws -> EventResult
+                          expand: String) async throws -> CurrentEventResult
     
     func getEvents(numberOfEvents count: Int,
                    page: String?,
-                   results: [CurrentDayEvents],
+                   results: [ListEvent],
                    lang: String,
                    textFormat: String,
                    location: String,
                    expand: String,
-                   actualSince: Int) async throws -> EventResult
+                   fields: String,
+                   actualSince: Int) async throws -> EventListResult
     
     func getCategories(categories: [Categories]) async throws -> [Categories]
 }
@@ -59,27 +60,29 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
     
     func getEvents(numberOfEvents count: Int,
                    page: String?,
-                   results: [CurrentDayEvents],
+                   results: [ListEvent],
                    lang: String = "ru",
                    textFormat: String = "text",
                    location: String = "msk",
-                   expand: String = "object,place",
-                   actualSince: Int = Int(Date.now.timeIntervalSince1970)) async throws -> EventResult {
+                   expand: String = "place,location,dates",
+                   fields: String = "id,place,location,dates",
+                   actualSince: Int = Int(Date.now.timeIntervalSince1970)) async throws -> EventListResult {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getEvents(count: count,
-                                                    page: page,
-                                                    results: results,
-                                                    lang: lang,
-                                                    textFormat: textFormat,
-                                                    location: location,
-                                                    expand: expand,
-                                                    actualSince: actualSince)) { result in
+                                              page: page,
+                                              results: results,
+                                              lang: lang,
+                                              textFormat: textFormat,
+                                              location: location,
+                                              expand: expand,
+                                              fields: fields,
+                                              actualSince: actualSince)) { result in
                 
                 switch result {
                 case .success(let response):
                     
                     do {
-                        let results = try response.map(EventResult.self)
+                        let results = try response.map(EventListResult.self)
                         continuation.resume(returning: results)
                     } catch {
                         continuation.resume(throwing: error)
@@ -101,7 +104,7 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                          textFormat: String = "text",
                          location: String = "msk",
                          date: String?,
-                         expand: String = "object,place") async throws -> EventResult {
+                         expand: String = "object,place") async throws -> CurrentEventResult {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getCurrentEvents(count: count,
                                                     page: page,
@@ -116,7 +119,7 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                 case .success(let response):
                     
                     do {
-                        let results = try response.map(EventResult.self)
+                        let results = try response.map(CurrentEventResult.self)
                         continuation.resume(returning: results)
                     } catch {
                         continuation.resume(throwing: error)
@@ -171,12 +174,9 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
 
 struct Constants {
     static var baseURL = "https://kudago.com/public-api/v1.4"
-    static var searchURL = "/search/"
-    static var eventListURL = "/lists/"
     static var eventOfTheDayURL = "/events-of-the-day/"
     static var eventsURL = "/events/"
     static var movieShowingsURL = "/movie-showings/"
     
     static var eventCategories = "/event-categories/"
-    static var placesCategories = "/place-categories/"
 }

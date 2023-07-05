@@ -23,7 +23,7 @@ struct CurrentEvent: Decodable {
     let poster: [EventImages]?
     let genres: [Genres]?
     let ageRestriction: String?
-    let place: Place?
+    let place: PlaceForCurrentEvent?
     
     init(from decoder: Decoder) throws {
         let container: KeyedDecodingContainer<CurrentEvent.CodingKeys> = try decoder.container(keyedBy: CurrentEvent.CodingKeys.self)
@@ -32,7 +32,7 @@ struct CurrentEvent: Decodable {
                                        forKey: CurrentEvent.CodingKeys.id)
         self.type = try container.decode(String.self,
                                          forKey: CurrentEvent.CodingKeys.type)
-        self.place = try container.decode(Place.self,
+        self.place = try container.decode(PlaceForCurrentEvent.self,
                                           forKey: CurrentEvent.CodingKeys.place)
         self.title = try container.decodeIfPresent(String.self,
                                                    forKey: CurrentEvent.CodingKeys.title)

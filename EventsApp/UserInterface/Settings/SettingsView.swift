@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject private var vm: SettingsVM = .init()
-    @ObservedObject private var profileVM = ProfileVM()
     
     var body: some View {
         VStack {
@@ -19,31 +18,17 @@ struct SettingsView: View {
         }
         .fullScreenCover(item: $vm.showView) { view in
             switch view {
-            case .editProfile:
-                EditProfileView(id: $profileVM.id,
-                                email: $profileVM.email,
-                                name: $profileVM.fullname)
             case .notification:
                 EditNotificationView()
             case .startPage:
                 StartPage()
             }
         }
-        .task {
-            await profileVM.getUser()
-        }
     }
     
     private var listOfSettings: some View {
         VStack {
             List {
-                Section {
-                    Button {
-                        vm.showView = .editProfile
-                    } label: {
-                        SettingsLabel(type: .editProfile)
-                    }
-                }
                 Section {
                     Button {
                         vm.showView = .notification

@@ -10,25 +10,35 @@ import Kingfisher
 
 struct FullEventInfoView: View {
     @State private var showMap: ShowMap?
-    @Binding var event: CurrentEvent?
+    @State var event: CurrentEvent?
     @State var isFavourite = false
     
     var body: some View {
         VStack {
-            ZStack {
+            ZStack(alignment: .topLeading) {
                 KFImage(URL(string: event?.images?.image ?? "Image"))
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(20)
                     .frame(maxWidth: .infinity,
                            maxHeight: .infinity)
+                    
+                CustomButton(type: .back)
+                    .padding(3)
+                    .background(Color.white.opacity(0.5))
+                    .shadow(radius: 0.1)
+                    .clipShape(Circle())
+                    .padding(.leading)
             }
             .frame(maxWidth: .infinity,
                    maxHeight: 250,
                    alignment: .top)
             
+            
             title
             fullInfo
         }
+        
     }
     
     private var title: some View {
@@ -101,7 +111,7 @@ struct FullEventInfoView: View {
             }
             
             Button {
-                
+                isFavourite.toggle()
             } label: {
                 Image(systemName: isFavourite ? "bookmark.fill" : "bookmark")
                     .resizable()
@@ -126,9 +136,6 @@ struct FullEventInfoView: View {
             VStack {
                 Text(event?.dateRange?.start?.description ?? "Date")
                     .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity,
-                           alignment: .leading)
-                Text(event?.dateRange?.schedules.description ?? "Schedule")
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
                 
@@ -163,7 +170,7 @@ struct FullEventInfoView: View {
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
-                Text(event?.dateRange?.schedules.description ?? "Schedule")
+                Text(event?.place?.subway ?? "Subway")
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
                 
@@ -201,7 +208,7 @@ struct FullEventInfoView: View {
 
 struct FullEventInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        FullEventInfoView(event: .constant(.none),
+        FullEventInfoView(event: .none,
                           isFavourite: false)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct FeaturedEventsView: View {
-    @ObservedObject var vm = HomeVM()
+    @StateObject var vm = HomeVM()
     @Binding var title: String
     @Binding var eventImage: String
     @State var showInfo: ShowInfo?
@@ -34,8 +34,8 @@ struct FeaturedEventsView: View {
         .frame(maxWidth: 300,
                maxHeight: 350)
         .padding()
-        .sheet(item: $showInfo) { view in
-            FullEventInfoView(event: .constant(vm.featuredEvent),
+        .fullScreenCover(item: $showInfo) { view in
+            FullEventInfoView(event: vm.featuredEvent,
                               isFavourite: false)
         }
     }

@@ -12,8 +12,8 @@ final class EventNoteVM: ObservableObject {
         EventManager()
     }()
     
-    @Published var results: [CurrentDayEvents] = []
-    @Published var places: [Place] = []
+    @Published var results: [ListEvent] = []
+    @Published var places: [PlaceForCurrentEvent] = []
     
     //    //MARK: - getEvents
     
