@@ -14,7 +14,7 @@ struct EventsAppApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                StartPage()
+                SplashScreenView()
             }
         }
     }
