@@ -14,6 +14,7 @@ final class AuthVM: ObservableObject {
         Providers()
     }()
     private var cancellable = Set<AnyCancellable>()
+    @Published var showView: ShowView?
     @Published var email = ""
     @Published var fullname = ""
     @Published var pass = ""
@@ -39,5 +40,13 @@ final class AuthVM: ObservableObject {
     
     deinit {
         cancellable.removeAll()
+    }
+    
+    enum ShowView: Identifiable {
+        case startPage
+        
+        var id: Int {
+            return 1
+        }
     }
 }

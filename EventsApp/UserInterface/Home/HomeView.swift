@@ -28,11 +28,13 @@ struct HomeView: View {
             FavouriteView()
         }
         .task {
-            await vm.fillResults()
-            await vm.getEventWithCategory()
-            await vm.setRandomFeatureEvent()
+            if vm.results.isEmpty {
+                await vm.fillResults()
+                await vm.getEventWithCategory()
+                await vm.setRandomFeatureEvent()
+                
+            }
         }
-        
     }
     
     private var featureEvent: some View {

@@ -33,11 +33,17 @@ struct SignInView: View {
             
             Spacer()
         }
+        .fullScreenCover(item: $vm.showView) { view in
+            TabBarView()
+        }
     }
     
     private var googleButton: some View {
         Button {
             googleSignIn()
+            if vm.providers.userSession != nil {
+                vm.showView = .startPage
+            }
         } label: {
             Label {
                 Text("Continue with Google")
@@ -65,6 +71,9 @@ struct SignInView: View {
     private var signInButton: some View {
         Button {
             signIn()
+            if vm.providers.userSession != nil {
+                vm.showView = .startPage
+            }
         } label: {
             Text("Sign In")
                 .font(.customFont(type: .semiBold,
@@ -73,6 +82,7 @@ struct SignInView: View {
         }
         .buttonStyle(FillButtonStyle())
         .padding(.horizontal)
+        
     }
     private func signIn() {
         Task {

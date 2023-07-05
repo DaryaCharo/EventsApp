@@ -31,11 +31,17 @@ struct SignUpView: View {
                     .padding(.vertical)
             }
         }
+        .fullScreenCover(item: $vm.showView) { view in
+            TabBarView()
+        }
     }
     
     private var signUpButton: some View {
         Button {
             signUp()
+            if vm.providers.userSession != nil {
+                vm.showView = .startPage
+            }
         } label: {
             Text("Sign Up")
                 .font(.customFont(type: .semiBold,
@@ -87,6 +93,7 @@ struct SignUpView: View {
                            isSecureField: .secure)
         }
     }
+    
 }
 
 struct SignUp_Previews: PreviewProvider {

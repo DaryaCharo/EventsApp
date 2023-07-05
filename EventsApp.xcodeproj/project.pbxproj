@@ -209,6 +209,14 @@
 			path = EventsCards;
 			sourceTree = "<group>";
 		};
+		E3980BFF2A5544C800B1D639 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E39A2F092A3A55AA0021100E /* TabBarView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		E39A2E6B2A2F21B40021100E = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +262,7 @@
 		E39A2E852A2F21BA0021100E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E3980BFF2A5544C800B1D639 /* TabBar */,
 				E357734D2A50AE3C00496EE1 /* Header */,
 				E357734E2A50AE4D00496EE1 /* Logo */,
 				E357734F2A50AE5600496EE1 /* SplashScreen */,
@@ -357,7 +366,6 @@
 		E3F8EDC62A3B6E2100F1A312 /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				E39A2F092A3A55AA0021100E /* TabBarView.swift */,
 				E3F8EDD32A3B857800F1A312 /* StartPage */,
 				E3F8EDCF2A3B7FD300F1A312 /* Home */,
 				E3F8EDFF2A3F187100F1A312 /* EventNote */,

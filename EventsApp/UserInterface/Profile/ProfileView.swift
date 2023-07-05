@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @StateObject private var vm = ProfileVM()
     
+    
     var body: some View {
         VStack {
             header
@@ -18,6 +19,9 @@ struct ProfileView: View {
             Spacer()
             bio
             Spacer()
+        }
+        .fullScreenCover(item: $vm.showView) { view in
+            EditProfileView()
         }
     }
     
@@ -42,9 +46,8 @@ struct ProfileView: View {
                     .padding()
                     .shadow(radius: 1)
                     
-                
                 Button {
-                    
+                    vm.showView = .editProfile
                 } label: {
                     Image(systemName: "pencil.circle.fill")
                         .resizable()
@@ -54,7 +57,7 @@ struct ProfileView: View {
                     .frame(maxWidth: 100, maxHeight: 100,
                            alignment: .bottomTrailing)
             }
-            Text(vm.name)
+            Text(vm.getName())
                 .font(.customFont(type: .semiBold,
                                   size: 24))
         }
@@ -62,32 +65,13 @@ struct ProfileView: View {
     
     private var header: some View {
         HStack {
-            Image("Logo")
-                .resizable()
-                .frame(width: 45, height: 45)
-                .imageScale(.small)
-                
-            
-            Text("Profile")
-                .font(.customFont(type: .semiBold,
-                                  size: 24))
-                .padding(.leading, 5)
+            HeaderWithLogo(title: "Profile")
             
             Spacer()
             
-            Button {
-                vm.showSettings.toggle()
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .resizable()
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
+            CustomButton(type: .settings)
+                .padding(.trailing)
         }
-        .fullScreenCover(isPresented: $vm.showSettings,
-                         content: {
-            SettingsView()
-        })
-        .padding()
     }
 }
 

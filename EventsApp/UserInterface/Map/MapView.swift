@@ -24,7 +24,9 @@ struct MapView: View {
             mapView
         }
         .task {
-            await vm.fillResults()
+            if vm.results.isEmpty {
+                await vm.fillResults()
+            }
         }
     }
 

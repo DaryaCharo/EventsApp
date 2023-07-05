@@ -24,6 +24,7 @@ struct HeaderWithLogo: View {
                     .padding(.leading, 10)
             }
         }
+        .padding()
     }
 }
 

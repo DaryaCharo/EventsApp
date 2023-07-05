@@ -8,6 +8,21 @@
 import SwiftUI
 
 final class ProfileVM: ObservableObject {
-    @Published var showSettings = false
-    @Published var name = "Me"
+    lazy  var providers: Providers = {
+        Providers()
+    }()
+    @Published var showView: ShowView?
+    
+    func getName() -> String {
+        guard let name = providers.currentUser?.fullname else { return "Me" }
+        return name
+    }
+    
+    enum ShowView: Identifiable {
+        case editProfile
+        
+        var id: Int {
+            return 1
+        }
+    }
 }

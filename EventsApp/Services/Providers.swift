@@ -32,22 +32,20 @@ final class Providers {
         signUpValidate(email: email,
                        pass: pass,
                        confPass: pass)
-        await MainActor.run {
-            authorisation.createUser(withEmail: email,
-                                     password: pass) { [ weak self ] authResult, error in
-                guard let self = self else { return }
-                self.userSession = authResult?.user
-                let user = UserData(id: authResult?.user.uid ?? "",
-                                    email: email,
-                                    fullname: fullname)
-                do {
-                    let encodedUser = try Firestore.Encoder().encode(user)
-                    fireDB.collection("users").document(user.id).setData(encodedUser)
-                } catch {
-                    print(error)
-                }
-            }
+        do {
+            let result = try await authorisation.createUser(withEmail: email,
+                                                        password: pass)
+            userSession = result.user
+            let user = UserData(id: result.user.uid,
+                                email: email,
+                                fullname: fullname)
+            let encodedUser = try Firestore.Encoder().encode(user)
+            try await fireDB.collection("users").document(user.id).setData(encodedUser)
+        } catch {
+            print(error)
         }
+        
+        
     }
     
     //MARK: - Sign in
@@ -86,13 +84,13 @@ final class Providers {
                 UserDefaults.setValue(authResult.user, forKey: "GoogleUser")
                 guard let user = UserDefaults.value(forKey: "GoogleUser") as? User,
                       user != authResult.user else { return }
-                self.userSession = authResult.user
-                let firestoreUser = UserData(id: authResult.user.uid,
-                                    email: authResult.user.email ?? "",
-                                    fullname: authResult.user.displayName ?? "")
-                let encodedUser = try Firestore.Encoder().encode(firestoreUser)
+                //                self.userSession = authResult.user
+                //                let firestoreUser = UserData(id: authResult.user.uid,
+                //                                    email: authResult.user.email ?? "",
+                //                                    fullname: authResult.user.displayName ?? "")
+                //                let encodedUser = try Firestore.Encoder().encode(firestoreUser)
                 
-                try await fireDB.collection("googleUsers").document(user.getIDToken()).setData(encodedUser)
+                //                try await fireDB.collection("googleUsers").document(user.getIDToken()).setData(encodedUser)
             } catch {
                 print(error)
             }

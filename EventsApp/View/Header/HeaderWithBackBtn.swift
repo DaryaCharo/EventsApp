@@ -19,6 +19,7 @@ struct HeaderWithBackBtn: View {
                                   size: 24))
             Spacer()
         }
+        .padding()
     }
 }
 
