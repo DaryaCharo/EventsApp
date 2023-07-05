@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Place: Decodable {
+struct PlaceForCurrentEvent: Decodable {
     let id: Int
     let title: String?
     let address: String?
@@ -44,5 +44,22 @@ struct CoordinateRadius: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case radius, coordinates
+    }
+}
+
+struct PlaceForEventFromList: Decodable {
+    let id: Int
+    let title: String
+    let address: String?
+    let phone: String?
+    let coords: Coordinates?
+    let isClosed: Bool?
+    let officialSiteLink: String?
+    let subway: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, title, address, phone, coords, subway,
+             isClosed = "is_closed",
+             officialSiteLink = "site_url"
     }
 }

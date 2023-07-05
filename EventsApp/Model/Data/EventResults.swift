@@ -7,10 +7,21 @@
 
 import Foundation
 
-struct EventResult: Decodable {
+struct CurrentEventResult: Decodable {
     let numberOfEvents: Int?
     let page: String?
     let results: [CurrentDayEvents]
+    
+    enum CodingKeys: String, CodingKey {
+        case results,
+             numberOfEvents = "count",
+             page = "next"
+    }
+}
+struct EventListResult: Decodable {
+    let numberOfEvents: Int?
+    let page: String?
+    let results: [ListEvent]
     
     enum CodingKeys: String, CodingKey {
         case results,

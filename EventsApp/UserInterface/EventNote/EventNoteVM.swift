@@ -12,13 +12,21 @@ final class EventNoteVM: ObservableObject {
         EventManager()
     }()
     
-    @Published var results: [CurrentDayEvents] = []
-    @Published var places: [Place] = []
+    @Published var results: [ListEvent] = []
     
     //    //MARK: - getEvents
     
+    func getEvents() async {
+        if results.isEmpty {
+            await fillResults()
+        }
+    }
+    
     func fillResults() async {
-        results = await eventManager.getEvents()
+        let result = await eventManager.getEvents()
+        await MainActor.run {
+            results = result
+        }
     }
 }
 

@@ -6,34 +6,61 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestoreSwift
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import GoogleSignIn
 
 final class Providers {
-    private let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-    private let passRegex = "/^(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]+$/"
-    private let authorisation = Auth.auth()
+    var userSession: FirebaseAuth.User?
+    var currentUser: UserData?
+    let authorisation = Auth.auth()
     private lazy var fireDB: Firestore = {
         Firestore.firestore()
     }()
-    private var validation: ValidationStatus?
+    
+    init() {
+        self.userSession = authorisation.currentUser
+        
+        Task {
+            await fetchUser()
+        }
+    }
+    
+    //MARK: - fetchUser
+    
+    func fetchUser() async {
+        guard let uid = authorisation.currentUser?.uid else { return }
+        do {
+            let snapshot = try await fireDB.collection("users").document(uid).getDocument()
+            self.currentUser = try snapshot.data(as: UserData.self)
+        } catch {
+            print(error)
+        }
+    }
     
     //MARK:  SignUp
     
     func singUp(email: String,
-                pass: String) async {
-        guard validation == .accepted else { return }
-        authorisation.createUser(withEmail: email,
-                                 password: pass) { authResult, error in
-            
-            Firestore.setValuesForKeys(["ID" : authResult?.user.uid ?? UUID(),
-                                        "Email Address" : email,
-                                        "Nickname" : authResult?.user.displayName ?? "No nickname",
-                                        "Password" : pass])
-            
+                pass: String,
+                fullname: String) async {
+        do {
+            let result = try await authorisation.createUser(withEmail: email,
+                                                            password: pass)
+            userSession = result.user
+            let user = UserData(id: result.user.uid,
+                                email: email,
+                                fullname: fullname)
+            let encodedUser = try Firestore.Encoder().encode(user)
+            try await fireDB.collection("users").document(user.id).setData(encodedUser)
+            await fetchUser()
+        } catch {
+            print(error)
         }
+        
+        
     }
     
     //MARK: - Sign in
@@ -44,20 +71,21 @@ final class Providers {
         
         switch providerType {
         case .firebase:
-            await MainActor.run {
-                authorisation.signIn(withEmail: email,
-                                     password: pass) { [weak self] authResult, error in
-                    guard let self = self,
-                          self.validation == .accepted else { return }
-                }
+            do {
+                let result = try await authorisation.signIn(withEmail: email,
+                                                      password: pass)
+                self.userSession = result.user
+                await fetchUser()
+            } catch {
+                print(error)
             }
+            
         case .google:
             guard let clientID = authorisation.app?.options.clientID,
                   let presentingViewController = (UIApplication.shared.connectedScenes.first
                                                   as? UIWindowScene)?.windows.first?.rootViewController else { return }
             // Create Google SignIn configuration object
             GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)
-            
             
             do {
                 let user = try await GIDSignIn.sharedInstance.signIn(withPresenting:
@@ -68,11 +96,15 @@ final class Providers {
                                                                                                     accessToken: user.accessToken.tokenString))
                 
                 UserDefaults.setValue(authResult.user, forKey: "GoogleUser")
-                if let user = UserDefaults.value(forKey: "GoogleUser") as? User,
-                   user != authResult.user {
-                    try await Firestore.setValue(user.getIDToken(),
-                                                 forKey: user.email ?? "User token")
-                }
+                guard let user = UserDefaults.value(forKey: "GoogleUser") as? User,
+                      user != authResult.user else { return }
+                    self.userSession = authResult.user
+                    let firestoreUser = UserData(id: authResult.user.uid,
+                                        email: authResult.user.email ?? "",
+                                        fullname: authResult.user.displayName ?? "")
+                    let encodedUser = try Firestore.Encoder().encode(firestoreUser)
+                    try await fireDB.collection("googleUsers").document(user.getIDToken()).setData(encodedUser)
+                await fetchUser()
             } catch {
                 print(error)
             }
@@ -84,41 +116,14 @@ final class Providers {
     func signOut() {
         do {
             try authorisation.signOut()
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+            self.userSession = nil
+            self.currentUser = nil
+        } catch {
+            print("Error signing out: %@", error)
         }
     }
-    
-    //MARK:  validation
-    
-    func signInValidate(email: String,
-                        pass: String) {
-        guard email.range(of: emailRegex, options: .regularExpression) != nil,
-              pass.range(of: passRegex, options: .regularExpression) != nil,
-              let password = FileManager.value(forKey: email) as? String,
-              pass == password else { return validation = .denied }
-        validation = .accepted
-    }
-    
-    func signUpValidate(email: String,
-                        pass: String,
-                        confPass: String) {
-        guard email.range(of: emailRegex, options: .regularExpression) != nil,
-              pass.range(of: passRegex, options: .regularExpression) != nil,
-              confPass.trimmingCharacters(in: .whitespaces).isEmpty,
-              confPass != pass else { return validation = .denied }
-        validation = .accepted
-    }
-}
-
-enum ValidationStatus {
-    case accepted, denied
 }
 
 enum ProviderType {
     case google, firebase
-}
-
-enum DataStatus {
-    case unloaded, loading, fetchData
 }

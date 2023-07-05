@@ -8,18 +8,15 @@
 import SwiftUI
 
 struct StartPage: View {
-    
-    @StateObject var vm = StartPageVM()
+    @StateObject var vm = AuthVM()
     
     var body: some View {
         VStack {
-            if vm.userSession != nil{
-                HomeView()
+            if vm.providers.userSession != nil{
+                TabBarView()
             } else {
                 SignInView()
             }
-            
-//            vm.userSession != nil ? HomeView() : SignInView()
         }
     }
 }

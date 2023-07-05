@@ -19,6 +19,9 @@ struct EventCalendarView: View {
             }
         }
         .padding(.top)
+        .task {
+            await vm.getEvents()
+        }
     }
     
     private var header: some View {
@@ -42,7 +45,7 @@ struct EventCalendarView: View {
             ScrollView(.horizontal,
                        showsIndicators: false) {
                 if vm.results.contains(where: {$0.object != nil}) {
-                    HStack {
+                    VStack {
                         ForEach(vm.results, id: \.object?.id) { result in
                             if let imageLink = result.object?.images?.image,
                                let title = result.object?.title,
@@ -70,9 +73,6 @@ struct EventCalendarView: View {
                         .padding()
                 }
             }
-        }
-        .task {
-            await vm.fillResults()
         }
     }
 }

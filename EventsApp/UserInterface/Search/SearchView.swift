@@ -16,8 +16,7 @@ struct SearchView: View {
             HeaderWithBackBtn(title: "Search")
             listOfResults
         }
-//        .searchable(text: $searchText,
-//                    placement: .navigationBarDrawer)
+//        .searchable(text: $searchText)
     }
     
     private var listOfResults: some View {

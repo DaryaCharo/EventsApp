@@ -20,11 +20,12 @@ enum Events {
     
     case getEvents(count: Int,
                    page: String?,
-                   results: [CurrentDayEvents],
+                   results: [ListEvent],
                    lang: String?,
                    textFormat: String?,
                    location: String?,
                    expand: String,
+                   fields: String,
                    actualSince: Int?)
     
     case getEventGenres(categories: [Categories])
@@ -75,6 +76,7 @@ extension Events: TargetType {
                         let textFormat,
                         let location,
                         let expand,
+                        let fields,
                         let actualSince):
             params["count"] = count
             params["next"] = page
@@ -83,6 +85,7 @@ extension Events: TargetType {
             params["text_format"] = textFormat
             params["location"] = location
             params["expand"] = expand
+            params["fields"] = fields
             params["actualSince"] = actualSince
             
         case .getEventGenres(let categories):

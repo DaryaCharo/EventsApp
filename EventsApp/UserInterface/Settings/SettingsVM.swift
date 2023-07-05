@@ -8,13 +8,27 @@
 import SwiftUI
 
 final class SettingsVM: ObservableObject {
-    
+    lazy  var providers: Providers = {
+        Providers()
+    }()
     @Published var settings: Settings?
+    @Published var showView: ShowView?
     
     func signOut() {
-        
+        providers.signOut()
     }
-    
+    enum ShowView: Identifiable {
+        case startPage, notification
+        
+        var id: Int {
+            switch self {
+            case .startPage:
+                return 1
+            case .notification:
+                return 2
+            }
+        }
+    }
 }
 
 enum Settings: Int, CaseIterable, Identifiable {

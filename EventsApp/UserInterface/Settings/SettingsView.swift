@@ -16,41 +16,36 @@ struct SettingsView: View {
             
             listOfSettings
         }
+        .fullScreenCover(item: $vm.showView) { view in
+            switch view {
+            case .notification:
+                EditNotificationView()
+            case .startPage:
+                StartPage()
+            }
+        }
     }
     
     private var listOfSettings: some View {
         VStack {
-            List(Settings.allCases, id: \.self) { setting in
-                HStack(spacing: 0) {
-                    NavigationLink {
-                        
+            List {
+                Section {
+                    Button {
+                        vm.showView = .notification
                     } label: {
-                        Label {
-                            Text(setting.getText)
-                                .padding(.leading)
-                        } icon: {
-                            Image(systemName: setting.getIcon)
-                                .frame(width: 25, height: 25)
-                                .padding(10)
-                                .foregroundColor(.customPurple)
-                                .background(Color.customPurple.opacity(0.2))
-                                .clipShape(Circle())
-                                .padding(8)
-                        }
+                        SettingsLabel(type: .notification)
+                    }
+                }
+                Section {
+                    Button {
+                        vm.showView = .startPage
+                        vm.signOut()
+                    } label: {
+                        SettingsLabel(type: .signOut)
                     }
                 }
             }
             .listStyle(.inset)
-            .fullScreenCover(item: $vm.settings) { setting in
-                switch setting {
-                case .editProfile:
-                    HomeView()
-                case .notification:
-                    NotificationView()
-                case .signOut:
-                    SignInView()
-                }
-            }
         }
     }
 }

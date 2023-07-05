@@ -46,7 +46,7 @@ struct SplashScreenView: View {
                 self.size = 0.9
                 self.opacity = 1
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 self.isActive.toggle()
             }
         }

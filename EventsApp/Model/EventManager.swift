@@ -9,43 +9,42 @@ import SwiftUI
 
 protocol EventManagerProtocol {
     func getCurrentEvents(date: String) async -> [CurrentDayEvents]
-    func getEvents() async -> [CurrentDayEvents]
+    func getEvents() async -> [ListEvent]
     func getCategories() async -> [Categories]
 }
 
 final class EventManager: EventManagerProtocol {
     private let moyaManager = MoyaAPIManager()
-    var results: [CurrentDayEvents] = []
+    var currentEventsResult: [CurrentDayEvents] = []
+    var listOfEvents: [ListEvent] = []
     var categories: [Categories] = []
-    var places: [Place] = []
     private var count = 0
     private var page = ""
     private var ids: [Int] = []
     
-    func getEvents() async -> [CurrentDayEvents] {
+    func getEvents() async -> [ListEvent] {
         do {
-            let data = try await self.moyaManager.getCurrentEvents(numberOfEvents: self.count,
-                                                                   page: self.page,
-                                                                   results: self.results,
-                                                                   date: .none)
-            results.append(contentsOf: data.results)
+            let data = try await self.moyaManager.getEvents(numberOfEvents: self.count,
+                                                            page: self.page,
+                                                            results: self.listOfEvents)
+            listOfEvents.append(contentsOf: data.results)
         } catch {
             print(error)
         }
-        return results
+        return listOfEvents
     }
     
     func getCurrentEvents(date: String) async -> [CurrentDayEvents] {
         do {
             let data = try await self.moyaManager.getCurrentEvents(numberOfEvents: self.count,
                                                                    page: self.page,
-                                                                   results: self.results,
+                                                                   results: self.currentEventsResult,
                                                                    date: date)
-            results.append(contentsOf: data.results)
+            currentEventsResult.append(contentsOf: data.results)
         } catch {
             print(error)
         }
-        return results
+        return currentEventsResult
     }
     
     func getCategories() async -> [Categories] {

@@ -9,7 +9,10 @@ import SwiftUI
 
 struct NotificationView: View {
     var body: some View {
-        HeaderWithBackBtn(title: "Notifications")
+        VStack {
+            HeaderWithBackBtn(title: "Notifications")
+            Spacer()
+        }
     }
     
     private var listOfNotifications: some View {

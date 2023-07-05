@@ -15,7 +15,7 @@ struct HomeView: View {
                    showsIndicators: false) {
             VStack {
                 header
-    
+                
                 featureEvent
                 
                 listOfEvents
@@ -27,23 +27,15 @@ struct HomeView: View {
         .fullScreenCover(item: $vm.showView) { event in
             FavouriteView()
         }
+        .task {
+            await vm.getEvents()
+        }
     }
     
     private var featureEvent: some View {
-        VStack {
-            ForEach(vm.featureEventsResults, id: \.object?.id) { result in
-                if let imageLink = result.object?.images?.image,
-                   let title = result.object?.title
-                {
-                    FeaturedEventsView(title: title,
-                                       eventImage: imageLink)
-                }
-            }
-        }
-        .frame(alignment: .leading)
-        .task {
-            await vm.setRandomFeatureEvent()
-        }
+        FeaturedEventsView(vm: vm,
+                           title: .constant(vm.featuredEvent?.title ?? ""),
+                            eventImage: .constant(vm.featuredEvent?.images?.image ?? ""))
     }
     
     private var eventsList: some View {
@@ -87,10 +79,6 @@ struct HomeView: View {
                 }
             }
         }
-        .task {
-            await vm.fillResults()
-            await vm.getEventWithCategory()
-        }
     }
     
     private var header: some View {
@@ -130,7 +118,7 @@ struct HomeView: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .padding()
     }
 }
 

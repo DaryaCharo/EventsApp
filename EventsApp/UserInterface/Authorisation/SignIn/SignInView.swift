@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    @StateObject var vm = SignInVM()
+    @StateObject var vm = AuthVM()
     
     var body: some View {
         VStack {
@@ -34,13 +34,16 @@ struct SignInView: View {
             Spacer()
         }
         .fullScreenCover(item: $vm.showView) { view in
-            HomeView()
+            TabBarView()
         }
     }
     
     private var googleButton: some View {
         Button {
             googleSignIn()
+            if vm.providers.userSession != nil {
+                vm.showView = .startPage
+            }
         } label: {
             Label {
                 Text("Continue with Google")
@@ -68,14 +71,20 @@ struct SignInView: View {
     private var signInButton: some View {
         Button {
             signIn()
+            if vm.providers.userSession != nil {
+                vm.showView = .startPage
+            }
         } label: {
             Text("Sign In")
                 .font(.customFont(type: .semiBold,
                                   size: 18))
                 .frame(maxWidth: .infinity)
         }
+        .disabled(formIsValid == .denied)
+        .opacity(formIsValid == .accepted ? 1 : 0.5)
         .buttonStyle(FillButtonStyle())
         .padding(.horizontal)
+        
     }
     private func signIn() {
         Task {
@@ -119,5 +128,13 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+    }
+}
+
+extension SignInView: AuthFormProtocol {
+    var formIsValid: ValidationStatus {
+        vm.email.range(of: vm.emailRegex, options: .regularExpression) != nil &&
+        !vm.pass.isEmpty &&
+        vm.pass.count > 5 ? .accepted : .denied
     }
 }

@@ -9,28 +9,36 @@ import SwiftUI
 import Kingfisher
 
 struct FullEventInfoView: View {
-    @Binding var event: CurrentEvent?
-    @Binding var isFavourite: Bool
+    @State private var showMap: ShowMap?
+    @State var event: CurrentEvent?
+    @State var isFavourite = false
     
     var body: some View {
         VStack {
-            ZStack {
-                backButton
-                
+            ZStack(alignment: .topLeading) {
                 KFImage(URL(string: event?.images?.image ?? "Image"))
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(20)
                     .frame(maxWidth: .infinity,
                            maxHeight: .infinity)
+                    
+                CustomButton(type: .back)
+                    .padding(3)
+                    .background(Color.white.opacity(0.5))
+                    .shadow(radius: 0.1)
+                    .clipShape(Circle())
+                    .padding(.leading)
             }
-            .background(Color.red)
             .frame(maxWidth: .infinity,
                    maxHeight: 250,
                    alignment: .top)
             
+            
             title
             fullInfo
         }
+        
     }
     
     private var title: some View {
@@ -103,7 +111,7 @@ struct FullEventInfoView: View {
             }
             
             Button {
-                
+                isFavourite.toggle()
             } label: {
                 Image(systemName: isFavourite ? "bookmark.fill" : "bookmark")
                     .resizable()
@@ -128,9 +136,6 @@ struct FullEventInfoView: View {
             VStack {
                 Text(event?.dateRange?.start?.description ?? "Date")
                     .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity,
-                           alignment: .leading)
-                Text(event?.dateRange?.schedules.description ?? "Schedule")
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
                 
@@ -165,13 +170,13 @@ struct FullEventInfoView: View {
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
-                Text(event?.dateRange?.schedules.description ?? "Schedule")
+                Text(event?.place?.subway ?? "Subway")
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
                 
                 //move to map
                 Button {
-                    
+                    showMap = .map
                 } label: {
                     Text("See on Map")
                         .font(.headline)
@@ -184,29 +189,26 @@ struct FullEventInfoView: View {
             }
         }
         .padding(.vertical)
+        .fullScreenCover(item: $showMap) { _ in
+            MapView(lat: event?.place?.coords?.lat ??
+                    CitiesCoordinates.moscow.latitude,
+                    lon: event?.place?.coords?.lat ??
+                    CitiesCoordinates.moscow.longitude)
+        }
     }
     
-    private var backButton: some View {
-        VStack {
-            HStack {
-                CustomButton(type: .back)
-                    .frame(alignment: .leading)
-                    .background(.white.opacity(0.9))
-                    .clipShape(Circle())
-                
-                Spacer()
-            }
-            .padding()
-            .frame(alignment: .topLeading)
-            
-            Spacer()
+    enum ShowMap: Identifiable {
+        case map
+        
+        var id: Int {
+            return 1
         }
     }
 }
 
-struct EventFullInfoView_Previews: PreviewProvider {
+struct FullEventInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        FullEventInfoView(event: .constant(.none),
-                          isFavourite: .constant(false))
+        FullEventInfoView(event: .none,
+                          isFavourite: false)
     }
 }

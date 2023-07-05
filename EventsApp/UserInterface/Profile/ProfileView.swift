@@ -15,15 +15,22 @@ struct ProfileView: View {
             header
             
             avatar
-            Spacer()
             bio
             Spacer()
+        }
+        .fullScreenCover(item: $vm.showView) { view in
+            EditProfileView(id: $vm.id,
+                            email: $vm.email,
+                            name: $vm.fullname)
+        }
+        .task {
+            await vm.getUser()
         }
     }
     
     private var bio: some View {
         VStack {
-            Text("Info about me")
+            Text("My bio")
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -31,63 +38,41 @@ struct ProfileView: View {
     
     private var avatar: some View {
         VStack {
-            ZStack {
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .foregroundColor(.customPurple).opacity(0.6)
-                    .frame(maxWidth: 80, maxHeight: 80)
-                    .padding()
-                    .background(Color.white)
-                    .clipShape(Circle())
-                    .padding()
-                    .shadow(radius: 1)
-                    
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "pencil.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.customPurple)
-                }
-                    .frame(maxWidth: 100, maxHeight: 100,
-                           alignment: .bottomTrailing)
-            }
-            Text(vm.name)
+            Image(systemName: "person.fill")
+                .resizable()
+                .foregroundColor(.customPurple).opacity(0.6)
+                .frame(maxWidth: 80, maxHeight: 80)
+                .padding()
+                .background(Color.white)
+                .clipShape(Circle())
+                .padding()
+                .shadow(radius: 1)
+            Text(vm.fullname)
                 .font(.customFont(type: .semiBold,
                                   size: 24))
         }
+        .padding(.bottom)
     }
     
     private var header: some View {
         HStack {
-            Image("Logo")
-                .resizable()
-                .frame(width: 45, height: 45)
-                .imageScale(.small)
-                
-            
-            Text("Profile")
-                .font(.customFont(type: .semiBold,
-                                  size: 24))
-                .padding(.leading, 5)
+            HeaderWithLogo(title: "Profile")
             
             Spacer()
             
             Button {
-                vm.showSettings.toggle()
+                vm.showView = .editProfile
             } label: {
-                Image(systemName: "gearshape.fill")
-                    .resizable()
+                Image(systemName: "pencil")
+                    .imageScale(.large)
+                    .bold()
+                    .foregroundColor(.customPurple)
             }
             .buttonStyle(UserInteractionButtonsStyle())
+
+            CustomButton(type: .settings)
+                .padding(.trailing)
         }
-        .fullScreenCover(isPresented: $vm.showSettings,
-                         content: {
-            SettingsView()
-        })
-        .padding()
     }
 }
 
