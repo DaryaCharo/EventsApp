@@ -9,17 +9,17 @@ import SwiftUI
 import Kingfisher
 
 struct EventView: View {
-    @State var imageLink: String
-    @State var eventTitle: String
-    @State var genre: String
-    @State var followers: Int
-    @State var location: String
-    @State var stringDate: String
+    @StateObject var vm = HomeVM()
+    @State var currentEvent: CurrentEvent?
+    @State var eventFromList: ListEvent?
+    @State var type: EventType?
     
     var body: some View {
         ZStack {
             VStack {
-                KFImage(URL(string: imageLink))
+                KFImage(URL(string: type == .current ?
+                                        currentEvent?.images?.image ?? "" :
+                                        eventFromList?.images?.image ?? ""))
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: .infinity,
@@ -27,24 +27,31 @@ struct EventView: View {
                            alignment: .top)
             }
             VStack {
-                dateView
                 eventInfo
             }
         }
-        
         .background(Color.customWindowBack)
         .cornerRadius(20)
         .shadow(radius: 1)
         .frame(maxWidth: 300,
                maxHeight: 350)
         .padding()
+        .fullScreenCover(item: $vm.showView) { _ in
+            type == .current ?
+            FullEventInfoView(currentEvent: currentEvent,
+                              type: type) :
+            FullEventInfoView(eventFromList: eventFromList,
+                              type: type)
+        }
     }
     
     private var eventInfo: some View {
         VStack {
             Spacer()
             
-            Text(eventTitle)
+            Text(type == .current ?
+                    currentEvent?.title ?? "" :
+                    eventFromList?.title ?? "")
                 .font(.customFont(type: .semiBold,
                                   size: 18))
                 .lineLimit(3)
@@ -55,7 +62,9 @@ struct EventView: View {
                 .padding(.horizontal)
             
             HStack {
-                Text(genre)
+                Text(type == .current ?
+                        currentEvent?.type ?? "event" :
+                        eventFromList?.categories?.first?.name ?? "event")
                     .font(.customFont(type: .regular,
                                       size: 16))
                     .padding(8)
@@ -65,7 +74,9 @@ struct EventView: View {
                     }
                     .foregroundColor(.customPurple).opacity(0.8)
                 
-                Text("\(followers)")
+                Text(type == .current ?
+                        currentEvent?.favouritesCount?.description ?? "0" :
+                        eventFromList?.favouritesCount?.description ?? "0")
                     .font(.customFont(type: .regular,
                                       size: 16))
                     .padding(.leading, 8)
@@ -79,7 +90,9 @@ struct EventView: View {
             
             HStack {
                 Label {
-                    Text(location)
+                    Text(type == .current ?
+                            currentEvent?.place?.address ?? "Place don't have address yet" :
+                            eventFromList?.place?.address ?? "Place don't have address yet")
                         .font(.customFont(type: .regular,
                                           size: 16))
                 } icon: {
@@ -91,40 +104,34 @@ struct EventView: View {
                 
                 Spacer()
                 
+                learnMoreBtn
                 CustomButton(type: .favourite)
             }
             .padding(.horizontal)
             .padding(.bottom)
         }
         .background(Color.customWindowBack)
-        .padding(.top, 100)
-        
+        .padding(.top, 250)
     }
     
-    private var dateView: some View {
-        VStack {
-            Text(stringDate)
-                .font(.customFont(type: .regular,
-                                  size: 16))
-                .padding(10)
-                .foregroundColor(.customPurple)
-                .background(Color.dateBack)
-                .cornerRadius(10)
-                .frame(maxWidth: .infinity,
-                       alignment: .trailing)
-                .padding(.trailing)
+    private var learnMoreBtn: some View {
+        Button {
+            vm.showView = .fullInfoView
+        } label: {
+            Image(systemName: "info.circle")
+                .padding(5)
         }
-        .padding(.top, 30)
+        .buttonStyle(UserInteractionButtonsStyle())
     }
 }
 
 struct EventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView(imageLink: "",
-                  eventTitle: "Title",
-                  genre: "Genre",
-                  followers: 0,
-                  location: "Location",
-                  stringDate: "dd, MM")
+        EventView(currentEvent: .none,
+                  type: .current)
     }
+}
+
+enum EventType {
+    case current, fromList
 }

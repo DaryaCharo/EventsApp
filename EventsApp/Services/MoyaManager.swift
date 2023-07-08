@@ -24,6 +24,7 @@ protocol MoyaAPIManagerProtocol: AnyObject {
                    lang: String,
                    textFormat: String,
                    location: String,
+                   id: Int,
                    expand: String,
                    fields: String,
                    actualSince: Int) async throws -> EventListResult
@@ -58,14 +59,15 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
     
     //MARK: - getEvents
     
-    func getEvents(numberOfEvents count: Int,
+    func getEvents(numberOfEvents count: Int = 100,
                    page: String?,
                    results: [ListEvent],
                    lang: String = "ru",
                    textFormat: String = "text",
                    location: String = "msk",
+                   id: Int,
                    expand: String = "place,dates",
-                   fields: String = "id,place,dates,description,title,images,favorites_count",
+                   fields: String = "id,place,dates,description,title,images,favorites_count,age_restriction",
                    actualSince: Int = Int(Date.now.timeIntervalSince1970)) async throws -> EventListResult {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getEvents(count: count,
@@ -74,6 +76,7 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                                               lang: lang,
                                               textFormat: textFormat,
                                               location: location,
+                                              id: id,
                                               expand: expand,
                                               fields: fields,
                                               actualSince: actualSince)) { result in
@@ -97,7 +100,7 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
     
     //MARK: - getCurrentEvents
     
-    func getCurrentEvents(numberOfEvents count: Int,
+    func getCurrentEvents(numberOfEvents count: Int = 100,
                          page: String?,
                          results: [CurrentDayEvents],
                          lang: String = "ru",

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E31CC1C02A56EABB0070483E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1BF2A56EABB0070483E /* ResultView.swift */; };
 		E36509F02A420304008FC035 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E36509EF2A420304008FC035 /* Kingfisher */; };
 		E385BCEC2A40CA30007C84B4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385BCEB2A40CA30007C84B4 /* UserData.swift */; };
 		E3980C012A5572B200B1D639 /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3980C002A5572B200B1D639 /* EditNotificationView.swift */; };
@@ -54,7 +55,7 @@
 		E3BE4F782A4D8A12007FEC7E /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E3BE4F772A4D8A12007FEC7E /* GoogleMaps */; };
 		E3BE4F7A2A4D8A12007FEC7E /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = E3BE4F792A4D8A12007FEC7E /* GooglePlaces */; };
 		E3BE4F7C2A4D8B23007FEC7E /* MapVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */; };
-		E3BE4F7E2A4DC036007FEC7E /* MapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */; };
+		E3BE4F7E2A4DC036007FEC7E /* GoogleMapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BE4F7D2A4DC036007FEC7E /* GoogleMapsView.swift */; };
 		E3E745D02A456E26005FA631 /* CurrentEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745CF2A456E26005FA631 /* CurrentEvent.swift */; };
 		E3E745D22A45D2D7005FA631 /* InputFiledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745D12A45D2D7005FA631 /* InputFiledView.swift */; };
 		E3E745D52A45D304005FA631 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E745D42A45D304005FA631 /* LogoView.swift */; };
@@ -84,6 +85,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E31CC1BF2A56EABB0070483E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E385BCEB2A40CA30007C84B4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E3980C002A5572B200B1D639 /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
 		E3980C022A55737700B1D639 /* SettingsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabel.swift; sourceTree = "<group>"; };
@@ -124,7 +126,7 @@
 		E3B32CB12A5458F8004BDD44 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
 		E3BE4F722A4C5583007FEC7E /* HeaderWithBackBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWithBackBtn.swift; sourceTree = "<group>"; };
 		E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVM.swift; sourceTree = "<group>"; };
-		E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewRepresentable.swift; sourceTree = "<group>"; };
+		E3BE4F7D2A4DC036007FEC7E /* GoogleMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsView.swift; sourceTree = "<group>"; };
 		E3E745CF2A456E26005FA631 /* CurrentEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEvent.swift; sourceTree = "<group>"; };
 		E3E745D12A45D2D7005FA631 /* InputFiledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFiledView.swift; sourceTree = "<group>"; };
 		E3E745D42A45D304005FA631 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
@@ -170,6 +172,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E31CC1C12A56EABE0070483E /* ResultView */ = {
+			isa = PBXGroup;
+			children = (
+				E31CC1BF2A56EABB0070483E /* ResultView.swift */,
+			);
+			path = ResultView;
+			sourceTree = "<group>";
+		};
 		E357734D2A50AE3C00496EE1 /* Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +319,7 @@
 				E3E745D32A45D2F2005FA631 /* InputField */,
 				E3F8EE022A3F241A00F1A312 /* CustomButton */,
 				E35773512A50B22600496EE1 /* EventsCards */,
+				E31CC1C12A56EABE0070483E /* ResultView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -466,7 +477,7 @@
 			children = (
 				E39A2F0D2A3A56A00021100E /* MapView.swift */,
 				E3BE4F7B2A4D8B23007FEC7E /* MapVM.swift */,
-				E3BE4F7D2A4DC036007FEC7E /* MapViewRepresentable.swift */,
+				E3BE4F7D2A4DC036007FEC7E /* GoogleMapsView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -673,7 +684,7 @@
 				E3F8EDFE2A3F186D00F1A312 /* EventNoteVM.swift in Sources */,
 				E3F8EDD52A3B951D00F1A312 /* SettingsView.swift in Sources */,
 				E3E745D02A456E26005FA631 /* CurrentEvent.swift in Sources */,
-				E3BE4F7E2A4DC036007FEC7E /* MapViewRepresentable.swift in Sources */,
+				E3BE4F7E2A4DC036007FEC7E /* GoogleMapsView.swift in Sources */,
 				E3F8EDC82A3B710500F1A312 /* ButtonsStyle.swift in Sources */,
 				E3F8EE042A3F567700F1A312 /* SearchView.swift in Sources */,
 				E39A2F082A3A39B80021100E /* HomeVM.swift in Sources */,
@@ -703,6 +714,7 @@
 				E39A2F062A3A39AE0021100E /* HomeView.swift in Sources */,
 				E385BCEC2A40CA30007C84B4 /* UserData.swift in Sources */,
 				E39A2EF32A37780C0021100E /* (null) in Sources */,
+				E31CC1C02A56EABB0070483E /* ResultView.swift in Sources */,
 				E3F8EDF02A3CBD5100F1A312 /* SignUpView.swift in Sources */,
 				E3E745DB2A4746C6005FA631 /* SignInView.swift in Sources */,
 				E39A2F002A3792A00021100E /* Font + Extension.swift in Sources */,

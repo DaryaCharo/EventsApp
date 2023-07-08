@@ -36,12 +36,12 @@ struct CurrentDayEvents: Decodable {
         self.city = try container.decodeIfPresent(String.self,
                                                   forKey: CurrentDayEvents.CodingKeys.city)
         
-//        if let dateValue = try? container.decodeIfPresent(Date.self,
-//                                                            forKey: CurrentDayEvents.CodingKeys.date) {
-//            self.date = dateValue.description
-//        } else {
+        if let dateValue = try? container.decodeIfPresent(Date.self,
+                                                            forKey: CurrentDayEvents.CodingKeys.date) {
+            self.date = dateValue.description
+        } else {
             self.date = try container.decodeIfPresent(String.self,
                                                                 forKey: CurrentDayEvents.CodingKeys.date)
-//        }
+        }
     }
 }

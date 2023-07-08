@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import GoogleSignIn
+import SwiftUI
 
 final class Providers {
     var userSession: FirebaseAuth.User?
@@ -26,6 +27,30 @@ final class Providers {
         
         Task {
             await fetchUser()
+        }
+    }
+    
+    //MARK: - favouriteEvent
+    //ещё не доделала
+    func makeFavourite(eventIDs: [Int]) async {
+        await fetchUser()
+        guard let user = currentUser else { return }
+        do {
+            try await fireDB.collection("Favourite Events").document(user.id)
+                .collection("Favourites").document("Favourites").setData(["Event ID" : eventIDs])
+        } catch {
+            print(error)
+        }
+    }
+    
+    func removeFromFavourite(eventsID: Int) async {
+        await fetchUser()
+        guard let user = currentUser else { return }
+        do {
+//            let uid =
+            try await fireDB.collection("Favourite Events").document(user.id)
+        } catch {
+            print(error)
         }
     }
     

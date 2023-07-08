@@ -9,7 +9,7 @@ import SwiftUI
 
 protocol EventManagerProtocol {
     func getCurrentEvents(date: String) async -> [CurrentDayEvents]
-    func getEvents() async -> [ListEvent]
+    func getEvents(id: Int) async -> [ListEvent]
     func getCategories() async -> [Categories]
 }
 
@@ -22,11 +22,12 @@ final class EventManager: EventManagerProtocol {
     private var page = ""
     private var ids: [Int] = []
     
-    func getEvents() async -> [ListEvent] {
+    func getEvents(id: Int) async -> [ListEvent] {
         do {
             let data = try await self.moyaManager.getEvents(numberOfEvents: self.count,
                                                             page: self.page,
-                                                            results: self.listOfEvents)
+                                                            results: self.listOfEvents,
+                                                            id: id)
             listOfEvents.append(contentsOf: data.results)
         } catch {
             print(error)

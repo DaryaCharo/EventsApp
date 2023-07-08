@@ -10,13 +10,17 @@ import Kingfisher
 
 struct FullEventInfoView: View {
     @State private var showMap: ShowMap?
-    @State var event: CurrentEvent?
     @State var isFavourite = false
+    @State var currentEvent: CurrentEvent?
+    @State var eventFromList: ListEvent?
+    @State var type: EventType?
     
     var body: some View {
         VStack {
             ZStack(alignment: .topLeading) {
-                KFImage(URL(string: event?.images?.image ?? "Image"))
+                KFImage(URL(string: type == .current ?
+                                    currentEvent?.images?.image ?? "Image" :
+                                    eventFromList?.images?.image ?? "Image"))
                     .resizable()
                     .scaledToFit()
                     .cornerRadius(20)
@@ -25,7 +29,7 @@ struct FullEventInfoView: View {
                     
                 CustomButton(type: .back)
                     .padding(3)
-                    .background(Color.white.opacity(0.5))
+                    .background(Color.white.opacity(0.9))
                     .shadow(radius: 0.1)
                     .clipShape(Circle())
                     .padding(.leading)
@@ -33,7 +37,6 @@ struct FullEventInfoView: View {
             .frame(maxWidth: .infinity,
                    maxHeight: 250,
                    alignment: .top)
-            
             
             title
             fullInfo
@@ -44,7 +47,9 @@ struct FullEventInfoView: View {
     private var title: some View {
         VStack {
             HStack {
-                Text(event?.type ?? "type")
+                Text(type == .current ?
+                     currentEvent?.type ?? "event" :
+                     eventFromList?.categories?.first?.name ?? "event")
                     .padding(5)
                     .overlay {
                         RoundedRectangle(cornerRadius: 24)
@@ -54,12 +59,16 @@ struct FullEventInfoView: View {
                 
                 Spacer()
                 
-                Text(event?.favouritesCount?.description ?? "0")
+                Text(type == .current ?
+                     currentEvent?.favouritesCount?.description ?? "0" :
+                     eventFromList?.favouritesCount?.description ?? "0")
                 Text("Going")
             }
         
             HStack {
-                Text(event?.title ?? "Title")
+                Text(type == .current ?
+                    currentEvent?.title ?? "Title" :
+                    eventFromList?.title ?? "Title")
                     .font(.title)
                     .bold()
                 
@@ -88,8 +97,16 @@ struct FullEventInfoView: View {
     
     private var aboutEvent: some View {
         VStack {
-            Text(event?.description ?? "Can't find any information")
-            Text(event?.ageRestriction ?? "")
+            Text(type == .current ?
+                 currentEvent?.description ?? "Can't find any information" :
+                 eventFromList?.description ?? "Can't find any information")
+                .frame(maxWidth: .infinity,
+                       alignment: .leading)
+            Text(type == .current ?
+                 currentEvent?.ageRestriction ?? "" :
+                 eventFromList?.ageRestriction ?? "")
+                .frame(maxWidth: .infinity,
+                       alignment: .leading)
         }
         .padding(.vertical)
     }
@@ -134,7 +151,9 @@ struct FullEventInfoView: View {
                 .clipShape(Circle())
             
             VStack {
-                Text(event?.dateRange?.start?.description ?? "Date")
+                Text(type == .current ?
+                     currentEvent?.dateRange?.start?.description ?? "Date is unknown" :
+                     eventFromList?.dates?.first?.start?.description ?? "Date is unknown")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
@@ -166,11 +185,15 @@ struct FullEventInfoView: View {
                 .clipShape(Circle())
             
             VStack {
-                Text(event?.place?.address ?? "Address")
+                Text(type == .current ?
+                     currentEvent?.place?.address ?? "Address has not been added yet" :
+                     eventFromList?.place?.address ?? "Address has not been added yet")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
-                Text(event?.place?.subway ?? "Subway")
+                Text(type == .current ?
+                     currentEvent?.place?.subway ?? "Subway has not been added yet" :
+                     eventFromList?.place?.subway ?? "Subway has not been added yet")
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
                 
@@ -190,10 +213,17 @@ struct FullEventInfoView: View {
         }
         .padding(.vertical)
         .fullScreenCover(item: $showMap) { _ in
-            MapView(lat: event?.place?.coords?.lat ??
-                    CitiesCoordinates.moscow.latitude,
-                    lon: event?.place?.coords?.lat ??
-                    CitiesCoordinates.moscow.longitude)
+            MapView(type: type,
+                    lat: type == .current ?
+                        currentEvent?.place?.coords?.lat ??
+                        CitiesCoordinates.moscow.latitude :
+                        eventFromList?.place?.coords?.lat ??
+                        CitiesCoordinates.moscow.latitude,
+                    lon: type == .current ?
+                        currentEvent?.place?.coords?.lon ??
+                        CitiesCoordinates.moscow.longitude :
+                        eventFromList?.place?.coords?.lon ??
+                        CitiesCoordinates.moscow.longitude)
         }
     }
     
@@ -208,7 +238,7 @@ struct FullEventInfoView: View {
 
 struct FullEventInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        FullEventInfoView(event: .none,
-                          isFavourite: false)
+        FullEventInfoView(currentEvent: .none,
+                          type: .current)
     }
 }

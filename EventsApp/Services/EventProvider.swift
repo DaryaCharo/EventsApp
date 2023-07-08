@@ -24,6 +24,7 @@ enum Events {
                    lang: String?,
                    textFormat: String?,
                    location: String?,
+                   id: Int,
                    expand: String,
                    fields: String,
                    actualSince: Int?)
@@ -75,6 +76,7 @@ extension Events: TargetType {
                         let lang,
                         let textFormat,
                         let location,
+                        let id,
                         let expand,
                         let fields,
                         let actualSince):
@@ -84,6 +86,7 @@ extension Events: TargetType {
             params["lang"] = lang
             params["text_format"] = textFormat
             params["location"] = location
+            params["id"] = id
             params["expand"] = expand
             params["fields"] = fields
             params["actualSince"] = actualSince

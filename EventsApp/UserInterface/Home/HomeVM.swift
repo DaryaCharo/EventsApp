@@ -54,11 +54,13 @@ final class HomeVM: ObservableObject {
     }
     
     enum ShowView: Identifiable {
-        case favourite
+        case favourite, fullInfoView
         var id: Int {
             switch self {
             case .favourite:
                 return 1
+            case .fullInfoView:
+                return 2
             }
         }
     }
