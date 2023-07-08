@@ -27,7 +27,6 @@ struct EventView: View {
                         .frame(maxWidth: .infinity,
                                maxHeight: .infinity,
                                alignment: .top)
-                        .background(.gray)
                 } else {
                     VStack {
                         Spacer()

@@ -19,14 +19,35 @@ struct FullEventInfoView: View {
         ScrollView {
             VStack {
                 ZStack(alignment: .topLeading) {
-                    KFImage(URL(string: type == .current ?
-                                currentEvent?.images?.image ?? "Image" :
-                                    eventFromList?.images?.image ?? "Image"))
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(20)
-                    .frame(maxWidth: .infinity,
-                           maxHeight: .infinity)
+                    
+                    
+                    if let imageName = type == .current ?
+                            currentEvent?.images?.image :
+                            eventFromList?.images?.image {
+                        KFImage(URL(string: imageName))
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(20)
+                        .frame(maxWidth: .infinity,
+                               maxHeight: .infinity)
+                    } else {
+                        VStack {
+                            Spacer()
+                            Image(systemName: "photo.fill")
+                                .resizable()
+                                .frame(width: 30,
+                                       height: 25)
+                                .foregroundColor(.customPurple)
+                            Text("Images have not been added yet")
+                                .foregroundColor(.customPurple)
+                                .font(.callout)
+                            Spacer()
+                        }
+                        .frame(maxWidth: .infinity,
+                               alignment: .center)
+                        .padding(.horizontal)
+                        .padding(.bottom, 40)
+                    }
                     
                     CustomButton(type: .back)
                         .padding(3)
