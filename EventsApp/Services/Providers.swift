@@ -36,19 +36,18 @@ final class Providers {
         await fetchUser()
         guard let user = currentUser else { return }
         do {
-            try await fireDB.collection("Favourite Events").document(user.id)
+            try await fireDB.collection("Users").document(user.id)
                 .collection("Favourites").document("Favourites").setData(["Event ID" : eventIDs])
         } catch {
             print(error)
         }
     }
     
-    func removeFromFavourite(eventsID: Int) async {
+    func updateFavourites(eventIDs: [Int]) async {
         await fetchUser()
         guard let user = currentUser else { return }
         do {
-//            let uid =
-            try await fireDB.collection("Favourite Events").document(user.id)
+            try await fireDB.collection("Favourites").document("Favourites").updateData(["Event ID" : eventIDs])
         } catch {
             print(error)
         }
@@ -59,7 +58,7 @@ final class Providers {
     func fetchUser() async {
         guard let uid = authorisation.currentUser?.uid else { return }
         do {
-            let snapshot = try await fireDB.collection("users").document(uid).getDocument()
+            let snapshot = try await fireDB.collection("Users").document(uid).getDocument()
             self.currentUser = try snapshot.data(as: UserData.self)
         } catch {
             print(error)
@@ -79,7 +78,7 @@ final class Providers {
                                 email: email,
                                 fullname: fullname)
             let encodedUser = try Firestore.Encoder().encode(user)
-            try await fireDB.collection("users").document(user.id).setData(encodedUser)
+            try await fireDB.collection("Users").document(user.id).setData(encodedUser)
             await fetchUser()
         } catch {
             print(error)
@@ -128,7 +127,7 @@ final class Providers {
                                         email: authResult.user.email ?? "",
                                         fullname: authResult.user.displayName ?? "")
                     let encodedUser = try Firestore.Encoder().encode(firestoreUser)
-                    try await fireDB.collection("googleUsers").document(user.getIDToken()).setData(encodedUser)
+                    try await fireDB.collection("Google users").document(user.getIDToken()).setData(encodedUser)
                 await fetchUser()
             } catch {
                 print(error)

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E31CC1C02A56EABB0070483E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1BF2A56EABB0070483E /* ResultView.swift */; };
+		E31CC1C32A59B4C10070483E /* FavouriteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C22A59B4C10070483E /* FavouriteVM.swift */; };
+		E31CC1C52A59C41C0070483E /* SearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C42A59C41C0070483E /* SearchVM.swift */; };
+		E31CC1C72A59F0430070483E /* EditNotificationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C62A59F0430070483E /* EditNotificationVM.swift */; };
 		E36509F02A420304008FC035 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E36509EF2A420304008FC035 /* Kingfisher */; };
 		E385BCEC2A40CA30007C84B4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E385BCEB2A40CA30007C84B4 /* UserData.swift */; };
 		E3980C012A5572B200B1D639 /* EditNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3980C002A5572B200B1D639 /* EditNotificationView.swift */; };
@@ -86,6 +89,9 @@
 
 /* Begin PBXFileReference section */
 		E31CC1BF2A56EABB0070483E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		E31CC1C22A59B4C10070483E /* FavouriteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteVM.swift; sourceTree = "<group>"; };
+		E31CC1C42A59C41C0070483E /* SearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVM.swift; sourceTree = "<group>"; };
+		E31CC1C62A59F0430070483E /* EditNotificationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationVM.swift; sourceTree = "<group>"; };
 		E385BCEB2A40CA30007C84B4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		E3980C002A5572B200B1D639 /* EditNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotificationView.swift; sourceTree = "<group>"; };
 		E3980C022A55737700B1D639 /* SettingsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabel.swift; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				E3980C002A5572B200B1D639 /* EditNotificationView.swift */,
+				E31CC1C62A59F0430070483E /* EditNotificationVM.swift */,
 			);
 			path = EditNotification;
 			sourceTree = "<group>";
@@ -531,6 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				E3F8EDF32A3DC79000F1A312 /* FavouriteView.swift */,
+				E31CC1C22A59B4C10070483E /* FavouriteVM.swift */,
 			);
 			path = Favourite;
 			sourceTree = "<group>";
@@ -565,6 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				E3F8EE032A3F567700F1A312 /* SearchView.swift */,
+				E31CC1C42A59C41C0070483E /* SearchVM.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -684,6 +693,7 @@
 				E3F8EDFE2A3F186D00F1A312 /* EventNoteVM.swift in Sources */,
 				E3F8EDD52A3B951D00F1A312 /* SettingsView.swift in Sources */,
 				E3E745D02A456E26005FA631 /* CurrentEvent.swift in Sources */,
+				E31CC1C52A59C41C0070483E /* SearchVM.swift in Sources */,
 				E3BE4F7E2A4DC036007FEC7E /* GoogleMapsView.swift in Sources */,
 				E3F8EDC82A3B710500F1A312 /* ButtonsStyle.swift in Sources */,
 				E3F8EE042A3F567700F1A312 /* SearchView.swift in Sources */,
@@ -700,10 +710,12 @@
 				E3F8EE012A3F241400F1A312 /* CustomButtonVM.swift in Sources */,
 				E39A2E932A2F22520021100E /* MoyaManager.swift in Sources */,
 				E39A2F042A39EC3C0021100E /* SplashScreenView.swift in Sources */,
+				E31CC1C32A59B4C10070483E /* FavouriteVM.swift in Sources */,
 				E39A2EC32A34884F0021100E /* Dates.swift in Sources */,
 				E3E745D22A45D2D7005FA631 /* InputFiledView.swift in Sources */,
 				E39A2ED32A34BD6E0021100E /* CurrentDayEvents.swift in Sources */,
 				E39A2EF52A3778150021100E /* (null) in Sources */,
+				E31CC1C72A59F0430070483E /* EditNotificationVM.swift in Sources */,
 				E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */,
 				E3B32CB22A5458F8004BDD44 /* AuthVM.swift in Sources */,
 				E39B20C72A437CF40020499F /* EventManager.swift in Sources */,

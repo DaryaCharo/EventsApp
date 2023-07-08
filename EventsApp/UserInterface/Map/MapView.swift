@@ -17,9 +17,24 @@ struct MapView: View {
     
     var body: some View {
         VStack {
-            let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: lat,                                                                                                                      longitude: lon))
-            GoogleMapsView(markers: [marker],
-                           type: type)
+            map
+                .padding(.top, 32)
+        }
+        .task {
+            await vm.fillResults()
+        }
+    }
+    
+    private var map: some View {
+        VStack {
+            if type == .none {
+                GoogleMapsView(type: type)
+            } else {
+                let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: lat,                                                                                                                      longitude: lon))
+                
+                GoogleMapsView(type: type,
+                               markers: [marker])
+            }
         }
     }
 }

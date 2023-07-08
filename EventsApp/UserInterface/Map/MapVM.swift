@@ -14,11 +14,7 @@ final class MapVM: ObservableObject {
     }()
     @Published var results: [CurrentDayEvents] = []
     
-    func getAllPlacesOnTheMap() {
-        
-    }
-    
-    //    //MARK: - getEvents
+    //MARK: - getEvents
     
     func fillResults() async {
         let result = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())

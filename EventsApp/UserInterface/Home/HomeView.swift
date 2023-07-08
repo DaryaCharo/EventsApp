@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var vm = HomeVM()
-    
+
     var body: some View {
         ScrollView(.vertical,
                    showsIndicators: false) {

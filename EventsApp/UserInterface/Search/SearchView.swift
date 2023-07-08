@@ -8,36 +8,49 @@
 import SwiftUI
 
 struct SearchView: View {
+    @StateObject var vm = EventNoteVM()
     @Binding var searchText: String
     @State private var listOfEventIDs: [Int] = []
     
     var body: some View {
         VStack {
             HeaderWithBackBtn(title: "Search")
-            listOfResults
+            
+            Spacer()
+//            listOfResults
         }
-//        .searchable(text: $searchText)
+        .searchable(text: $searchText)
+        .task {
+            await vm.getEvents()
+        }
     }
     
     private var listOfResults: some View {
         VStack {
-            List(listOfEventIDs, id: \.self) { item in
-                HStack(spacing: 0) {
-                    NavigationLink {
-                        HomeView()
-                    } label: {
-                        Text(item.description)
+            if vm.results.contains(where: {$0.place != nil}) &&
+                vm.results.contains(where: {$0.dates != nil}) &&
+                !vm.results.contains(where: { $0.dates?.first?.isEnd ?? true }) {
+                VStack {
+                    ForEach(vm.results, id: \.id) { result in
+                        EventView(eventFromList: result,
+                                  type: .fromList)
+                        .padding(.bottom)
                     }
                 }
-                .frame(maxWidth: .infinity)
+            } else {
+                ResultView(type: .search)
             }
         }
-        .listStyle(.inset)
     }
 }
+
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView(searchText: .constant(""))
     }
+}
+
+enum ResultState {
+    case fetch, unloaded, loading
 }

@@ -13,13 +13,16 @@ struct NotificationView: View {
     var body: some View {
         VStack {
             HeaderWithBackBtn(title: "Notifications")
-            Spacer()
             
             if notifications.isEmpty {
+                Spacer()
                 ResultView(type: .notification)
+                    .padding(.bottom, 32)
+                Spacer()
             } else {
                 listOfNotifications
             }
+            
         }
     }
     

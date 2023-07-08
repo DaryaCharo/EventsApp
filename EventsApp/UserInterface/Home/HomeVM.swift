@@ -11,6 +11,7 @@ final class HomeVM: ObservableObject {
     lazy var eventManager: EventManagerProtocol = {
         EventManager()
     }()
+    @Published var state: ResultState = .loading
     @Published var showView: ShowView?
     @Published var results: [CurrentDayEvents] = []
     @Published var featuredEvent: CurrentEvent?
@@ -19,9 +20,12 @@ final class HomeVM: ObservableObject {
     
     func getEvents() async {
         if results.isEmpty {
+            state = .loading
             await fillResults()
             await getEventWithCategory()
             await setRandomFeatureEvent()
+        } else {
+            state = .fetch
         }
     }
     

@@ -10,25 +10,51 @@ import Kingfisher
 
 struct EventView: View {
     @StateObject var vm = HomeVM()
+    @StateObject var favVM = FavouriteVM()
     @State var currentEvent: CurrentEvent?
     @State var eventFromList: ListEvent?
-    @State var type: EventType?
+    var type: EventType?
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottomTrailing) {
             VStack {
-                KFImage(URL(string: type == .current ?
-                                        currentEvent?.images?.image ?? "" :
-                                        eventFromList?.images?.image ?? ""))
-                    .resizable()
-                    .scaledToFit()
+                if let imageName = type == .current ?
+                        currentEvent?.images?.image :
+                        eventFromList?.images?.image {
+                    KFImage(URL(string: imageName))
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity,
+                               maxHeight: .infinity,
+                               alignment: .top)
+                        .background(.gray)
+                } else {
+                    VStack {
+                        Spacer()
+                        Image(systemName: "photo.fill")
+                            .resizable()
+                            .frame(width: 30,
+                                   height: 25)
+                            .foregroundColor(.customPurple)
+                        Text("Images have not been added yet")
+                            .foregroundColor(.customPurple)
+                            .font(.callout)
+                        Spacer()
+                    }
                     .frame(maxWidth: .infinity,
-                           maxHeight: .infinity,
-                           alignment: .top)
+                           alignment: .center)
+                    .padding(.horizontal)
+                    .padding(.bottom, 40)
+                }
             }
             VStack {
                 eventInfo
             }
+            VStack {
+                learnMoreBtn
+                CustomButton(type: .favourite)
+            }
+                .padding([.bottom, .trailing])
         }
         .background(Color.customWindowBack)
         .cornerRadius(20)
@@ -50,7 +76,7 @@ struct EventView: View {
             Spacer()
             
             Text(type == .current ?
-                    currentEvent?.title ?? "" :
+                    currentEvent?.title ?? "Title" :
                     eventFromList?.title ?? "")
                 .font(.customFont(type: .semiBold,
                                   size: 18))
@@ -58,7 +84,6 @@ struct EventView: View {
                 .frame(maxWidth: .infinity,
                        maxHeight: 50,
                        alignment: .leading)
-                .padding(.top)
                 .padding(.horizontal)
             
             HStack {
@@ -91,27 +116,24 @@ struct EventView: View {
             HStack {
                 Label {
                     Text(type == .current ?
-                            currentEvent?.place?.address ?? "Place don't have address yet" :
-                            eventFromList?.place?.address ?? "Place don't have address yet")
+                            currentEvent?.place?.address ?? "Place doesn't have address yet" :
+                            eventFromList?.place?.address ?? "Place doesn't have address yet")
                         .font(.customFont(type: .regular,
                                           size: 16))
+                        .lineLimit(2)
                 } icon: {
                     Image("MapMarker")
                         .resizable()
                         .frame(width: 14,
                                height: 18)
                 }
-                
                 Spacer()
-                
-                learnMoreBtn
-                CustomButton(type: .favourite)
             }
-            .padding(.horizontal)
-            .padding(.bottom)
+            .padding([.horizontal, .bottom])
+            .padding(.trailing, 30)
         }
         .background(Color.customWindowBack)
-        .padding(.top, 250)
+        .padding(.top, 200)
     }
     
     private var learnMoreBtn: some View {

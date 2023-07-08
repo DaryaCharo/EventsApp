@@ -36,22 +36,21 @@ struct ResultView: View {
     private var text: some View {
         Text(type?.getText ?? "")
             .font(.title)
+            .multilineTextAlignment(.center)
             .bold()
-        .foregroundColor(.customPurple).opacity(0.9)
-        .frame(maxWidth: .infinity,
-               alignment: .center)
-        .padding()
+            .foregroundColor(.customPurple).opacity(0.9)
+            .padding()
     }
 }
 
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultView(type: .search)
+        ResultView(type: .favourites)
     }
 }
 
 enum ViewType {
-    case notification, favourites, image, search, success
+    case notification, favourites, search, success
     
     var getImage: String {
         switch self {
@@ -59,8 +58,6 @@ enum ViewType {
             return "bell.fill"
         case .favourites:
             return "bookmark.fill"
-        case .image:
-            return "photo.fill"
         case .search:
             return "xmark.seal.fill"
         case .success:
@@ -74,8 +71,6 @@ enum ViewType {
             return "You have no notifications"
         case .favourites:
             return "You have no bookmarked event"
-        case .image:
-            return "Images have not been added yet"
         case .search:
             return "No results found"
         case .success:

@@ -16,10 +16,11 @@ struct FullEventInfoView: View {
     @State var type: EventType?
     
     var body: some View {
-        VStack {
-            ZStack(alignment: .topLeading) {
-                KFImage(URL(string: type == .current ?
-                                    currentEvent?.images?.image ?? "Image" :
+        ScrollView {
+            VStack {
+                ZStack(alignment: .topLeading) {
+                    KFImage(URL(string: type == .current ?
+                                currentEvent?.images?.image ?? "Image" :
                                     eventFromList?.images?.image ?? "Image"))
                     .resizable()
                     .scaledToFit()
@@ -27,21 +28,21 @@ struct FullEventInfoView: View {
                     .frame(maxWidth: .infinity,
                            maxHeight: .infinity)
                     
-                CustomButton(type: .back)
-                    .padding(3)
-                    .background(Color.white.opacity(0.9))
-                    .shadow(radius: 0.1)
-                    .clipShape(Circle())
-                    .padding(.leading)
+                    CustomButton(type: .back)
+                        .padding(3)
+                        .background(Color.white.opacity(0.9))
+                        .shadow(radius: 0.1)
+                        .clipShape(Circle())
+                        .padding([.leading, .top])
+                }
+                .frame(maxWidth: .infinity,
+                       maxHeight: 250,
+                       alignment: .top)
+                
+                title
+                fullInfo
             }
-            .frame(maxWidth: .infinity,
-                   maxHeight: 250,
-                   alignment: .top)
-            
-            title
-            fullInfo
         }
-        
     }
     
     private var title: some View {
@@ -80,19 +81,13 @@ struct FullEventInfoView: View {
     }
     
     private var fullInfo: some View {
-        List {
-            Section {
-                date
-                address
-            }
-            Section {
-                aboutEvent
-            }
-            Section {
-                shareAddToFavourite
-            }
+        VStack {
+            date
+            address
+            aboutEvent
+            shareAddToFavourite
         }
-        .listStyle(.plain)
+        .padding(.horizontal)
     }
     
     private var aboutEvent: some View {
@@ -144,7 +139,7 @@ struct FullEventInfoView: View {
     }
     
     private var date: some View {
-        HStack {
+        HStack(spacing: 20) {
             Image("Calendar")
                 .padding(24)
                 .background(Color.customPurple.opacity(0.2))
@@ -176,7 +171,7 @@ struct FullEventInfoView: View {
     }
     
     private var address: some View {
-        HStack {
+        HStack(spacing: 20) {
             Image("MapMarker")
                 .resizable()
                 .frame(width: 20, height: 24)
@@ -191,12 +186,19 @@ struct FullEventInfoView: View {
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
-                Text(type == .current ?
-                     currentEvent?.place?.subway ?? "Subway has not been added yet" :
-                     eventFromList?.place?.subway ?? "Subway has not been added yet")
+                
+                Label {
+                    Text(type == .current ?
+                         currentEvent?.place?.subway ?? "Subway has not been added yet" :
+                            eventFromList?.place?.subway ?? "Subway has not been added yet")
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
-                
+                } icon: {
+                    Image(systemName: "m.circle")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.customPurple)
+                }
                 //move to map
                 Button {
                     showMap = .map
@@ -212,7 +214,7 @@ struct FullEventInfoView: View {
             }
         }
         .padding(.vertical)
-        .fullScreenCover(item: $showMap) { _ in
+        .sheet(item: $showMap) { _ in
             MapView(type: type,
                     lat: type == .current ?
                         currentEvent?.place?.coords?.lat ??
