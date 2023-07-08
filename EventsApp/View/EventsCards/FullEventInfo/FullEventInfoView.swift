@@ -38,15 +38,16 @@ struct FullEventInfoView: View {
                                 .frame(width: 30,
                                        height: 25)
                                 .foregroundColor(.customPurple)
+                                .padding(.top, 100)
                             Text("Images have not been added yet")
                                 .foregroundColor(.customPurple)
                                 .font(.callout)
-                            Spacer()
+                                .padding(.bottom, 90)
                         }
                         .frame(maxWidth: .infinity,
+                               maxHeight: .infinity,
                                alignment: .center)
                         .padding(.horizontal)
-                        .padding(.bottom, 40)
                     }
                     
                     CustomButton(type: .back)
