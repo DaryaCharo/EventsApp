@@ -24,9 +24,6 @@ struct HomeView: View {
             }
         }
                    .padding(.top)
-                   .fullScreenCover(item: $vm.showView) { event in
-                       FavouriteView()
-                   }
                    .task {
                        await vm.getEvents()
                    }
@@ -52,8 +49,8 @@ struct HomeView: View {
                 if vm.results.contains(where: {$0.object != nil}) {
                     HStack {
                         ForEach(vm.results, id: \.object?.id) { result in
-                            EventView(currentEvent: result.object,
-                                      type: .current)
+                            CurrentEventView(event: result.object,
+                                             isFavourite: $vm.isFavourite)
                                 .padding(.bottom)
                         }
                     }
@@ -66,6 +63,8 @@ struct HomeView: View {
                         .padding()
                 }
             }
+            .frame(maxWidth: .infinity,
+                   alignment: .center)
         }
     }
     
@@ -77,13 +76,8 @@ struct HomeView: View {
             
             CustomButton(type: .notification)
             
-            Button {
-                vm.showView = .favourite
-            } label: {
-                Image(systemName: "bookmark.fill")
-                    .foregroundColor(.customPurple)
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
+            FavouriteButton(type: .favouriteView,
+                            isFavourite: $vm.isFavourite)
             
             CustomButton(type: .search)
                 .padding(.trailing)

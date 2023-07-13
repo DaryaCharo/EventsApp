@@ -19,8 +19,10 @@ protocol MoyaAPIManagerProtocol: AnyObject {
                           expand: String) async throws -> CurrentEventResult
     
     func getEvents(numberOfEvents count: Int,
-                   page: String?,
+                   nextPage: String?,
                    results: [ListEvent],
+                   pageSize: Int,
+                   page: Int,
                    lang: String,
                    textFormat: String,
                    location: String,
@@ -59,9 +61,11 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
     
     //MARK: - getEvents
     
-    func getEvents(numberOfEvents count: Int = 100,
-                   page: String?,
+    func getEvents(numberOfEvents count: Int,
+                   nextPage: String?,
                    results: [ListEvent],
+                   pageSize: Int = 100,
+                   page: Int,
                    lang: String = "ru",
                    textFormat: String = "text",
                    location: String = "msk",
@@ -71,8 +75,10 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                    actualSince: Int = Int(Date.now.timeIntervalSince1970)) async throws -> EventListResult {
         return try await withCheckedThrowingContinuation { continuation in
             eventsProvider.request(.getEvents(count: count,
-                                              page: page,
+                                              nextPage: nextPage,
                                               results: results,
+                                              page: page,
+                                              pageSize: pageSize,
                                               lang: lang,
                                               textFormat: textFormat,
                                               location: location,
@@ -83,7 +89,6 @@ class MoyaAPIManager: MoyaAPIManagerProtocol {
                 
                 switch result {
                 case .success(let response):
-                    
                     do {
                         let results = try response.map(EventListResult.self)
                         continuation.resume(returning: results)

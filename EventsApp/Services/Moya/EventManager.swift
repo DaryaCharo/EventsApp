@@ -18,17 +18,28 @@ final class EventManager: EventManagerProtocol {
     var currentEventsResult: [CurrentDayEvents] = []
     var listOfEvents: [ListEvent] = []
     var categories: [Categories] = []
+    private let currentDate = Int(Date.now.timeIntervalSince1970)
     private var count = 0
-    private var page = ""
+    private var nextPage = ""
     private var ids: [Int] = []
     
     func getEvents(id: Int) async -> [ListEvent] {
+        var pageNumber = 1
         do {
-            let data = try await self.moyaManager.getEvents(numberOfEvents: self.count,
-                                                            page: self.page,
-                                                            results: self.listOfEvents,
-                                                            id: id)
-            listOfEvents.append(contentsOf: data.results)
+                while pageNumber < 2 {
+                pageNumber += 1
+                let data = try await self.moyaManager.getEvents(numberOfEvents: self.count,
+                                                                nextPage: self.nextPage,
+                                                                results: self.listOfEvents,
+                                                                page: pageNumber,
+                                                                id: id)
+                    for event in data.results where (event.dates?.contains(where: { $0.start ?? 0 >= currentDate })) != nil {
+                        if event.dates?.last?.startDate == nil {
+                            continue
+                        }
+                    listOfEvents.append(contentsOf: data.results)
+                }
+            }
         } catch {
             print(error)
         }
@@ -38,7 +49,7 @@ final class EventManager: EventManagerProtocol {
     func getCurrentEvents(date: String) async -> [CurrentDayEvents] {
         do {
             let data = try await self.moyaManager.getCurrentEvents(numberOfEvents: self.count,
-                                                                   page: self.page,
+                                                                   page: self.nextPage,
                                                                    results: self.currentEventsResult,
                                                                    date: date)
             currentEventsResult.append(contentsOf: data.results)

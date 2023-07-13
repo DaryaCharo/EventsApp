@@ -14,13 +14,14 @@ final class FavouriteVM: ObservableObject {
     private let providers = Providers()
     var favourites: [Int] = []
     @Published var results: [ListEvent] = []
+    @Published var isFavourite = false
     
     func showFavorites() async {
         if results.isEmpty {
             await fillResults()
         }
     }
-     
+    
     private func fillResults() async {
         for id in favourites {
             let result = await eventManager.getEvents(id: id)
@@ -28,6 +29,7 @@ final class FavouriteVM: ObservableObject {
                 results = result
             }
         }
+        
     }
     
     func editFavourites(action: ActionType,
@@ -44,3 +46,7 @@ final class FavouriteVM: ObservableObject {
         case add, update
     }
 }
+
+//enum FavouriteState {
+//    case favourite, notFavourite
+//}

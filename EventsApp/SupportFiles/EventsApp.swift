@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct EventsAppApp: App {
+struct EventsApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {

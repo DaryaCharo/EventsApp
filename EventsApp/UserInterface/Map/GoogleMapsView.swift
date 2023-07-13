@@ -46,3 +46,6 @@ struct GoogleMapsView_Previews: PreviewProvider {
     }
 }
 
+enum EventType {
+    case current, fromList
+}

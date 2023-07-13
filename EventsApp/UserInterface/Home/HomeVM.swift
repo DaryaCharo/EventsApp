@@ -16,21 +16,28 @@ final class HomeVM: ObservableObject {
     @Published var results: [CurrentDayEvents] = []
     @Published var featuredEvent: CurrentEvent?
     @Published var categories: [Categories] = []
-    @Published var places: [PlaceForCurrentEvent] = []
+    @Published var isFavourite = false
+//    @Published var isFavourite: FavouriteState = .notFavourite
     
     func getEvents() async {
         if results.isEmpty {
-            state = .loading
+            await MainActor.run {
+                state = .loading
+            }
+            
             await fillResults()
             await getEventWithCategory()
             await setRandomFeatureEvent()
         } else {
-            state = .fetch
+            await MainActor.run {
+                state = .fetch
+            }
         }
     }
     
     func setRandomFeatureEvent() async {
-        guard let featureDate = Calendar.current.date(byAdding: .day, value: 7, to: Date.now) else { return }
+        guard let tomorrowDate = Calendar.current.date(bySetting: .day, value: 1, of: Date.now),
+            let featureDate = Calendar.current.date(byAdding: .day, value: 7, to: tomorrowDate) else { return }
         let result = await eventManager.getCurrentEvents(date: featureDate.ISO8601Format())
         await MainActor.run {
             featuredEvent = result.randomElement()?.object

@@ -49,8 +49,8 @@ struct EventCalendarView: View {
                 if vm.results.contains(where: {$0.object != nil}) {
                     VStack {
                         ForEach(vm.results, id: \.object?.id) { result in
-                            EventView(currentEvent: result.object,
-                                      type: .current)
+                            CurrentEventView(event: result.object,
+                                             isFavourite: $vm.isFavourite)
                                 .padding(.bottom)
                         }
                     }

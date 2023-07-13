@@ -8,15 +8,16 @@
 import Foundation
 
 struct Dates: Decodable {
-    let start: String?
+    let startDate: String?
+    let start: Int?
     let end: Date?
     let isStart: Bool
     let isContinue: Bool
     let isEnd: Bool
     
     enum CodingKeys: String, CodingKey {
-        case end,
-             start = "start_date",
+        case start, end,
+             startDate = "start_date",
              isStart = "is_startless",
              isContinue = "is_continuous",
              isEnd = "is_endless"

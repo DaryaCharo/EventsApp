@@ -40,14 +40,6 @@ struct CustomButton: View {
                         .foregroundColor(.customPurple)
                 }
                 .buttonStyle(UserInteractionButtonsStyle())
-            case .favourite:
-                Button {
-                    vm.makeFavourite()
-                } label: {
-                    Image(systemName: vm.isFavourite ? "bookmark.fill" : "bookmark")
-                        .foregroundColor(.customPurple)
-                }
-                .buttonStyle(UserInteractionButtonsStyle())
             case .search:
                 Button {
                     vm.showView = .search

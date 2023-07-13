@@ -32,8 +32,8 @@ struct SearchView: View {
                 !vm.results.contains(where: { $0.dates?.first?.isEnd ?? true }) {
                 VStack {
                     ForEach(vm.results, id: \.id) { result in
-                        EventView(eventFromList: result,
-                                  type: .fromList)
+                        EventFromListView(event: result,
+                                          isFavourite: $vm.isFavourite)
                         .padding(.bottom)
                     }
                 }

@@ -31,8 +31,8 @@ struct FavouriteView: View {
     private var listOfFavEvents: some View {
         VStack {
             ForEach(vm.results, id: \.id) { result in
-                EventView(eventFromList: result,
-                          type: .fromList)
+                EventFromListView(event: result,
+                                  isFavourite: $vm.isFavourite)
                 .padding(.bottom)
             }
         }

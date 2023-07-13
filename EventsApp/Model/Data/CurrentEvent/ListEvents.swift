@@ -68,3 +68,13 @@ struct ListEvent: Decodable {
         
     }
 }
+
+extension ListEvent: Hashable {
+    static func == (lhs: ListEvent, rhs: ListEvent) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+}

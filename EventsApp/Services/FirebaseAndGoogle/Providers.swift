@@ -31,7 +31,6 @@ final class Providers {
     }
     
     //MARK: - favouriteEvent
-    //ещё не доделала
     func makeFavourite(eventIDs: [Int]) async {
         await fetchUser()
         guard let user = currentUser else { return }
@@ -47,7 +46,8 @@ final class Providers {
         await fetchUser()
         guard let user = currentUser else { return }
         do {
-            try await fireDB.collection("Favourites").document("Favourites").updateData(["Event ID" : eventIDs])
+            try await fireDB.collection("Users").document(user.id)
+                .collection("Favourites").document("Favourites").updateData(["Event ID" : eventIDs])
         } catch {
             print(error)
         }

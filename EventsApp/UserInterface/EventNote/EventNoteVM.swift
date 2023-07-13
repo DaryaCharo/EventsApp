@@ -11,7 +11,7 @@ final class EventNoteVM: ObservableObject {
     lazy var eventManager: EventManagerProtocol = {
         EventManager()
     }()
-    
+    @Published var isFavourite = false
     @Published var results: [ListEvent] = []
     
     //    //MARK: - getEvents
@@ -24,6 +24,7 @@ final class EventNoteVM: ObservableObject {
     
     func fillResults() async {
         let result = await eventManager.getEvents(id: 0)
+        
         await MainActor.run {
             results = result
         }
