@@ -39,21 +39,10 @@ struct Dates: Decodable {
                                           forKey: Dates.CodingKeys.isEnd)
         if let stringValue = try? container.decodeIfPresent(String.self,
                                                             forKey: Dates.CodingKeys.startDate) {
-            getDate(stringDate: stringValue)
+            self.startDate = stringValue.getDate()
         } else {
             self.startDate = try container.decodeIfPresent(Date.self,
                                                            forKey: Dates.CodingKeys.startDate)
         }
-    }
-    
-    private mutating func getDate(stringDate: String) {
-        let dateFormatter = DateFormatter()
-        let calendar = Calendar.current
-        
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        guard let date = dateFormatter.date(from: stringDate) else { return }
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        startDate = calendar.date(from:components)
     }
 }
