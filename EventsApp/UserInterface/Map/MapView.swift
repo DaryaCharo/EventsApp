@@ -11,29 +11,28 @@ import SwiftUI
 
 struct MapView: View {
     @StateObject var vm = MapVM()
-    @State var lat = CitiesCoordinates.moscow.latitude
-    @State var lon = CitiesCoordinates.moscow.longitude
-    private var map: GMSMapView {
-        let mapView = GMSMapView.map(withFrame: CGRect.zero,
-                                     camera: vm.camera)
-        return mapView
-    }
+    var lat = CitiesCoordinates.moscow.latitude
+    var lon = CitiesCoordinates.moscow.longitude
     
     var body: some View {
-        ZStack {
-            mapView
+        VStack {
+            map
+                .padding(.top, 32)
         }
         .task {
-            if vm.results.isEmpty {
-                await vm.fillResults()
-            }
+            await vm.fillResults()
         }
     }
-
-    private var mapView: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .top) {
+    
+    private var map: some View {
+        VStack {
+            if vm.results.isEmpty ||
+                lat != CitiesCoordinates.moscow.latitude {
+                let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: lat,                                                          longitude: lon))
                 
+                GoogleMapsView(marker: marker)
+            } else {
+                GoogleMapsView(vm: vm)
             }
         }
     }

@@ -12,7 +12,7 @@ struct CurrentDayEvents: Decodable {
     let lang: String?
     let textFormat: String?
     let city: String?
-    var date: String?
+    var date: Date?
     let object: CurrentEvent?
     
     enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ struct CurrentDayEvents: Decodable {
              numberOfEvents = "page_size",
              city = "location"
     }
-
+    
     init(from decoder: Decoder) throws {
         let container: KeyedDecodingContainer<CurrentDayEvents.CodingKeys> = try decoder.container(keyedBy: CurrentDayEvents.CodingKeys.self)
         
@@ -36,12 +36,12 @@ struct CurrentDayEvents: Decodable {
         self.city = try container.decodeIfPresent(String.self,
                                                   forKey: CurrentDayEvents.CodingKeys.city)
         
-//        if let dateValue = try? container.decodeIfPresent(Date.self,
-//                                                            forKey: CurrentDayEvents.CodingKeys.date) {
-//            self.date = dateValue.description
-//        } else {
-            self.date = try container.decodeIfPresent(String.self,
-                                                                forKey: CurrentDayEvents.CodingKeys.date)
-//        }
+        if let stringValue = try? container.decodeIfPresent(String.self,
+                                                            forKey: CurrentDayEvents.CodingKeys.date) {
+            self.date = stringValue.getDate()
+        } else {
+            self.date = try container.decodeIfPresent(Date.self,
+                                                      forKey: CurrentDayEvents.CodingKeys.date)
+        }
     }
 }

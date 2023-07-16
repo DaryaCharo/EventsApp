@@ -33,7 +33,9 @@ struct EventCalendarView: View {
     }
     
     private var calendar: some View {
-        DatePicker("Calendar", selection: $vm.date)
+        DatePicker("Calendar",
+                   selection: $vm.date,
+                   displayedComponents: [.date])
             .datePickerStyle(.graphical)
             .frame(maxWidth: .infinity)
             .foregroundColor(.customPurple)
@@ -47,21 +49,8 @@ struct EventCalendarView: View {
                 if vm.results.contains(where: {$0.object != nil}) {
                     VStack {
                         ForEach(vm.results, id: \.object?.id) { result in
-                            if let imageLink = result.object?.images?.image,
-                               let title = result.object?.title,
-                               let type = result.object?.type,
-                               let followers = result.object?.favouritesCount,
-                               let address = result.object?.place?.address,
-                               let date = result.date
-                            {
-                                EventView(imageLink: imageLink,
-                                          eventTitle:  title,
-                                          genre: type,
-                                          followers:  followers,
-                                          location: address,
-                                          stringDate: date)
+                            CurrentEventView(event: result.object)
                                 .padding(.bottom)
-                            }
                         }
                     }
                 } else {

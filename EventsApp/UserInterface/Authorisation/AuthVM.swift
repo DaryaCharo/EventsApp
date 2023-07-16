@@ -15,6 +15,7 @@ protocol AuthFormProtocol {
 
 final class AuthVM: ObservableObject {
     let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    let fullNameRegex = "/^[a-z ,.'-]+$/i"
     lazy  var providers: Providers = {
         Providers()
     }()
@@ -22,7 +23,7 @@ final class AuthVM: ObservableObject {
     @Published var showView: ShowView?
     @Published var showAlert: AlertTypes?
     @Published var email = ""
-    @Published var fullname = ""
+    @Published var fullName = ""
     @Published var pass = ""
     @Published var confPass = ""
     
@@ -41,7 +42,7 @@ final class AuthVM: ObservableObject {
     func signUp() async {
         await providers.singUp(email: email,
                                pass: pass,
-                               fullname: fullname)
+                               fullname: fullName)
     }
     
     deinit {
@@ -57,13 +58,13 @@ final class AuthVM: ObservableObject {
     }
     
     enum AlertTypes: Identifiable {
-        case email, fullname, pass, confPass, userIsExist
+        case email, fullName, pass, confPass, userIsExist
         
         var id: Int {
             switch self {
             case .email:
                 return 1
-            case .fullname:
+            case .fullName:
                 return 2
             case .pass:
                 return 3

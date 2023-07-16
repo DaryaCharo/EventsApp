@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct NotificationView: View {
+    @State var notifications: [String] = []
+    
     var body: some View {
         VStack {
             HeaderWithBackBtn(title: "Notifications")
-            Spacer()
+            
+            if notifications.isEmpty {
+                Spacer()
+                ResultView(type: .notification)
+                    .padding(.bottom, 32)
+                Spacer()
+            } else {
+                listOfNotifications
+            }
+            
         }
     }
     

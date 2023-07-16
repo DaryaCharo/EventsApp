@@ -8,11 +8,30 @@
 import SwiftUI
 
 struct EditNotificationView: View {
+    
     var body: some View {
         VStack {
             HeaderWithBackBtn(title: "Notification")
             
+            settings
             Spacer()
+        }
+    }
+    
+    private var settings: some View {
+        List {
+            Section {
+                SettingsLabel(settingsType: .notification,
+                              notifyType: .notificationOnOff)
+            }
+            Section {
+                SettingsLabel(settingsType: .notification,
+                              notifyType: .showNotifications)
+            }
+            Section {
+                SettingsLabel(settingsType: .notification,
+                              notifyType: .reset)
+            }
         }
     }
 }

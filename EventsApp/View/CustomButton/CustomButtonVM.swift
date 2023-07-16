@@ -8,14 +8,7 @@
 import SwiftUI
 
 final class CustomButtonVM: ObservableObject {
-    @Published var isFavourite = false
     @Published var showView: ShowView?
-    
-    func makeFavourite() {
-        isFavourite.toggle()
-        
-        //add to favourite list
-    }
     
     enum ShowView: Identifiable  {
         case settings, notification, search
@@ -33,5 +26,5 @@ final class CustomButtonVM: ObservableObject {
 }
 
 enum ButtonType {
-    case back, settings, notification, favourite, search
+    case back, settings, notification, search
 }

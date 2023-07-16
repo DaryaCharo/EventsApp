@@ -12,11 +12,13 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import GoogleSignIn
+import SwiftUI
 
 final class Providers {
     var userSession: FirebaseAuth.User?
     var currentUser: UserData?
     let authorisation = Auth.auth()
+    var favouritesIDs: [Int] = []
     private lazy var fireDB: Firestore = {
         Firestore.firestore()
     }()
@@ -29,12 +31,44 @@ final class Providers {
         }
     }
     
+    //MARK: - favouriteEvent
+    func changeFavourites(eventID: Int,
+                          action: ActionType) async {
+        await fetchUser()
+        guard let user = currentUser else { return }
+        switch action {
+        case .add:
+            do {
+                try await fireDB.collection("Users").document(user.id)
+                    .collection("Favourites").document(eventID.description).setData(["Event ID" : eventID])
+                favouritesIDs.append(eventID)
+            } catch {
+                print(error)
+            }
+        case .update:
+            do {
+                try await fireDB.collection("Users").document(user.id)
+                            .collection("Favourites").document(eventID.description).updateData(["Event ID" : eventID])
+                favouritesIDs.removeAll(where: { $0 == eventID })
+            } catch {
+                print(error)
+            }
+        case .check:
+            do {
+                let snapshot = try await fireDB.collection("Users").document(user.id).collection("Favourites").document(eventID.description).getDocument()
+                favouritesIDs.append(try snapshot.data(as: Int.self)) 
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     //MARK: - fetchUser
     
     func fetchUser() async {
         guard let uid = authorisation.currentUser?.uid else { return }
         do {
-            let snapshot = try await fireDB.collection("users").document(uid).getDocument()
+            let snapshot = try await fireDB.collection("Users").document(uid).getDocument()
             self.currentUser = try snapshot.data(as: UserData.self)
         } catch {
             print(error)
@@ -54,7 +88,7 @@ final class Providers {
                                 email: email,
                                 fullname: fullname)
             let encodedUser = try Firestore.Encoder().encode(user)
-            try await fireDB.collection("users").document(user.id).setData(encodedUser)
+            try await fireDB.collection("Users").document(user.id).setData(encodedUser)
             await fetchUser()
         } catch {
             print(error)
@@ -103,7 +137,7 @@ final class Providers {
                                         email: authResult.user.email ?? "",
                                         fullname: authResult.user.displayName ?? "")
                     let encodedUser = try Firestore.Encoder().encode(firestoreUser)
-                    try await fireDB.collection("googleUsers").document(user.getIDToken()).setData(encodedUser)
+                    try await fireDB.collection("Google users").document(user.getIDToken()).setData(encodedUser)
                 await fetchUser()
             } catch {
                 print(error)
@@ -126,4 +160,7 @@ final class Providers {
 
 enum ProviderType {
     case google, firebase
+}
+enum ActionType {
+    case add, update, check
 }

@@ -8,19 +8,32 @@
 import SwiftUI
 
 struct FavouriteView: View {
+    @StateObject var vm = FavouriteVM()
+    
     var body: some View {
-        ScrollView {
-            VStack {
-                HeaderWithBackBtn(title: "Favourite events")
+        VStack {
+            HeaderWithBackBtn(title: "Favourite events")
+            
+            ScrollView {
                 
-                listOfFavEvents
+                if vm.results.isEmpty {
+                    ResultView(type: .favourites)
+                } else {
+                    listOfFavEvents
+                }
             }
         }
+        .task {
+            await vm.showFavorites()
+        }
     }
-
+    
     private var listOfFavEvents: some View {
         VStack {
-            
+            ForEach(vm.results, id: \.id) { result in
+                EventFromListView(event: result)
+                .padding(.bottom)
+            }
         }
     }
 }

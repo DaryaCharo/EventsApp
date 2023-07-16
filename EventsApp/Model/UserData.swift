@@ -11,6 +11,7 @@ struct UserData: Identifiable, Codable {
     var id: String
     var email: String
     var fullname: String
+    var avatar = "person.fill"
 }
 
 

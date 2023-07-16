@@ -12,26 +12,9 @@ final class MapVM: ObservableObject {
     lazy var eventManager: EventManagerProtocol = {
         EventManager()
     }()
-    @Published var markers: [GMSMarker] = []
-    
     @Published var results: [CurrentDayEvents] = []
-    private var lat = Double()
-    private var lon = Double()
     
-    var camera = GMSCameraPosition.camera(withLatitude: CitiesCoordinates.moscow.latitude,
-                                          longitude: CitiesCoordinates.moscow.longitude, zoom: 5.5)
-    
-    func findPlaceOnTheMap(lat: Double,
-                           lon: Double) {
-        camera = GMSCameraPosition.camera(withLatitude: lat,
-                                          longitude: lon, zoom: 4.0)
-    }
-    
-    func getAllPlacesOnTheMap() {
-        
-    }
-    
-    //    //MARK: - getEvents
+    //MARK: - getEvents
     
     func fillResults() async {
         let result = await eventManager.getCurrentEvents(date: Date.now.ISO8601Format())

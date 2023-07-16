@@ -11,28 +11,28 @@ final class SettingsVM: ObservableObject {
     lazy  var providers: Providers = {
         Providers()
     }()
-    @Published var settings: Settings?
+    @Published var baseSettings: BaseSettings?
     @Published var showView: ShowView?
     
     func signOut() {
         providers.signOut()
     }
+    
+    func deleteAccount(id: String) {
+        
+    }
+    
     enum ShowView: Identifiable {
         case startPage, notification
         
         var id: Int {
-            switch self {
-            case .startPage:
-                return 1
-            case .notification:
-                return 2
-            }
+            self == .startPage ? 1 : 2 
         }
     }
 }
 
-enum Settings: Int, CaseIterable, Identifiable {
-    case editProfile = 0, notification, signOut
+enum BaseSettings: Int, CaseIterable, Identifiable {
+    case editProfile = 0, notification, signOut, deleteAccount
     
     var getText: String {
         switch self {
@@ -42,6 +42,8 @@ enum Settings: Int, CaseIterable, Identifiable {
             return "Notification"
         case .signOut:
             return "Sign Out"
+        case .deleteAccount:
+            return "Delete account"
         }
     }
     
@@ -53,6 +55,8 @@ enum Settings: Int, CaseIterable, Identifiable {
             return "bell.fill"
         case .signOut:
             return "rectangle.trailinghalf.inset.filled.arrow.trailing"
+        case .deleteAccount:
+            return ""
         }
     }
     
@@ -64,6 +68,13 @@ enum Settings: Int, CaseIterable, Identifiable {
             return 2
         case .signOut:
             return 3
+        case .deleteAccount:
+            return 4
         }
     }
 }
+
+enum SettingsType {
+    case notification, base
+}
+

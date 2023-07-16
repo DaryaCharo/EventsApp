@@ -19,11 +19,14 @@ enum Events {
                           expand: String)
     
     case getEvents(count: Int,
-                   page: String?,
+                   nextPage: String?,
                    results: [ListEvent],
+                   page: Int?,
+                   pageSize: Int?,
                    lang: String?,
                    textFormat: String?,
                    location: String?,
+                   id: Int,
                    expand: String,
                    fields: String,
                    actualSince: Int?)
@@ -70,23 +73,29 @@ extension Events: TargetType {
             params["expand"] = expand
             
         case .getEvents(let count,
-                        let page,
+                        let nextPage,
                         let results,
+                        let pageSize,
+                        let page,
                         let lang,
                         let textFormat,
                         let location,
+                        let id,
                         let expand,
                         let fields,
                         let actualSince):
             params["count"] = count
-            params["next"] = page
+            params["next"] = nextPage
             params["results"] = results
+            params["page_size"] = pageSize
+            params["page"] = page
             params["lang"] = lang
             params["text_format"] = textFormat
             params["location"] = location
+            params["id"] = id
             params["expand"] = expand
             params["fields"] = fields
-            params["actualSince"] = actualSince
+            params["actual_since"] = actualSince
             
         case .getEventGenres(let categories):
             params["categories"] = categories

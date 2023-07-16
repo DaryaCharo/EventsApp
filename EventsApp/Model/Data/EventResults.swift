@@ -20,12 +20,12 @@ struct CurrentEventResult: Decodable {
 }
 struct EventListResult: Decodable {
     let numberOfEvents: Int?
-    let page: String?
+    let nextPage: String?
     let results: [ListEvent]
     
     enum CodingKeys: String, CodingKey {
         case results,
              numberOfEvents = "count",
-             page = "next"
+             nextPage = "next"
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var vm = HomeVM()
-    
+
     var body: some View {
         ScrollView(.vertical,
                    showsIndicators: false) {
@@ -23,19 +23,16 @@ struct HomeView: View {
                 eventsList
             }
         }
-        .padding(.top)
-        .fullScreenCover(item: $vm.showView) { event in
-            FavouriteView()
-        }
-        .task {
-            await vm.getEvents()
-        }
+                   .padding(.top)
+                   .task {
+                       await vm.getEvents()
+                   }
     }
     
     private var featureEvent: some View {
         FeaturedEventsView(vm: vm,
                            title: .constant(vm.featuredEvent?.title ?? ""),
-                            eventImage: .constant(vm.featuredEvent?.images?.image ?? ""))
+                           eventImage: .constant(vm.featuredEvent?.images?.image ?? ""))
     }
     
     private var eventsList: some View {
@@ -52,21 +49,8 @@ struct HomeView: View {
                 if vm.results.contains(where: {$0.object != nil}) {
                     HStack {
                         ForEach(vm.results, id: \.object?.id) { result in
-                            if let imageLink = result.object?.images?.image,
-                               let title = result.object?.title,
-                               let type = result.object?.type,
-                               let followers = result.object?.favouritesCount,
-                               let address = result.object?.place?.address,
-                               let date = result.date
-                            {
-                                EventView(imageLink: imageLink,
-                                          eventTitle:  title,
-                                          genre: type,
-                                          followers:  followers,
-                                          location: address,
-                                          stringDate: date)
+                            CurrentEventView(event: result.object)
                                 .padding(.bottom)
-                            }
                         }
                     }
                 } else {
@@ -78,6 +62,8 @@ struct HomeView: View {
                         .padding()
                 }
             }
+            .frame(maxWidth: .infinity,
+                   alignment: .center)
         }
     }
     
@@ -89,13 +75,7 @@ struct HomeView: View {
             
             CustomButton(type: .notification)
             
-            Button {
-                vm.showView = .favourite
-            } label: {
-                Image(systemName: "bookmark.fill")
-                    .foregroundColor(.customPurple)
-            }
-            .buttonStyle(UserInteractionButtonsStyle())
+            FavouriteButton(type: .favouriteView)
             
             CustomButton(type: .search)
                 .padding(.trailing)

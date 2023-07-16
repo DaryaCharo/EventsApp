@@ -11,7 +11,7 @@ struct EventNoteView: View {
     @StateObject var vm = EventNoteVM()
     
     var body: some View {
-        ScrollView(.vertical) {
+        ScrollView {
             VStack {
                 header
                 listOfEvents
@@ -24,16 +24,10 @@ struct EventNoteView: View {
     
     private var listOfEvents: some View {
         VStack {
-            if vm.results.contains(where: {$0.place != nil}) &&
-                vm.results.contains(where: {$0.dates != nil}){
+            if vm.results.contains(where: {$0.place != nil}) {
                 VStack {
                     ForEach(vm.results, id: \.id) { result in
-                        EventView(imageLink: result.images?.image ?? "",
-                                  eventTitle:  result.title ?? "",
-                                  genre: "event",
-                                  followers:  0,
-                                  location: result.place?.address ?? "",
-                                  stringDate: result.dates?.first?.start?.description ?? "")
+                        EventFromListView(event: result)
                         .padding(.bottom)
                     }
                 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     @StateObject var vm = AuthVM()
     @Environment(\.dismiss) var dismiss
-    
+//    #error("create custom errors list and show errors under text fields")
     var body: some View {
         ScrollView {
             VStack {
@@ -84,7 +84,7 @@ struct SignUpView: View {
                            text: $vm.email)
             InputFieldView(title: InputFieldText.fullname.title,
                            placeholder: InputFieldText.fullname.placeholder,
-                           text: $vm.fullname)
+                           text: $vm.fullName)
             InputFieldView(title: InputFieldText.pass.title,
                            placeholder: InputFieldText.pass.placeholder,
                            text: $vm.pass,
@@ -116,7 +116,7 @@ struct SignUp_Previews: PreviewProvider {
 
 extension SignUpView: AuthFormProtocol {
     var formIsValid: ValidationStatus {
-        !vm.fullname.isEmpty &&
+        !vm.fullName.isEmpty &&
         vm.email.range(of: vm.emailRegex,
                        options: .regularExpression) != nil &&
         !vm.pass.isEmpty &&

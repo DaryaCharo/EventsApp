@@ -12,6 +12,7 @@ final class EventCalendarVM: ObservableObject {
     lazy var eventManager: EventManagerProtocol = {
         EventManager()
     }()
+    @Published var isFavourite = false
     @Published var results: [CurrentDayEvents] = []
     
     //    //MARK: - getEvents
