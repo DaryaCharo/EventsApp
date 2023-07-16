@@ -31,9 +31,10 @@ struct GoogleMapsView: UIViewRepresentable {
         }
         var markers = vm.results.map({ GMSMarker(position: CLLocationCoordinate2D(latitude: $0.object?.place?.coords?.lat ?? 0,
                                    longitude: $0.object?.place?.coords?.lon ?? 0))})
-        for (index, value) in vm.results.enumerated() {
-            markers[index].title = value.object?.title ?? ""
-            markers[index].snippet = value.object?.place?.address ?? ""
+        
+        vm.results.enumerated().forEach { (index, event) in
+            markers[index].title = event.object?.title ?? ""
+            markers[index].snippet = event.object?.place?.address ?? ""
             markers[index].map = mapView
         }
     }

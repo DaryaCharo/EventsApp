@@ -38,21 +38,10 @@ struct CurrentDayEvents: Decodable {
         
         if let stringValue = try? container.decodeIfPresent(String.self,
                                                             forKey: CurrentDayEvents.CodingKeys.date) {
-            getDate(stringDate: stringValue)
+            self.date = stringValue.getDate()
         } else {
             self.date = try container.decodeIfPresent(Date.self,
                                                       forKey: CurrentDayEvents.CodingKeys.date)
         }
-    }
-    
-    private mutating func getDate(stringDate: String) {
-        let dateFormatter = DateFormatter()
-        let calendar = Calendar.current
-        
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        guard let date = dateFormatter.date(from: stringDate) else { return }
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        self.date = calendar.date(from:components)
     }
 }

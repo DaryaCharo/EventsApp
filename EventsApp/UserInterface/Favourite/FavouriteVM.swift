@@ -25,7 +25,7 @@ final class FavouriteVM: ObservableObject {
     
     func checkIsEventFav(id: Int) async {
         if favourites.contains(id),
-                 isFavourite == false {
+                 !isFavourite {
            isFavourite.toggle()
        }
     }

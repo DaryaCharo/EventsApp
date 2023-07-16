@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3036CCB2A63F33A00C5B5B8 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CCA2A63F33A00C5B5B8 /* String + Extension.swift */; };
 		E31CC1C02A56EABB0070483E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1BF2A56EABB0070483E /* ResultView.swift */; };
 		E31CC1C32A59B4C10070483E /* FavouriteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C22A59B4C10070483E /* FavouriteVM.swift */; };
 		E31CC1C52A59C41C0070483E /* SearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C42A59C41C0070483E /* SearchVM.swift */; };
@@ -92,6 +93,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E3036CCA2A63F33A00C5B5B8 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		E31CC1BF2A56EABB0070483E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E31CC1C22A59B4C10070483E /* FavouriteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteVM.swift; sourceTree = "<group>"; };
 		E31CC1C42A59C41C0070483E /* SearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVM.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			children = (
 				E39A2EFD2A3792A00021100E /* Color + Extension.swift */,
 				E39A2EFE2A3792A00021100E /* Font + Extension.swift */,
+				E3036CCA2A63F33A00C5B5B8 /* String + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				E3F8EDC82A3B710500F1A312 /* ButtonsStyle.swift in Sources */,
 				E3F8EE042A3F567700F1A312 /* SearchView.swift in Sources */,
 				E39A2F082A3A39B80021100E /* HomeVM.swift in Sources */,
+				E3036CCB2A63F33A00C5B5B8 /* String + Extension.swift in Sources */,
 				E3F8EDCB2A3B781F00F1A312 /* CurrentEventView.swift in Sources */,
 				E3F8EE0B2A409D5A00F1A312 /* EventCalendarVM.swift in Sources */,
 				E3BE4F7C2A4D8B23007FEC7E /* MapVM.swift in Sources */,
