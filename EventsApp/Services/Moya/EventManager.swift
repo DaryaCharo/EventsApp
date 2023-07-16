@@ -18,7 +18,7 @@ final class EventManager: EventManagerProtocol {
     var currentEventsResult: [CurrentDayEvents] = []
     var listOfEvents: [ListEvent] = []
     var categories: [Categories] = []
-    private let currentDate = Int(Date.now.timeIntervalSince1970)
+    private let currentDate = Date.now
     private var count = 0
     private var nextPage = ""
     private var ids: [Int] = []
@@ -26,14 +26,14 @@ final class EventManager: EventManagerProtocol {
     func getEvents(id: Int) async -> [ListEvent] {
         var pageNumber = 1
         do {
-                while pageNumber < 2 {
+                while pageNumber < 9 {
                 pageNumber += 1
                 let data = try await self.moyaManager.getEvents(numberOfEvents: self.count,
                                                                 nextPage: self.nextPage,
                                                                 results: self.listOfEvents,
                                                                 page: pageNumber,
                                                                 id: id)
-                    for event in data.results where (event.dates?.contains(where: { $0.start ?? 0 >= currentDate })) != nil {
+                    for event in data.results where (event.dates?.contains(where: { $0.startDate ?? currentDate >= currentDate })) != nil {
                         if event.dates?.last?.startDate == nil {
                             continue
                         }

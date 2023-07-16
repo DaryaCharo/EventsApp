@@ -15,11 +15,19 @@ final class FavouriteVM: ObservableObject {
     var favourites: [Int] = []
     @Published var results: [ListEvent] = []
     @Published var isFavourite = false
+    @Published var showView: ShowView?
     
     func showFavorites() async {
         if results.isEmpty {
             await fillResults()
         }
+    }
+    
+    func checkIsEventFav(id: Int) async {
+        if favourites.contains(id),
+                 isFavourite == false {
+           isFavourite.toggle()
+       }
     }
     
     private func fillResults() async {
@@ -29,24 +37,44 @@ final class FavouriteVM: ObservableObject {
                 results = result
             }
         }
-        
     }
     
     func editFavourites(action: ActionType,
-                        ids: [Int]) async {
+                        id: Int) async {
         switch action {
         case .add:
-            await providers.makeFavourite(eventIDs: ids)
+            if !favourites.contains(id) {
+                favourites.append(id)
+                
+                await providers.changeFavourites(eventID: id,
+                                                 action: action)
+                print("added")
+                print("\(favourites)")
+            }
         case .update:
-            await providers.updateFavourites(eventIDs: ids)
+            if !favourites.isEmpty && favourites.contains(id){
+                favourites.removeAll(where: { $0 == id })
+                await providers.changeFavourites(eventID: id,
+                                                 action: action)
+                print("removed")
+            }
+        case .check:
+            if providers.favouritesIDs.contains(where: { $0 == id }) {
+                favourites = providers.favouritesIDs
+                await MainActor.run {
+                    isFavourite = true
+                }
+            }
+            print("checked")
+            print(favourites)
+            print(providers.favouritesIDs)
         }
     }
     
-    enum ActionType {
-        case add, update
+    enum ShowView: Identifiable {
+        case favouriteView
+        var id: Int {
+            return 1
+        }
     }
 }
-
-//enum FavouriteState {
-//    case favourite, notFavourite
-//}

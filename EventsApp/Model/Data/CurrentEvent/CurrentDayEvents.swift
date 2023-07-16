@@ -12,7 +12,7 @@ struct CurrentDayEvents: Decodable {
     let lang: String?
     let textFormat: String?
     let city: String?
-    var date: String?
+    var date: Date?
     let object: CurrentEvent?
     
     enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ struct CurrentDayEvents: Decodable {
              numberOfEvents = "page_size",
              city = "location"
     }
-
+    
     init(from decoder: Decoder) throws {
         let container: KeyedDecodingContainer<CurrentDayEvents.CodingKeys> = try decoder.container(keyedBy: CurrentDayEvents.CodingKeys.self)
         
@@ -36,12 +36,23 @@ struct CurrentDayEvents: Decodable {
         self.city = try container.decodeIfPresent(String.self,
                                                   forKey: CurrentDayEvents.CodingKeys.city)
         
-        if let dateValue = try? container.decodeIfPresent(Date.self,
+        if let stringValue = try? container.decodeIfPresent(String.self,
                                                             forKey: CurrentDayEvents.CodingKeys.date) {
-            self.date = dateValue.description
+            getDate(stringDate: stringValue)
         } else {
-            self.date = try container.decodeIfPresent(String.self,
-                                                                forKey: CurrentDayEvents.CodingKeys.date)
+            self.date = try container.decodeIfPresent(Date.self,
+                                                      forKey: CurrentDayEvents.CodingKeys.date)
         }
+    }
+    
+    private mutating func getDate(stringDate: String) {
+        let dateFormatter = DateFormatter()
+        let calendar = Calendar.current
+        
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        guard let date = dateFormatter.date(from: stringDate) else { return }
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        self.date = calendar.date(from:components)
     }
 }

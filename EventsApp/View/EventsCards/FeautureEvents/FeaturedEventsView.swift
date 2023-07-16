@@ -35,8 +35,7 @@ struct FeaturedEventsView: View {
                maxHeight: 350)
         .padding()
         .fullScreenCover(item: $showInfo) { view in
-            FullCurrentEventView(event: vm.featuredEvent,
-                                 isFavourite: $vm.isFavourite)
+            FullCurrentEventView(event: vm.featuredEvent)
         }
     }
     

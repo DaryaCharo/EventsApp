@@ -8,46 +8,32 @@
 import SwiftUI
 
 struct FavouriteButton: View {
-    @State var type: ButtonType?
-    @State var showView: ShowView?
     @StateObject var vm = FavouriteVM()
+    @State var type: ButtonType?
     @State var id = 0
-    @Binding var isFavourite: Bool
-//    @Binding var isFavourite: FavouriteState
     
     var body: some View {
         VStack {
             switch type {
             case .regular:
-//                Button {
-//                    isFavourite = isFavourite == .notFavourite ? .favourite : .notFavourite
-//                } label: {
-//                    Image(systemName: isFavourite == .favourite ? "bookmark.fill" : "bookmark")
-//                        .foregroundColor(.customPurple)
-//                }
                 Button {
-                    isFavourite.toggle()
+                    vm.isFavourite.toggle()
+                    Task {
+                        await makeFavourite()
+                    }
                 } label: {
-                    Image(systemName: isFavourite ? "bookmark.fill" : "bookmark")
+                    Image(systemName: fillButton())
                         .foregroundColor(.customPurple)
                 }
                 .buttonStyle(UserInteractionButtonsStyle())
             case .forFullView:
-//                Button {
-//                    isFavourite = isFavourite == .notFavourite ? .favourite : .notFavourite
-//                } label: {
-//                    Image(systemName: isFavourite == .favourite ? "bookmark.fill" : "bookmark")
-//                        .resizable()
-//                        .frame(width: 15, height: 25)
-//                        .foregroundColor(.customPurple)
-//                        .padding(21)
-//                        .background(Color.customPurple.opacity(0.2))
-//                        .clipShape(Circle())
-//                }
                 Button {
-                    isFavourite.toggle()
+                    vm.isFavourite.toggle()
+                    Task {
+                        await makeFavourite()
+                    }
                 } label: {
-                    Image(systemName: isFavourite ? "bookmark.fill" : "bookmark")
+                    Image(systemName: fillButton())
                         .resizable()
                         .frame(width: 15, height: 25)
                         .foregroundColor(.customPurple)
@@ -57,13 +43,13 @@ struct FavouriteButton: View {
                 }
             case .favouriteView:
                 Button {
-                    showView = .favouriteView
+                    vm.showView = .favouriteView
                 } label: {
                     Image(systemName: "bookmark.fill")
                         .foregroundColor(.customPurple)
                 }
                 .buttonStyle(UserInteractionButtonsStyle())
-                .fullScreenCover(item: $showView) { _ in
+                .fullScreenCover(item: $vm.showView) { _ in
                     FavouriteView(vm: vm)
                 }
             case .none:
@@ -71,29 +57,23 @@ struct FavouriteButton: View {
             }
         }
         .task {
-            await makeFavourite()
+            await vm.editFavourites(action: .check,
+                                    id: id)
         }
     }
     
     func makeFavourite() async {
-//        isFavourite == .favourite ?
-//        await vm.editFavourites(action: .add,
-//                                ids: [id]) :
-//        await vm.editFavourites(action: .update,
-//                                ids: [id])
-        isFavourite ?
+        vm.isFavourite ?
         await vm.editFavourites(action: .add,
-                                ids: [id]) :
+                                id: id) :
         await vm.editFavourites(action: .update,
-                                ids: [id])
+                                id: id)
     }
     
-    enum ShowView: Identifiable {
-        case favouriteView
-        var id: Int {
-            return 1
-        }
+    func fillButton() -> String {
+        !vm.favourites.contains(id) && vm.isFavourite ? "bookmark.fill" : "bookmark"
     }
+    
     enum ButtonType {
         case forFullView, regular, favouriteView
     }
@@ -102,7 +82,6 @@ struct FavouriteButton: View {
 struct FavoriteButtonView_Previews: PreviewProvider {
     static var previews: some View {
         FavouriteButton(type: .forFullView,
-                        id: 0,
-                        isFavourite: .constant(false))
+                        id: 0)
     }
 }

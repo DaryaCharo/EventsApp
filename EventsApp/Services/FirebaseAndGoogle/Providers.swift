@@ -18,6 +18,7 @@ final class Providers {
     var userSession: FirebaseAuth.User?
     var currentUser: UserData?
     let authorisation = Auth.auth()
+    var favouritesIDs: [Int] = []
     private lazy var fireDB: Firestore = {
         Firestore.firestore()
     }()
@@ -31,25 +32,34 @@ final class Providers {
     }
     
     //MARK: - favouriteEvent
-    func makeFavourite(eventIDs: [Int]) async {
+    func changeFavourites(eventID: Int,
+                          action: ActionType) async {
         await fetchUser()
         guard let user = currentUser else { return }
-        do {
-            try await fireDB.collection("Users").document(user.id)
-                .collection("Favourites").document("Favourites").setData(["Event ID" : eventIDs])
-        } catch {
-            print(error)
-        }
-    }
-    
-    func updateFavourites(eventIDs: [Int]) async {
-        await fetchUser()
-        guard let user = currentUser else { return }
-        do {
-            try await fireDB.collection("Users").document(user.id)
-                .collection("Favourites").document("Favourites").updateData(["Event ID" : eventIDs])
-        } catch {
-            print(error)
+        switch action {
+        case .add:
+            do {
+                try await fireDB.collection("Users").document(user.id)
+                    .collection("Favourites").document(eventID.description).setData(["Event ID" : eventID])
+                favouritesIDs.append(eventID)
+            } catch {
+                print(error)
+            }
+        case .update:
+            do {
+                try await fireDB.collection("Users").document(user.id)
+                            .collection("Favourites").document(eventID.description).updateData(["Event ID" : eventID])
+                favouritesIDs.removeAll(where: { $0 == eventID })
+            } catch {
+                print(error)
+            }
+        case .check:
+            do {
+                let snapshot = try await fireDB.collection("Users").document(user.id).collection("Favourites").document(eventID.description).getDocument()
+                favouritesIDs.append(try snapshot.data(as: Int.self)) 
+            } catch {
+                print(error)
+            }
         }
     }
     
@@ -150,4 +160,7 @@ final class Providers {
 
 enum ProviderType {
     case google, firebase
+}
+enum ActionType {
+    case add, update, check
 }

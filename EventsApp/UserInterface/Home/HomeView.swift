@@ -49,8 +49,7 @@ struct HomeView: View {
                 if vm.results.contains(where: {$0.object != nil}) {
                     HStack {
                         ForEach(vm.results, id: \.object?.id) { result in
-                            CurrentEventView(event: result.object,
-                                             isFavourite: $vm.isFavourite)
+                            CurrentEventView(event: result.object)
                                 .padding(.bottom)
                         }
                     }
@@ -76,8 +75,7 @@ struct HomeView: View {
             
             CustomButton(type: .notification)
             
-            FavouriteButton(type: .favouriteView,
-                            isFavourite: $vm.isFavourite)
+            FavouriteButton(type: .favouriteView)
             
             CustomButton(type: .search)
                 .padding(.trailing)

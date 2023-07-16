@@ -11,7 +11,6 @@ import Kingfisher
 struct EventFromListView: View {
     @State var event: ListEvent?
     @State var showView: ShowView?
-    @Binding var isFavourite: Bool
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -30,8 +29,7 @@ struct EventFromListView: View {
         .frame(maxWidth: 300)
         .padding([.horizontal, .bottom])
         .fullScreenCover(item: $showView) { _ in
-            FullEventFromListView(event: event,
-                                  isFavourite: $isFavourite)
+            FullEventFromListView(event: event)
         }
     }
     
@@ -98,8 +96,7 @@ struct EventFromListView: View {
             .buttonStyle(UserInteractionButtonsStyle())
             
             FavouriteButton(type: .regular,
-                            id: event?.id ?? 0,
-                            isFavourite: $isFavourite)
+                            id: event?.id ?? 0)
         }
     }
     
@@ -115,6 +112,6 @@ struct EventFromListView: View {
 
 struct EventFromListView_Previews: PreviewProvider {
     static var previews: some View {
-        EventFromListView(isFavourite: .constant(false))
+        EventFromListView()
     }
 }

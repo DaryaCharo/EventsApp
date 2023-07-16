@@ -15,6 +15,7 @@ final class ProfileVM: ObservableObject {
     @Published var fullname = ""
     @Published var id = ""
     @Published var email = ""
+    @Published var avatar = ""
     
     func getUser() async {
         await providers.fetchUser()
@@ -23,6 +24,7 @@ final class ProfileVM: ObservableObject {
             fullname = user.fullname
             id = user.id
             email = user.email
+            avatar = user.avatar
         }
     }
     

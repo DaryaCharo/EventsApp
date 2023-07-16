@@ -10,12 +10,9 @@ import GoogleMaps
 
 struct GoogleMapsView: UIViewRepresentable {
     @StateObject var vm = MapVM()
-    var lat = CitiesCoordinates.moscow.latitude
-    var lon = CitiesCoordinates.moscow.longitude
-    var currentEvent: CurrentEvent?
-    var eventFromList: ListEvent?
-    var type: EventType?
-    var markers: [GMSMarker] = []
+    private let lat = CitiesCoordinates.moscow.latitude
+    private let lon = CitiesCoordinates.moscow.longitude
+    var marker = GMSMarker()
     let mapView = GMSMapView.map(withFrame: CGRect.zero,
                                  camera: .camera(withLatitude: 0,
                                                  longitude: 0,
@@ -29,13 +26,15 @@ struct GoogleMapsView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: GMSMapView, context: Context) {
-        let markers = vm.results.map({ GMSMarker(position: CLLocationCoordinate2D(latitude: $0.object?.place?.coords?.lat ?? 0,
-                                   longitude: $0.object?.place?.coords?.lon ?? 0))})
-        markers.forEach { marker in
-            marker.title = type == .current ?
-            currentEvent?.title ?? "" :
-            eventFromList?.title ?? ""
+        if marker.title == nil {
             marker.map = mapView
+        }
+        var markers = vm.results.map({ GMSMarker(position: CLLocationCoordinate2D(latitude: $0.object?.place?.coords?.lat ?? 0,
+                                   longitude: $0.object?.place?.coords?.lon ?? 0))})
+        for (index, value) in vm.results.enumerated() {
+            markers[index].title = value.object?.title ?? ""
+            markers[index].snippet = value.object?.place?.address ?? ""
+            markers[index].map = mapView
         }
     }
 }

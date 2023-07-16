@@ -27,8 +27,7 @@ struct EventNoteView: View {
             if vm.results.contains(where: {$0.place != nil}) {
                 VStack {
                     ForEach(vm.results, id: \.id) { result in
-                        EventFromListView(event: result,
-                                          isFavourite: $vm.isFavourite)
+                        EventFromListView(event: result)
                         .padding(.bottom)
                     }
                 }

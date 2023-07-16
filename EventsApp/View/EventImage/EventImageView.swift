@@ -20,7 +20,6 @@ struct EventImageView: View {
         }
     }
     
-    
     private var fullInfoImage: some View {
         ZStack(alignment: .topLeading) {
             KFImage(URL(string: imageURL))

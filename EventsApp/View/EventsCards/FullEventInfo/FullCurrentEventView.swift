@@ -11,7 +11,6 @@ import Kingfisher
 struct FullCurrentEventView: View {
     @State private var showMap: ShowMap?
     @State var event: CurrentEvent?
-    @Binding var isFavourite: Bool
     
     var body: some View {
         ScrollView {
@@ -28,7 +27,7 @@ struct FullCurrentEventView: View {
         VStack {
             HStack {
                 Text(event?.type ?? "event")
-                    .padding(5)
+                    .padding(8)
                     .overlay {
                         RoundedRectangle(cornerRadius: 24)
                             .stroke(lineWidth: 2)
@@ -68,9 +67,15 @@ struct FullCurrentEventView: View {
             Text(event?.description ?? "Can't find any information" )
                 .frame(maxWidth: .infinity,
                        alignment: .leading)
-            Text(event?.ageRestriction ?? "")
-                .frame(maxWidth: .infinity,
-                       alignment: .leading)
+            HStack(spacing: 5) {
+                Text(event?.ageRestriction ?? "0")
+                Text(event?.ageRestriction == "0" ?
+                     "+" : "")
+                   
+            }
+            .padding(.top, 8)
+            .frame(maxWidth: .infinity,
+                   alignment: .leading)
         }
         .padding(.vertical)
     }
@@ -92,8 +97,7 @@ struct FullCurrentEventView: View {
             }
             
             FavouriteButton(type: .forFullView,
-                            id: event?.id ?? 0,
-                            isFavourite: $isFavourite)
+                            id: event?.id ?? 0)
         }
         .padding()
         .frame(maxWidth: .infinity)
@@ -107,7 +111,8 @@ struct FullCurrentEventView: View {
                 .clipShape(Circle())
             
             VStack {
-                Text(event?.dateRange?.startDate?.description ?? "Date is unknown")
+                Text(event?.dateRange?.startDate?.formatted(date: .abbreviated,
+                                                            time: .omitted) ?? "Date is unknown")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
@@ -171,8 +176,7 @@ struct FullCurrentEventView: View {
         }
         .padding(.vertical)
         .sheet(item: $showMap) { _ in
-            MapView(type: .current,
-                    lat: event?.place?.coords?.lat ??
+            MapView(lat: event?.place?.coords?.lat ??
                     CitiesCoordinates.moscow.latitude,
                     lon: event?.place?.coords?.lon ??
                     CitiesCoordinates.moscow.longitude)
@@ -190,7 +194,6 @@ struct FullCurrentEventView: View {
 
 struct FullEventInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        FullCurrentEventView(event: .none,
-                             isFavourite: .constant(false))
+        FullCurrentEventView(event: .none)
     }
 }

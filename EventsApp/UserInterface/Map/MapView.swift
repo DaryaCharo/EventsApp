@@ -11,7 +11,6 @@ import SwiftUI
 
 struct MapView: View {
     @StateObject var vm = MapVM()
-    var type: EventType?
     var lat = CitiesCoordinates.moscow.latitude
     var lon = CitiesCoordinates.moscow.longitude
     
@@ -27,13 +26,13 @@ struct MapView: View {
     
     private var map: some View {
         VStack {
-            if type == .none {
-                GoogleMapsView(type: type)
-            } else {
-                let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: lat,                                                                                                                      longitude: lon))
+            if vm.results.isEmpty ||
+                lat != CitiesCoordinates.moscow.latitude {
+                let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: lat,                                                          longitude: lon))
                 
-                GoogleMapsView(type: type,
-                               markers: [marker])
+                GoogleMapsView(marker: marker)
+            } else {
+                GoogleMapsView(vm: vm)
             }
         }
     }
@@ -41,6 +40,6 @@ struct MapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(type: .none)
+        MapView()
     }
 }
