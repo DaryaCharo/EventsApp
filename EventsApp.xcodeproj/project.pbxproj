@@ -12,6 +12,7 @@
 		E3036CD02A653D4F00C5B5B8 /* ProfileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CCF2A653D4F00C5B5B8 /* ProfileErrors.swift */; };
 		E3036CD32A65405D00C5B5B8 /* CheckSignInAndUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CD22A65405D00C5B5B8 /* CheckSignInAndUp.swift */; };
 		E3036CD52A65406C00C5B5B8 /* CheckProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CD42A65406C00C5B5B8 /* CheckProfile.swift */; };
+		E3036CD92A65668100C5B5B8 /* NotificationSettingsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CD82A65668100C5B5B8 /* NotificationSettingsLabel.swift */; };
 		E31CC1C02A56EABB0070483E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1BF2A56EABB0070483E /* ResultView.swift */; };
 		E31CC1C32A59B4C10070483E /* FavouriteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C22A59B4C10070483E /* FavouriteVM.swift */; };
 		E31CC1C52A59C41C0070483E /* SearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C42A59C41C0070483E /* SearchVM.swift */; };
@@ -102,6 +103,7 @@
 		E3036CCF2A653D4F00C5B5B8 /* ProfileErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileErrors.swift; sourceTree = "<group>"; };
 		E3036CD22A65405D00C5B5B8 /* CheckSignInAndUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSignInAndUp.swift; sourceTree = "<group>"; };
 		E3036CD42A65406C00C5B5B8 /* CheckProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckProfile.swift; sourceTree = "<group>"; };
+		E3036CD82A65668100C5B5B8 /* NotificationSettingsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsLabel.swift; sourceTree = "<group>"; };
 		E31CC1BF2A56EABB0070483E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E31CC1C22A59B4C10070483E /* FavouriteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteVM.swift; sourceTree = "<group>"; };
 		E31CC1C42A59C41C0070483E /* SearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVM.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				E3980C022A55737700B1D639 /* SettingsLabel.swift */,
+				E3036CD82A65668100C5B5B8 /* NotificationSettingsLabel.swift */,
 			);
 			path = SettingsLabel;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				E39A2ED32A34BD6E0021100E /* CurrentDayEvents.swift in Sources */,
 				E39A2EF52A3778150021100E /* (null) in Sources */,
 				E31CC1C72A59F0430070483E /* EditNotificationVM.swift in Sources */,
+				E3036CD92A65668100C5B5B8 /* NotificationSettingsLabel.swift in Sources */,
 				E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */,
 				E3036CD32A65405D00C5B5B8 /* CheckSignInAndUp.swift in Sources */,
 				E3B32CB22A5458F8004BDD44 /* AuthVM.swift in Sources */,

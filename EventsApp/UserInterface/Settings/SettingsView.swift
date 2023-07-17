@@ -33,8 +33,7 @@ struct SettingsView: View {
                     Button {
                         vm.showView = .notification
                     } label: {
-                        SettingsLabel(settingsType: .base,
-                                      baseType: .notification)
+                        SettingsLabel(type: .notification)
                     }
                 }
                 Section {
@@ -42,16 +41,14 @@ struct SettingsView: View {
                         vm.showView = .startPage
                         vm.signOut()
                     } label: {
-                        SettingsLabel(settingsType: .base,
-                                      baseType: .signOut)
+                        SettingsLabel(type: .signOut)
                     }
                 }
                 Section {
                     Button {
                         deleteUser()
                     } label: {
-                        SettingsLabel(settingsType: .base,
-                                      baseType: .deleteAccount)
+                        SettingsLabel(type: .deleteAccount)
                     }
                 }
             }

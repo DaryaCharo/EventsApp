@@ -56,7 +56,7 @@ enum BaseSettings: Int, CaseIterable, Identifiable {
         case .signOut:
             return "rectangle.trailinghalf.inset.filled.arrow.trailing"
         case .deleteAccount:
-            return ""
+            return "xmark.bin.fill"
         }
     }
     
@@ -72,9 +72,5 @@ enum BaseSettings: Int, CaseIterable, Identifiable {
             return 4
         }
     }
-}
-
-enum SettingsType {
-    case notification, base
 }
 
