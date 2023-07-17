@@ -61,13 +61,13 @@ enum FieldType {
 }
 
 enum InputFieldText {
-    case email, fullname, pass, confirmPass
+    case email, fullName, pass, confirmPass
     
     var title: String {
         switch self {
         case .email:
             return "Email"
-        case .fullname:
+        case .fullName:
             return "Full name"
         case .pass:
             return "Password"
@@ -80,7 +80,7 @@ enum InputFieldText {
         switch self {
         case .email:
             return "Enter your email"
-        case .fullname:
+        case .fullName:
             return "Enter your first name or create a nickname"
         case .pass:
             return "Enter your password"

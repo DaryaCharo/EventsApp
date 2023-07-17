@@ -11,30 +11,31 @@ struct SignInView: View {
     @StateObject var vm = AuthVM()
     
     var body: some View {
-        VStack {
-            LogoView()
-                .padding(20)
-            
-            Text("Sign in to your account")
-                .font(.customFont(type: .semiBold,
-                                  size: 20))
-            
-            formFields
-            signInButton
-            
-            Text("or continue with")
-                .padding()
-            
-            googleButton
-            
-            Spacer()
-            
-            signUpLink
-            
-            Spacer()
-        }
-        .fullScreenCover(item: $vm.showView) { view in
-            TabBarView()
+        ScrollView {
+            VStack {
+                LogoView()
+                    .padding(20)
+                
+                Text("Sign in to your account")
+                    .font(.customFont(type: .semiBold,
+                                      size: 20))
+                formFields
+                signInButton
+                
+                Text("or continue with")
+                    .padding()
+                
+                googleButton
+                
+                Spacer()
+                
+                signUpLink
+                
+                Spacer()
+            }
+            .fullScreenCover(item: $vm.showView) { view in
+                TabBarView()
+            }
         }
     }
     
@@ -97,11 +98,16 @@ struct SignInView: View {
             InputFieldView(title: InputFieldText.email.title,
                            placeholder: InputFieldText.email.placeholder,
                            text: $vm.email)
+            CheckSignInAndUp(vm: vm,
+                             checkTextField: .email)
             
+            //Password
             InputFieldView(title: InputFieldText.pass.title,
                            placeholder: InputFieldText.pass.placeholder,
                            text: $vm.pass,
                            isSecureField: .secure)
+            CheckSignInAndUp(vm: vm,
+                             checkTextField: .pass)
         }
         .padding(.vertical, 16)
     }
@@ -134,7 +140,7 @@ struct SignInView_Previews: PreviewProvider {
 extension SignInView: AuthFormProtocol {
     var formIsValid: ValidationStatus {
         vm.email.range(of: vm.emailRegex, options: .regularExpression) != nil &&
-        !vm.pass.isEmpty &&
+        !vm.pass.trimmingCharacters(in: .whitespaces).isEmpty &&
         vm.pass.count > 5 ? .accepted : .denied
     }
 }

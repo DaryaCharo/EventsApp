@@ -34,7 +34,6 @@ final class Providers {
     //MARK: - favouriteEvent
     func changeFavourites(eventID: Int,
                           action: ActionType) async {
-        await fetchUser()
         guard let user = currentUser else { return }
         switch action {
         case .add:
@@ -42,6 +41,7 @@ final class Providers {
                 try await fireDB.collection("Users").document(user.id)
                     .collection("Favourites").document(eventID.description).setData(["Event ID" : eventID])
                 favouritesIDs.append(eventID)
+                await fetchUser()
             } catch {
                 print(error)
             }
@@ -50,13 +50,15 @@ final class Providers {
                 try await fireDB.collection("Users").document(user.id)
                             .collection("Favourites").document(eventID.description).updateData(["Event ID" : eventID])
                 favouritesIDs.removeAll(where: { $0 == eventID })
+                await fetchUser()
             } catch {
                 print(error)
             }
         case .check:
             do {
                 let snapshot = try await fireDB.collection("Users").document(user.id).collection("Favourites").document(eventID.description).getDocument()
-                favouritesIDs.append(try snapshot.data(as: Int.self)) 
+                favouritesIDs.append(try snapshot.data(as: Int.self))
+                await fetchUser()
             } catch {
                 print(error)
             }
@@ -75,18 +77,33 @@ final class Providers {
         }
     }
     
+    //MARK: - changeUserInfo
+    
+    func changeUserInfo(id: String,
+                        email: String,
+                        fullName: String) async {
+        guard let user = currentUser else { return }
+        do {
+            try await fireDB.collection("Users").document(user.id).updateData(["email" : email,
+                                                                                "fullname" : fullName,
+                                                                                "id" : id])
+        } catch {
+            print(error)
+        }
+    }
+    
     //MARK:  SignUp
     
     func singUp(email: String,
                 pass: String,
-                fullname: String) async {
+                fullName: String) async {
         do {
             let result = try await authorisation.createUser(withEmail: email,
                                                             password: pass)
             userSession = result.user
             let user = UserData(id: result.user.uid,
                                 email: email,
-                                fullname: fullname)
+                                fullName: fullName)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await fireDB.collection("Users").document(user.id).setData(encodedUser)
             await fetchUser()
@@ -135,7 +152,7 @@ final class Providers {
                     self.userSession = authResult.user
                     let firestoreUser = UserData(id: authResult.user.uid,
                                         email: authResult.user.email ?? "",
-                                        fullname: authResult.user.displayName ?? "")
+                                        fullName: authResult.user.displayName ?? "")
                     let encodedUser = try Firestore.Encoder().encode(firestoreUser)
                     try await fireDB.collection("Google users").document(user.getIDToken()).setData(encodedUser)
                 await fetchUser()

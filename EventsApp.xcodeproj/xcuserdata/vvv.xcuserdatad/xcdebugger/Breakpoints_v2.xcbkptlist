@@ -30,8 +30,8 @@
             filePath = "EventsApp/Services/FirebaseAndGoogle/Providers.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "changeFavourites(eventID:action:)"
             landmarkType = "7">
             <Locations>
@@ -79,6 +79,21 @@
                   startingLineNumber = "59"
                   endingLineNumber = "59"
                   offsetFromSymbolStart = "277">
+               </Location>
+               <Location
+                  uuid = "E0184202-E979-4106-B24C-50942CD6373A - ad79acc0a10f63cb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(11) suspend resume partial function for EventsApp.Providers.changeFavourites(eventID: Swift.Int, action: EventsApp.ActionType) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/FirebaseAndGoogle/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "284">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -188,6 +203,21 @@
                   endingLineNumber = "50"
                   offsetFromSymbolStart = "1720">
                </Location>
+               <Location
+                  uuid = "8F28F8D1-3199-437B-A4A5-FF56EC6DB53E - fcc092c12766e232"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for EventsApp.Providers.changeFavourites(eventID: Swift.Int, action: EventsApp.ActionType) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/FirebaseAndGoogle/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "1720">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -201,8 +231,8 @@
             filePath = "EventsApp/Services/FirebaseAndGoogle/Providers.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "changeFavourites(eventID:action:)"
             landmarkType = "7">
             <Locations>
@@ -326,7 +356,99 @@
                   endingLineNumber = "43"
                   offsetFromSymbolStart = "969">
                </Location>
+               <Location
+                  uuid = "B02F24BA-21E2-4888-A9EF-180C1A260ED8 - fcc092c12766e14a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for EventsApp.Providers.changeFavourites(eventID: Swift.Int, action: EventsApp.ActionType) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/FirebaseAndGoogle/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "969">
+               </Location>
+               <Location
+                  uuid = "B02F24BA-21E2-4888-A9EF-180C1A260ED8 - a84e8ed968a7d3df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for EventsApp.Providers.changeFavourites(eventID: Swift.Int, action: EventsApp.ActionType) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/FirebaseAndGoogle/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  uuid = "B02F24BA-21E2-4888-A9EF-180C1A260ED8 - 2f09184d3249a548"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for EventsApp.Providers.changeFavourites(eventID: Swift.Int, action: EventsApp.ActionType) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/FirebaseAndGoogle/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "B02F24BA-21E2-4888-A9EF-180C1A260ED8 - 84ef1d36a42bb17c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(14) suspend resume partial function for EventsApp.Providers.changeFavourites(eventID: Swift.Int, action: EventsApp.ActionType) async -&gt; ()"
+                  moduleName = "EventsApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vvv/Documents/swift/diplom/EventsApp/EventsApp/Services/FirebaseAndGoogle/Providers.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "126">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32970DC1-F759-47E7-97AB-3809EE9A4BF2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/UserInterface/Profile/ProfileVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFDC6819-2D0F-48EE-90DB-7D9A23051090"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventsApp/UserInterface/Profile/ProfileVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "changeUserInfo()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

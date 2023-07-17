@@ -19,9 +19,7 @@ struct ProfileView: View {
             Spacer()
         }
         .fullScreenCover(item: $vm.showView) { view in
-            EditProfileView(id: $vm.id,
-                            email: $vm.email,
-                            name: $vm.fullname)
+            EditProfileView(vm: vm)
         }
         .task {
             await vm.getUser()
@@ -47,7 +45,7 @@ struct ProfileView: View {
                 .clipShape(Circle())
                 .padding()
                 .shadow(radius: 1)
-            Text(vm.fullname)
+            Text(vm.fullName)
                 .font(.customFont(type: .semiBold,
                                   size: 24))
         }
