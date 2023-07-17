@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject private var vm: SettingsVM = .init()
-    @StateObject private var profileVM = ProfileVM()
     
     var body: some View {
         VStack {
@@ -49,7 +48,7 @@ struct SettingsView: View {
                 }
                 Section {
                     Button {
-                        vm.deleteAccount(id: profileVM.id)
+                        deleteUser()
                     } label: {
                         SettingsLabel(settingsType: .base,
                                       baseType: .deleteAccount)
@@ -57,6 +56,11 @@ struct SettingsView: View {
                 }
             }
             .listStyle(.inset)
+        }
+    }
+    private func deleteUser() {
+        Task {
+            await vm.deleteAccount()
         }
     }
 }

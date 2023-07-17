@@ -18,8 +18,8 @@ final class SettingsVM: ObservableObject {
         providers.signOut()
     }
     
-    func deleteAccount(id: String) {
-        
+    func deleteAccount() async {
+        await providers.deleteUser()
     }
     
     enum ShowView: Identifiable {

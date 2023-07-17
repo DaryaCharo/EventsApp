@@ -65,6 +65,17 @@ final class Providers {
         }
     }
     
+    //MARK: - deleteUser
+    
+    func deleteUser() async {
+        guard let user = currentUser else { return }
+        do {
+            try await fireDB.collection("Users").document(user.id).delete()
+        } catch {
+            print(error)
+        }
+    }
+    
     //MARK: - fetchUser
     
     func fetchUser() async {

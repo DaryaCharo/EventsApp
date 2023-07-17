@@ -36,7 +36,7 @@ struct EditProfileView: View {
         .opacity(formIsValid == .accepted ? 1 : 0.5)
     }
     
-    func changeInfo() {
+    private func changeInfo() {
         Task {
             await vm.changeUserInfo()
         }
