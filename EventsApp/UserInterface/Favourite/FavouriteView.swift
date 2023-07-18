@@ -14,11 +14,13 @@ struct FavouriteView: View {
         VStack {
             HeaderWithBackBtn(title: "Favourite events")
             
-            ScrollView {
-                
-                if vm.results.isEmpty {
-                    ResultView(type: .favourites)
-                } else {
+            if vm.results.isEmpty {
+                Spacer()
+                ResultView(type: .favourites)
+                    .padding(.bottom, 32)
+                Spacer()
+            } else {
+                ScrollView {
                     listOfFavEvents
                 }
             }
@@ -32,7 +34,7 @@ struct FavouriteView: View {
         VStack {
             ForEach(vm.results, id: \.id) { result in
                 EventFromListView(event: result)
-                .padding(.bottom)
+                    .padding(.bottom)
             }
         }
     }

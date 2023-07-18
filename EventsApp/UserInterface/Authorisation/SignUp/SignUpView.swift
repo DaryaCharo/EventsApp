@@ -79,30 +79,33 @@ struct SignUpView: View {
     
     private var formFields: some View {
         VStack {
+            //email
             InputFieldView(title: InputFieldText.email.title,
                            placeholder: InputFieldText.email.placeholder,
                            text: $vm.email)
-            InputFieldView(title: InputFieldText.fullname.title,
-                           placeholder: InputFieldText.fullname.placeholder,
+            CheckSignInAndUp(vm: vm,
+                            checkTextField: .email)
+            //fullName
+            InputFieldView(title: InputFieldText.fullName.title,
+                           placeholder: InputFieldText.fullName.placeholder,
                            text: $vm.fullName)
+            CheckSignInAndUp(vm: vm,
+                            checkTextField: .fullName)
+            //Password
             InputFieldView(title: InputFieldText.pass.title,
                            placeholder: InputFieldText.pass.placeholder,
                            text: $vm.pass,
                            isSecureField: .secure)
-            
+            CheckSignInAndUp(vm: vm,
+                            checkTextField: .pass)
+            //conf Pass
             ZStack(alignment: .bottomTrailing) {
                 InputFieldView(title: InputFieldText.confirmPass.title,
                                placeholder: InputFieldText.confirmPass.placeholder,
                                text: $vm.confPass,
                                isSecureField: .secure)
-                if !vm.pass.isEmpty && !vm.confPass.isEmpty {
-                    if vm.pass == vm.confPass {
-                        CheckPassView(type: .checkmark)
-                        
-                    } else {
-                        CheckPassView(type: .xmark)
-                    }
-                }
+                CheckSignInAndUp(vm: vm,
+                                checkTextField: .confPass)
             }
         }
     }
@@ -116,10 +119,12 @@ struct SignUp_Previews: PreviewProvider {
 
 extension SignUpView: AuthFormProtocol {
     var formIsValid: ValidationStatus {
-        !vm.fullName.isEmpty &&
+        !vm.fullName.trimmingCharacters(in: .whitespaces).isEmpty &&
+        vm.fullName.range(of: vm.fullNameRegex,
+                             options: .regularExpression) != nil &&
         vm.email.range(of: vm.emailRegex,
                        options: .regularExpression) != nil &&
-        !vm.pass.isEmpty &&
+        !vm.pass.trimmingCharacters(in: .whitespaces).isEmpty &&
         vm.pass.count > 5 &&
         vm.confPass == vm.pass ? .accepted : .denied
     }

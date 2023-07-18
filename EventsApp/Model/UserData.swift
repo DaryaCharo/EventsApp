@@ -10,8 +10,14 @@ import Foundation
 struct UserData: Identifiable, Codable {
     var id: String
     var email: String
-    var fullname: String
-    var avatar = "person.fill"
+    var fullName: String
+    var avatar: Data
+    
+    enum CodingKeys: String, CodingKey {
+        case id, email,
+        fullName = "Full name",
+        avatar = "Avatar"
+    }
 }
 
 

@@ -15,11 +15,7 @@ struct HomeView: View {
                    showsIndicators: false) {
             VStack {
                 header
-                
                 featureEvent
-                
-                listOfEvents
-                
                 eventsList
             }
         }
@@ -80,25 +76,6 @@ struct HomeView: View {
             CustomButton(type: .search)
                 .padding(.trailing)
         }
-    }
-    
-    private var listOfEvents: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(vm.categories, id: \.id) { category in
-                    
-                    Button {
-                        //show current type
-                    } label: {
-                        Text(category.name ?? "none")
-                    }
-                    .padding(5)
-                    .buttonStyle(BorderedButtonStyle())
-                    .foregroundColor(.customPurple)
-                }
-            }
-        }
-        .padding()
     }
 }
 

@@ -19,9 +19,7 @@ struct ProfileView: View {
             Spacer()
         }
         .fullScreenCover(item: $vm.showView) { view in
-            EditProfileView(id: $vm.id,
-                            email: $vm.email,
-                            name: $vm.fullname)
+            EditProfileView(vm: vm)
         }
         .task {
             await vm.getUser()
@@ -38,16 +36,9 @@ struct ProfileView: View {
     
     private var avatar: some View {
         VStack {
-            Image(systemName: "person.fill")
-                .resizable()
-                .foregroundColor(.customPurple).opacity(0.6)
-                .frame(maxWidth: 80, maxHeight: 80)
-                .padding()
-                .background(Color.white)
-                .clipShape(Circle())
-                .padding()
-                .shadow(radius: 1)
-            Text(vm.fullname)
+            ProfileAvatar(data: vm.avatar)
+                .padding(.bottom)
+            Text(vm.fullName)
                 .font(.customFont(type: .semiBold,
                                   size: 24))
         }

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		E3036CCB2A63F33A00C5B5B8 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CCA2A63F33A00C5B5B8 /* String + Extension.swift */; };
+		E3036CCD2A653CE200C5B5B8 /* SignInAndUpErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CCC2A653CE200C5B5B8 /* SignInAndUpErrors.swift */; };
+		E3036CD02A653D4F00C5B5B8 /* ProfileErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CCF2A653D4F00C5B5B8 /* ProfileErrors.swift */; };
+		E3036CD92A65668100C5B5B8 /* NotificationSettingsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CD82A65668100C5B5B8 /* NotificationSettingsLabel.swift */; };
+		E3036CDB2A668FA900C5B5B8 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CDA2A668FA900C5B5B8 /* AvatarView.swift */; };
+		E3036CDE2A66B47200C5B5B8 /* CheckSignInAndUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CDD2A66B47200C5B5B8 /* CheckSignInAndUp.swift */; };
+		E3036CE12A66B61900C5B5B8 /* CheckProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CE02A66B61900C5B5B8 /* CheckProfile.swift */; };
+		E3036CE32A66DB2D00C5B5B8 /* ProfileAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3036CE22A66DB2D00C5B5B8 /* ProfileAvatar.swift */; };
 		E31CC1C02A56EABB0070483E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1BF2A56EABB0070483E /* ResultView.swift */; };
 		E31CC1C32A59B4C10070483E /* FavouriteVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C22A59B4C10070483E /* FavouriteVM.swift */; };
 		E31CC1C52A59C41C0070483E /* SearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31CC1C42A59C41C0070483E /* SearchVM.swift */; };
@@ -94,6 +101,13 @@
 
 /* Begin PBXFileReference section */
 		E3036CCA2A63F33A00C5B5B8 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		E3036CCC2A653CE200C5B5B8 /* SignInAndUpErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndUpErrors.swift; sourceTree = "<group>"; };
+		E3036CCF2A653D4F00C5B5B8 /* ProfileErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileErrors.swift; sourceTree = "<group>"; };
+		E3036CD82A65668100C5B5B8 /* NotificationSettingsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsLabel.swift; sourceTree = "<group>"; };
+		E3036CDA2A668FA900C5B5B8 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		E3036CDD2A66B47200C5B5B8 /* CheckSignInAndUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSignInAndUp.swift; sourceTree = "<group>"; };
+		E3036CE02A66B61900C5B5B8 /* CheckProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckProfile.swift; sourceTree = "<group>"; };
+		E3036CE22A66DB2D00C5B5B8 /* ProfileAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAvatar.swift; sourceTree = "<group>"; };
 		E31CC1BF2A56EABB0070483E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		E31CC1C22A59B4C10070483E /* FavouriteVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteVM.swift; sourceTree = "<group>"; };
 		E31CC1C42A59C41C0070483E /* SearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVM.swift; sourceTree = "<group>"; };
@@ -188,6 +202,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E3036CCE2A653CEE00C5B5B8 /* ErrorsUnderFields */ = {
+			isa = PBXGroup;
+			children = (
+				E3036CDD2A66B47200C5B5B8 /* CheckSignInAndUp.swift */,
+				E3036CE02A66B61900C5B5B8 /* CheckProfile.swift */,
+				E3036CDF2A66B47600C5B5B8 /* ErrorsTypes */,
+			);
+			path = ErrorsUnderFields;
+			sourceTree = "<group>";
+		};
+		E3036CDC2A668FAC00C5B5B8 /* Avatar */ = {
+			isa = PBXGroup;
+			children = (
+				E3036CDA2A668FA900C5B5B8 /* AvatarView.swift */,
+				E3036CE22A66DB2D00C5B5B8 /* ProfileAvatar.swift */,
+			);
+			path = Avatar;
+			sourceTree = "<group>";
+		};
+		E3036CDF2A66B47600C5B5B8 /* ErrorsTypes */ = {
+			isa = PBXGroup;
+			children = (
+				E3036CCC2A653CE200C5B5B8 /* SignInAndUpErrors.swift */,
+				E3036CCF2A653D4F00C5B5B8 /* ProfileErrors.swift */,
+			);
+			path = ErrorsTypes;
+			sourceTree = "<group>";
+		};
 		E31CC1C12A56EABE0070483E /* ResultView */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				E3980C022A55737700B1D639 /* SettingsLabel.swift */,
+				E3036CD82A65668100C5B5B8 /* NotificationSettingsLabel.swift */,
 			);
 			path = SettingsLabel;
 			sourceTree = "<group>";
@@ -362,16 +405,18 @@
 			isa = PBXGroup;
 			children = (
 				E3980C052A55789700B1D639 /* SettingsLabel */,
-				E3980C062A558A9A00B1D639 /* CheckPass */,
 				E3980BFF2A5544C800B1D639 /* TabBar */,
 				E357734D2A50AE3C00496EE1 /* Header */,
 				E357734E2A50AE4D00496EE1 /* Logo */,
 				E357734F2A50AE5600496EE1 /* SplashScreen */,
+				E3980C062A558A9A00B1D639 /* CheckPass */,
+				E3036CCE2A653CEE00C5B5B8 /* ErrorsUnderFields */,
 				E3E745D32A45D2F2005FA631 /* InputField */,
 				E3F8EE022A3F241A00F1A312 /* CustomButton */,
 				E35773512A50B22600496EE1 /* EventsCards */,
 				E31CC1C12A56EABE0070483E /* ResultView */,
 				E31CC1CE2A5D49E00070483E /* EventImage */,
+				E3036CDC2A668FAC00C5B5B8 /* Avatar */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -734,8 +779,10 @@
 				E3E745D52A45D304005FA631 /* LogoView.swift in Sources */,
 				E3F8EDF42A3DC79000F1A312 /* FavouriteView.swift in Sources */,
 				E31CC1C92A5AD3850070483E /* EventFromListView.swift in Sources */,
+				E3036CE32A66DB2D00C5B5B8 /* ProfileAvatar.swift in Sources */,
 				E39A2EFF2A3792A00021100E /* Color + Extension.swift in Sources */,
 				E31CC1CD2A5D49D70070483E /* EventImageView.swift in Sources */,
+				E3036CD02A653D4F00C5B5B8 /* ProfileErrors.swift in Sources */,
 				E39A2F0A2A3A55AA0021100E /* TabBarView.swift in Sources */,
 				E3980C012A5572B200B1D639 /* EditNotificationView.swift in Sources */,
 				E3F8EDDA2A3B958700F1A312 /* ProfileVM.swift in Sources */,
@@ -755,6 +802,7 @@
 				E39A2E7A2A2F21B40021100E /* StartPage.swift in Sources */,
 				E39B20C52A4371960020499F /* HeaderWithLogo.swift in Sources */,
 				E3980C0E2A55A3F900B1D639 /* ListEvents.swift in Sources */,
+				E3036CDE2A66B47200C5B5B8 /* CheckSignInAndUp.swift in Sources */,
 				E3BE4F732A4C5583007FEC7E /* HeaderWithBackBtn.swift in Sources */,
 				E39A2F0E2A3A56A00021100E /* MapView.swift in Sources */,
 				E3F8EDDE2A3C64BC00F1A312 /* CustomButton.swift in Sources */,
@@ -767,8 +815,10 @@
 				E39A2ED32A34BD6E0021100E /* CurrentDayEvents.swift in Sources */,
 				E39A2EF52A3778150021100E /* (null) in Sources */,
 				E31CC1C72A59F0430070483E /* EditNotificationVM.swift in Sources */,
+				E3036CD92A65668100C5B5B8 /* NotificationSettingsLabel.swift in Sources */,
 				E39A2EC72A348BD70021100E /* Adress&Coordinates.swift in Sources */,
 				E3B32CB22A5458F8004BDD44 /* AuthVM.swift in Sources */,
+				E3036CCD2A653CE200C5B5B8 /* SignInAndUpErrors.swift in Sources */,
 				E39B20C72A437CF40020499F /* EventManager.swift in Sources */,
 				E39A2EEF2A3634940021100E /* EventResults.swift in Sources */,
 				E3F8EDFC2A3F186200F1A312 /* EventNoteView.swift in Sources */,
@@ -776,6 +826,7 @@
 				E3F8EDE02A3CB73600F1A312 /* SettingsVM.swift in Sources */,
 				E39A2E782A2F21B40021100E /* EventsApp.swift in Sources */,
 				E39A2F062A3A39AE0021100E /* HomeView.swift in Sources */,
+				E3036CDB2A668FA900C5B5B8 /* AvatarView.swift in Sources */,
 				E385BCEC2A40CA30007C84B4 /* UserData.swift in Sources */,
 				E39A2EF32A37780C0021100E /* (null) in Sources */,
 				E31CC1C02A56EABB0070483E /* ResultView.swift in Sources */,
@@ -793,6 +844,7 @@
 				E3F8EDC52A3B6E0B00F1A312 /* FeaturedEventsView.swift in Sources */,
 				E3980C032A55737700B1D639 /* SettingsLabel.swift in Sources */,
 				E3F8EDF82A3DC7B300F1A312 /* NotificationView.swift in Sources */,
+				E3036CE12A66B61900C5B5B8 /* CheckProfile.swift in Sources */,
 				E39A2ECC2A348D2B0021100E /* Categories.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

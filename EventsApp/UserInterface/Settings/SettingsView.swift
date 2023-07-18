@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject private var vm: SettingsVM = .init()
-    @StateObject private var profileVM = ProfileVM()
     
     var body: some View {
         VStack {
@@ -34,8 +33,7 @@ struct SettingsView: View {
                     Button {
                         vm.showView = .notification
                     } label: {
-                        SettingsLabel(settingsType: .base,
-                                      baseType: .notification)
+                        SettingsLabel(type: .notification)
                     }
                 }
                 Section {
@@ -43,16 +41,14 @@ struct SettingsView: View {
                         vm.showView = .startPage
                         vm.signOut()
                     } label: {
-                        SettingsLabel(settingsType: .base,
-                                      baseType: .signOut)
+                        SettingsLabel(type: .signOut)
                     }
                 }
                 Section {
                     Button {
-                        vm.deleteAccount(id: profileVM.id)
+                        vm.deleteAccount()
                     } label: {
-                        SettingsLabel(settingsType: .base,
-                                      baseType: .deleteAccount)
+                        SettingsLabel(type: .deleteAccount)
                     }
                 }
             }

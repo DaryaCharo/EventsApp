@@ -44,7 +44,7 @@ struct EventCalendarView: View {
     
     private var listOfEventsOnCurrentDate: some View {
         VStack {
-            ScrollView(.horizontal,
+            ScrollView(.vertical,
                        showsIndicators: false) {
                 if vm.results.contains(where: {$0.object != nil}) {
                     VStack {

@@ -21,16 +21,13 @@ struct EditNotificationView: View {
     private var settings: some View {
         List {
             Section {
-                SettingsLabel(settingsType: .notification,
-                              notifyType: .notificationOnOff)
+                NotificationSettingsLabel(type: .notificationOnOff)
             }
             Section {
-                SettingsLabel(settingsType: .notification,
-                              notifyType: .showNotifications)
+                NotificationSettingsLabel(type: .showNotifications)
             }
             Section {
-                SettingsLabel(settingsType: .notification,
-                              notifyType: .reset)
+                NotificationSettingsLabel(type: .reset)
             }
         }
     }

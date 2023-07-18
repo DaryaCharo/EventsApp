@@ -18,8 +18,11 @@ final class SettingsVM: ObservableObject {
         providers.signOut()
     }
     
-    func deleteAccount(id: String) {
-        
+    //обёрнуто в такс, чтобы вызвать во вью
+    func deleteAccount() {
+        Task {
+            await providers.deleteUser()
+        }
     }
     
     enum ShowView: Identifiable {
@@ -56,7 +59,7 @@ enum BaseSettings: Int, CaseIterable, Identifiable {
         case .signOut:
             return "rectangle.trailinghalf.inset.filled.arrow.trailing"
         case .deleteAccount:
-            return ""
+            return "xmark.bin.fill"
         }
     }
     
@@ -72,9 +75,5 @@ enum BaseSettings: Int, CaseIterable, Identifiable {
             return 4
         }
     }
-}
-
-enum SettingsType {
-    case notification, base
 }
 

@@ -9,10 +9,13 @@ import SwiftUI
 
 struct HeaderWithBackBtn: View {
     @State var title: String
+    @State var disableBackBtn = false
     
     var body: some View {
         HStack {
             CustomButton(type: .back)
+                .disabled(disableBackBtn ? true : false)
+                .opacity(disableBackBtn ? 0.5 : 1)
             
             Text(title)
                 .font(.customFont(type: .semiBold,
