@@ -29,7 +29,7 @@ struct GoogleMapsView: UIViewRepresentable {
         if marker.title == nil {
             marker.map = mapView
         }
-        var markers = vm.results.map({ GMSMarker(position: CLLocationCoordinate2D(latitude: $0.object?.place?.coords?.lat ?? 0,
+        let markers = vm.results.map({ GMSMarker(position: CLLocationCoordinate2D(latitude: $0.object?.place?.coords?.lat ?? 0,
                                    longitude: $0.object?.place?.coords?.lon ?? 0))})
         
         vm.results.enumerated().forEach { (index, event) in

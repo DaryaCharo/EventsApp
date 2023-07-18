@@ -19,8 +19,11 @@ struct SettingsLabel: View {
             Image(systemName: type.getIcon)
                 .frame(width: 25, height: 25)
                 .padding(10)
-                .foregroundColor(.customPurple)
-                .background(Color.customPurple.opacity(0.2))
+                .foregroundColor(type == .deleteAccount ?
+                    .customRed : .customPurple)
+                .background(type == .deleteAccount ?
+                            Color.customRed.opacity(0.2) :
+                                Color.customPurple.opacity(0.2))
                 .clipShape(Circle())
                 .padding(8)
         }
@@ -29,6 +32,6 @@ struct SettingsLabel: View {
 
 struct SettingsLabel_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsLabel(type: .editProfile)
+        SettingsLabel(type: .deleteAccount)
     }
 }

@@ -18,8 +18,11 @@ final class SettingsVM: ObservableObject {
         providers.signOut()
     }
     
-    func deleteAccount() async {
-        await providers.deleteUser()
+    //обёрнуто в такс, чтобы вызвать во вью
+    func deleteAccount() {
+        Task {
+            await providers.deleteUser()
+        }
     }
     
     enum ShowView: Identifiable {

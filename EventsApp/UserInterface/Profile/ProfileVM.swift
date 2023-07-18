@@ -19,7 +19,7 @@ final class ProfileVM: ObservableObject {
     @Published var fullName = ""
     @Published var id = ""
     @Published var email = ""
-    @Published var avatar = ""
+    @Published var avatar = Data.empty
     let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
     let fullNameRegex = "^(?=.{2,100}$)[A-Za-zÀ-ú][A-Za-zÀ-ú.'-]+(?: [A-Za-zÀ-ú.'-]+)* *$"
     
@@ -34,11 +34,15 @@ final class ProfileVM: ObservableObject {
         }
     }
     
-    func changeUserInfo() async {
-        await providers.changeUserInfo(id: id,
-                                       email: email,
-                                       fullName: fullName)
-        await getUser()
+    //обёрнуто в такс, чтобы вызвать во вью
+    func changeUserInfo() {
+        Task {
+            await providers.changeUserInfo(id: id,
+                                           email: email,
+                                           fullName: fullName,
+                                           avatar: avatar)
+            await getUser()
+        }
     }
     
     enum ShowView: Identifiable {

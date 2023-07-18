@@ -2,7 +2,7 @@
 //  CheckProfile.swift
 //  EventsApp
 //
-//  Created by Darya Charniankova on 17.07.23.
+//  Created by Darya Charniankova on 18.07.23.
 //
 
 import SwiftUI
@@ -14,16 +14,10 @@ struct CheckProfile: View {
     var body: some View {
         VStack {
             switch checkTextFields {
-            case .id:
-                if vm.id.trimmingCharacters(in: .whitespaces).isEmpty {
-                    ProfileErrors(type: .emptyField)
-                } else {
-                    ProfileErrors(type: .id)
-                }
             case .email:
                 if !vm.email.trimmingCharacters(in: .whitespaces).isEmpty {
                     if vm.email.range(of: vm.emailRegex,
-                                      options: .regularExpression) == nil {
+                                   options: .regularExpression) == nil {
                         ProfileErrors(type: .email)
                     }
                 } else {
@@ -40,16 +34,14 @@ struct CheckProfile: View {
                 }
             }
         }
-        .padding(.bottom, 5)
     }
-    
     enum TextFields {
-        case id, email, fullName
+        case email, fullName
     }
 }
 
 struct CheckProfile_Previews: PreviewProvider {
     static var previews: some View {
-        CheckProfile(checkTextFields: .id)
+        CheckProfile(checkTextFields: .email)
     }
 }

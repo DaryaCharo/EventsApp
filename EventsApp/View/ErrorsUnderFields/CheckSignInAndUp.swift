@@ -1,8 +1,8 @@
 //
-//  CheckLogInAndUp.swift
+//  CheckSignInAndUp.swift
 //  EventsApp
 //
-//  Created by Darya Charniankova on 17.07.23.
+//  Created by Darya Charniankova on 18.07.23.
 //
 
 import SwiftUI
@@ -17,7 +17,7 @@ struct CheckSignInAndUp: View {
             case .email:
                 if !vm.email.trimmingCharacters(in: .whitespaces).isEmpty {
                     if vm.email.range(of: vm.emailRegex,
-                                                  options: .regularExpression) == nil {
+                                   options: .regularExpression) == nil {
                         SignInAndUpErrors(type: .email)
                     }
                 } else {
@@ -26,7 +26,7 @@ struct CheckSignInAndUp: View {
             case .fullName:
                 if !vm.fullName.trimmingCharacters(in: .whitespaces).isEmpty {
                     if vm.fullName.range(of: vm.fullNameRegex,
-                                         options: .regularExpression) == nil {
+                                      options: .regularExpression) == nil {
                         SignInAndUpErrors(type: .fullName)
                     }
                 } else {
@@ -49,10 +49,9 @@ struct CheckSignInAndUp: View {
                     }
                 }
             }
+            
         }
-        .padding(.bottom, 5)
     }
-    
     enum TextFields {
         case email, fullName, pass, confPass
     }
@@ -60,6 +59,6 @@ struct CheckSignInAndUp: View {
 
 struct CheckSignInAndUp_Previews: PreviewProvider {
     static var previews: some View {
-        CheckSignInAndUp(checkTextField: .fullName)
+        CheckSignInAndUp(checkTextField: .email)
     }
 }

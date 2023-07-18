@@ -46,18 +46,13 @@ struct SettingsView: View {
                 }
                 Section {
                     Button {
-                        deleteUser()
+                        vm.deleteAccount()
                     } label: {
                         SettingsLabel(type: .deleteAccount)
                     }
                 }
             }
             .listStyle(.inset)
-        }
-    }
-    private func deleteUser() {
-        Task {
-            await vm.deleteAccount()
         }
     }
 }

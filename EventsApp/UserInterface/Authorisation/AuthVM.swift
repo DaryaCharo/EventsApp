@@ -26,7 +26,7 @@ final class AuthVM: ObservableObject {
     @Published var pass = ""
     @Published var confPass = ""
     
-    func continueWithEmail() async {        
+    func continueWithEmail() async {
         await providers.signIn(providerType: .firebase,
                                email: email,
                                pass: pass)
@@ -44,16 +44,16 @@ final class AuthVM: ObservableObject {
                                fullName: fullName)
     }
     
-    deinit {
-        cancellable.removeAll()
-    }
-    
     enum ShowView: Identifiable {
         case startPage
         
         var id: Int {
             return 1
         }
+    }
+    
+    deinit {
+        cancellable.removeAll()
     }
 }
 

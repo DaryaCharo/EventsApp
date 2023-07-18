@@ -12,20 +12,26 @@ struct NotificationSettingsLabel: View {
     @State var type: NotifySettings
     
     var body: some View {
-        if type == .reset {
-            HStack {
-                Button {
-                    vm.resetNotifications()
-                } label: {
-                    Text(type.getText)
-                }
-            }
-        } else {
-            HStack {
+        HStack {
+            switch type {
+            case .notificationOnOff:
+                
                 Text(type.getText)
                 Spacer()
                 Toggle(isOn: $vm.onNotification) {
                     
+                }
+            case .showNotifications:
+                Text(type.getText)
+                Spacer()
+                Toggle(isOn: $vm.onNotification) {
+                    
+                }
+            case .reset:
+                Button {
+                    vm.resetNotifications()
+                } label: {
+                    Text(type.getText)
                 }
             }
         }

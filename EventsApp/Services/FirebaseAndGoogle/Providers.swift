@@ -92,12 +92,14 @@ final class Providers {
     
     func changeUserInfo(id: String,
                         email: String,
-                        fullName: String) async {
+                        fullName: String,
+                        avatar: Data) async {
         guard let user = currentUser else { return }
         do {
-            try await fireDB.collection("Users").document(user.id).updateData(["email" : email,
-                                                                                "fullname" : fullName,
-                                                                                "id" : id])
+            try await fireDB.collection("Users").document(user.id).updateData(["Email" : email,
+                                                                                "Full name" : fullName,
+                                                                                "ID" : id,
+                                                                                "Avatar" : avatar])
         } catch {
             print(error)
         }
@@ -107,14 +109,16 @@ final class Providers {
     
     func singUp(email: String,
                 pass: String,
-                fullName: String) async {
+                fullName: String,
+                avatar: Data = Data.empty) async {
         do {
             let result = try await authorisation.createUser(withEmail: email,
                                                             password: pass)
             userSession = result.user
             let user = UserData(id: result.user.uid,
                                 email: email,
-                                fullName: fullName)
+                                fullName: fullName,
+                                avatar: avatar)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await fireDB.collection("Users").document(user.id).setData(encodedUser)
             await fetchUser()
@@ -162,8 +166,9 @@ final class Providers {
                       user != authResult.user else { return }
                     self.userSession = authResult.user
                     let firestoreUser = UserData(id: authResult.user.uid,
-                                        email: authResult.user.email ?? "",
-                                        fullName: authResult.user.displayName ?? "")
+                                                 email: authResult.user.email ?? "",
+                                                 fullName: authResult.user.displayName ?? "",
+                                                 avatar: Data())
                     let encodedUser = try Firestore.Encoder().encode(firestoreUser)
                     try await fireDB.collection("Google users").document(user.getIDToken()).setData(encodedUser)
                 await fetchUser()

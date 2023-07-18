@@ -36,15 +36,8 @@ struct ProfileView: View {
     
     private var avatar: some View {
         VStack {
-            Image(systemName: "person.fill")
-                .resizable()
-                .foregroundColor(.customPurple).opacity(0.6)
-                .frame(maxWidth: 80, maxHeight: 80)
-                .padding()
-                .background(Color.white)
-                .clipShape(Circle())
-                .padding()
-                .shadow(radius: 1)
+            ProfileAvatar(data: vm.avatar)
+                .padding(.bottom)
             Text(vm.fullName)
                 .font(.customFont(type: .semiBold,
                                   size: 24))
