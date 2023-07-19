@@ -25,13 +25,13 @@ struct ProfileErrors: View {
         var getErrorMessage: String {
             switch self {
             case .incorrectBio:
-                return "Please fill the bio field correctly"
+                return "Поле с информацией заполнено некорректно"
             case .email:
-                return "Please fill the email field correctly"
+                return "Поле с почтой заполнено некорректно"
             case .fullName:
-                return "Please fill the name field correctly"
+                return "Поле с именем заполнено некорректно"
             case .emptyField:
-                return "Text filed can't be empty"
+                return "Поле не может оставаться пустым"
             }
         }
     }

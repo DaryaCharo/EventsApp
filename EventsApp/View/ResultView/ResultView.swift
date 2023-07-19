@@ -25,7 +25,7 @@ struct ResultView: View {
             
             if type == .search {
                 text
-                Text("Please try another keyword")
+                Text("Результатов по данному запросу не найдено")
                     .font(.customFont(type: .regular,
                                       size: 18))
             } else {
@@ -50,7 +50,7 @@ struct ResultView_Previews: PreviewProvider {
 }
 
 enum ViewType {
-    case notification, favourites, search, success
+    case notification, favourites, search
     
     var getImage: String {
         switch self {
@@ -60,21 +60,17 @@ enum ViewType {
             return "bookmark.fill"
         case .search:
             return "xmark.seal.fill"
-        case .success:
-            return "checkmark.circle.fill"
         }
     }
     
     var getText: String {
         switch self {
         case .notification:
-            return "You have no notifications"
+            return "Список уведомлений пуст"
         case .favourites:
-            return "You have no bookmarked event"
+            return "Список избранных пуст"
         case .search:
-            return "No results found"
-        case .success:
-            return "Changes save successfully"
+            return "Результат не найден"
         }
     }
 }

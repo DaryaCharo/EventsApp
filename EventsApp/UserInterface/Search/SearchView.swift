@@ -14,7 +14,7 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            HeaderWithBackBtn(title: "Search")
+            HeaderWithBackBtn(title: "Поиск")
             listOfResults
         }
         .searchable(text: $searchText)

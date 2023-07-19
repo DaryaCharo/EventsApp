@@ -47,7 +47,7 @@ struct ProfileView: View {
     
     private var header: some View {
         HStack {
-            HeaderWithLogo(title: "Profile")
+            HeaderWithLogo(title: "Профиль")
             
             Spacer()
             

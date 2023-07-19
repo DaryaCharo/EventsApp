@@ -31,7 +31,7 @@ struct EventNoteView: View {
                     }
                 }
             } else {
-                Text("Can't find any events")
+                Text("Невозможно найти события")
                     .font(.customFont(type: .semiBold,
                                       size: 20))
                     .frame(maxWidth: .infinity,
@@ -44,7 +44,7 @@ struct EventNoteView: View {
     private var header: some View {
         VStack {
             HStack {
-                HeaderWithLogo(title: "Event List")
+                HeaderWithLogo(title: "Список событий")
                 Spacer()
                 
                 CustomButton(type: .search)

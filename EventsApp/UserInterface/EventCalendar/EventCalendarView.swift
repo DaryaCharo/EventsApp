@@ -26,14 +26,14 @@ struct EventCalendarView: View {
     
     private var header: some View {
         HStack {
-            HeaderWithLogo(title: "My Calendar Event")
+            HeaderWithLogo(title: "Мой календарь событий")
             Spacer()
         }
         .padding(.top)
     }
     
     private var calendar: some View {
-        DatePicker("Calendar",
+        DatePicker("Календарь",
                    selection: $vm.date,
                    displayedComponents: [.date])
             .datePickerStyle(.graphical)
@@ -54,7 +54,7 @@ struct EventCalendarView: View {
                         }
                     }
                 } else {
-                    Text("Can't find any events on this day")
+                    Text("Невозможно найти события")
                         .font(.customFont(type: .semiBold,
                                           size: 20))
                         .frame(maxWidth: .infinity,

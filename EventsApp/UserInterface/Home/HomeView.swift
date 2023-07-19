@@ -33,7 +33,7 @@ struct HomeView: View {
     
     private var eventsList: some View {
         VStack {
-            Text("Today's Events")
+            Text("Сегодняшние события")
                 .font(.customFont(type: .semiBold,
                                   size: 25))
                 .frame(maxWidth: .infinity,
@@ -50,7 +50,7 @@ struct HomeView: View {
                         }
                     }
                 } else {
-                    Text("Can't find any events on this day")
+                    Text("События не найдены")
                         .font(.customFont(type: .semiBold,
                                           size: 20))
                         .frame(maxWidth: .infinity,
@@ -65,7 +65,7 @@ struct HomeView: View {
     
     private var header: some View {
         HStack {
-            HeaderWithLogo(title: "Home")
+            HeaderWithLogo(title: "Главная")
             
             Spacer()
             

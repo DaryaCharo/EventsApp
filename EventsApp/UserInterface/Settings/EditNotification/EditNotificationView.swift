@@ -11,7 +11,7 @@ struct EditNotificationView: View {
     
     var body: some View {
         VStack {
-            HeaderWithBackBtn(title: "Notification")
+            HeaderWithBackBtn(title: "Уведомления")
             
             settings
             Spacer()
