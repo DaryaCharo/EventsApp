@@ -16,13 +16,13 @@ struct SignInView: View {
                 LogoView()
                     .padding(20)
                 
-                Text("Sign in to your account")
+                Text("Войти в аккаунт")
                     .font(.customFont(type: .semiBold,
                                       size: 20))
                 formFields
                 signInButton
                 
-                Text("or continue with")
+                Text("или продолжить с")
                     .padding()
                 
                 googleButton
@@ -47,7 +47,7 @@ struct SignInView: View {
             }
         } label: {
             Label {
-                Text("Continue with Google")
+                Text("Войти с Google")
                     .font(.customFont(type: .semiBold,
                                       size: 16))
                     .foregroundColor(.black)
@@ -76,7 +76,7 @@ struct SignInView: View {
                 vm.showView = .startPage
             }
         } label: {
-            Text("Sign In")
+            Text("Войти")
                 .font(.customFont(type: .semiBold,
                                   size: 18))
                 .frame(maxWidth: .infinity)
@@ -118,8 +118,8 @@ struct SignInView: View {
                 .navigationBarBackButtonHidden()
         } label: {
             HStack {
-                Text("Don't have an account? ") +
-                Text("Sign Up").foregroundColor(.customPurple)
+                Text("Еще не зарегистрированы? ") +
+                Text("Зарегистрироваться").foregroundColor(.customPurple)
                     .bold()
             }
             .frame(maxWidth: .infinity)

@@ -23,13 +23,6 @@ final class FavouriteVM: ObservableObject {
         }
     }
     
-    func checkIsEventFav(id: Int) async {
-        if favourites.contains(id),
-                 !isFavourite {
-           isFavourite.toggle()
-       }
-    }
-    
     private func fillResults() async {
         for id in favourites {
             let result = await eventManager.getEvents(id: id)
@@ -72,9 +65,9 @@ final class FavouriteVM: ObservableObject {
     }
     
     enum ShowView: Identifiable {
-        case favouriteView
+        case favouriteView, showingFavs
         var id: Int {
-            return 1
+            self == .favouriteView ? 1 : 2
         }
     }
 }

@@ -17,7 +17,7 @@ struct SignUpView: View {
                 LogoView()
                     .padding(20)
                 
-                Text("Create your new account")
+                Text("Создать новый аккаунт")
                     .font(.customFont(type: .semiBold,
                                       size: 20))
                 formFields
@@ -43,7 +43,7 @@ struct SignUpView: View {
                 vm.showView = .startPage
             }
         } label: {
-            Text("Sign Up")
+            Text("Зарегистрироваться")
                 .font(.customFont(type: .semiBold,
                                   size: 18))
                 .frame(maxWidth: .infinity)
@@ -65,8 +65,8 @@ struct SignUpView: View {
             dismiss()
         } label: {
             HStack {
-                Text("Already have an account? ") +
-                Text("Sign In").foregroundColor(.customPurple)
+                Text("Уже есть аккаунт? ") +
+                Text("Войти в систему").foregroundColor(.customPurple)
                     .bold()
             }
             .frame(maxWidth: .infinity)

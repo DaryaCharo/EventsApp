@@ -40,13 +40,13 @@ enum BaseSettings: Int, CaseIterable, Identifiable {
     var getText: String {
         switch self {
         case .editProfile:
-            return "Edit profile"
+            return "Редактировать профиль"
         case .notification:
-            return "Notification"
+            return "Уведомления"
         case .signOut:
-            return "Sign Out"
+            return "Выйти из аккаунта"
         case .deleteAccount:
-            return "Delete account"
+            return "Удалить аккаунт"
         }
     }
     
