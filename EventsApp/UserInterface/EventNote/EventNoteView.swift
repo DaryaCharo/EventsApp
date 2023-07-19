@@ -28,7 +28,6 @@ struct EventNoteView: View {
                 VStack {
                     ForEach(vm.results, id: \.id) { result in
                         EventFromListView(event: result)
-                        .padding(.bottom)
                     }
                 }
             } else {

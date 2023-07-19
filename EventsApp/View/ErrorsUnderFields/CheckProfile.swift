@@ -32,11 +32,21 @@ struct CheckProfile: View {
                 } else {
                     ProfileErrors(type: .emptyField)
                 }
+            case .bio:
+                if !vm.bio.trimmingCharacters(in: .whitespaces).isEmpty {
+                    if vm.bio.range(of: vm.fullNameRegex,
+                                    options: .regularExpression) == nil {
+                        ProfileErrors(type: .incorrectBio)
+                    }
+                } else {
+                    ProfileErrors(type: .emptyField)
+                }
             }
         }
+        .padding(.vertical, 5)
     }
     enum TextFields {
-        case email, fullName
+        case email, fullName, bio
     }
 }
 

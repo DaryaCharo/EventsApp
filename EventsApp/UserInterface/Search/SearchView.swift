@@ -15,9 +15,7 @@ struct SearchView: View {
     var body: some View {
         VStack {
             HeaderWithBackBtn(title: "Search")
-            
-            Spacer()
-//            listOfResults
+            listOfResults
         }
         .searchable(text: $searchText)
         .task {
@@ -30,14 +28,18 @@ struct SearchView: View {
             if vm.results.contains(where: {$0.place != nil}) &&
                 vm.results.contains(where: {$0.dates != nil}) &&
                 !vm.results.contains(where: { $0.dates?.first?.isEnd ?? true }) {
-                VStack {
-                    ForEach(vm.results, id: \.id) { result in
-                        EventFromListView(event: result)
-                        .padding(.bottom)
+                ScrollView {
+                    VStack {
+                        ForEach(vm.results, id: \.id) { result in
+                            EventFromListView(event: result)
+                                .padding(.bottom)
+                        }
                     }
                 }
             } else {
+                Spacer()
                 ResultView(type: .search)
+                Spacer()
             }
         }
     }
@@ -48,8 +50,4 @@ struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView(searchText: .constant(""))
     }
-}
-
-enum ResultState {
-    case fetch, unloaded, loading
 }

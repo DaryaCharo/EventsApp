@@ -19,7 +19,7 @@ final class ProfileVM: ObservableObject {
     @Published var fullName = ""
     @Published var id = ""
     @Published var email = ""
-    @Published var avatar = Data.empty
+    @Published var bio = ""
     let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
     let fullNameRegex = "^(?=.{2,100}$)[A-Za-zÀ-ú][A-Za-zÀ-ú.'-]+(?: [A-Za-zÀ-ú.'-]+)* *$"
     
@@ -30,7 +30,7 @@ final class ProfileVM: ObservableObject {
             fullName = user.fullName
             id = user.id
             email = user.email
-            avatar = user.avatar
+            bio = user.bio
         }
     }
     
@@ -40,7 +40,7 @@ final class ProfileVM: ObservableObject {
             await providers.changeUserInfo(id: id,
                                            email: email,
                                            fullName: fullName,
-                                           avatar: avatar)
+                                           bio: bio)
             await getUser()
         }
     }

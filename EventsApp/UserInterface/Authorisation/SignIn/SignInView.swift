@@ -126,7 +126,7 @@ struct SignInView: View {
             .font(.customFont(type: .semiBold,
                               size: 20))
             .foregroundColor(.gray)
-            .padding(.horizontal)
+            .padding()
         }
     }
 }

@@ -11,12 +11,13 @@ struct UserData: Identifiable, Codable {
     var id: String
     var email: String
     var fullName: String
-    var avatar: Data
+    var bio: String
     
     enum CodingKeys: String, CodingKey {
-        case id, email,
-        fullName = "Full name",
-        avatar = "Avatar"
+        case id = "ID",
+             email = " Email",
+             fullName = "Full name",
+             bio = "Bio"
     }
 }
 

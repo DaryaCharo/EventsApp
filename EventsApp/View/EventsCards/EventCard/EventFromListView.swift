@@ -17,6 +17,7 @@ struct EventFromListView: View {
             VStack(spacing: 8) {
                 EventImageView(imageFor: .shortInfo,
                                imageURL: event?.images?.image ?? "")
+                .padding(.vertical, 48)
 
                 eventInfo
             }

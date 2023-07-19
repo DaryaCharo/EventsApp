@@ -34,7 +34,7 @@ struct CheckSignInAndUp: View {
                 }
             case .pass:
                 if !vm.pass.trimmingCharacters(in: .whitespaces).isEmpty &&
-                    vm.pass.count < 5 {
+                    vm.pass.count < 6 {
                     SignInAndUpErrors(type: .pass)
                 } else if vm.pass.trimmingCharacters(in: .whitespaces).isEmpty {
                     SignInAndUpErrors(type: .emptyField)
@@ -49,8 +49,8 @@ struct CheckSignInAndUp: View {
                     }
                 }
             }
-            
         }
+        .padding(.vertical, 5)
     }
     enum TextFields {
         case email, fullName, pass, confPass

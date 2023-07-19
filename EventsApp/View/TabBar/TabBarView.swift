@@ -13,7 +13,6 @@ struct TabBarView: View {
             HomeView()
                 .tabItem {
                     Image("Home")
-
                 }
             EventNoteView()
                 .tabItem {

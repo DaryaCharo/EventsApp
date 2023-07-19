@@ -51,7 +51,7 @@ struct EditProfileView: View {
                    alignment: .leading)
             .padding([.bottom, .leading, .trailing])
             
-            AvatarView(data: vm.avatar)
+            AvatarView()
                 .padding(.bottom)
             
             InputFieldView(title: "Full name",
@@ -65,6 +65,14 @@ struct EditProfileView: View {
                            text: $vm.email)
             CheckProfile(vm: vm,
                          checkTextFields: .email)
+            
+            InputFieldView(title: "Bio",
+                           placeholder: vm.bio,
+                           text: $vm.bio)
+            
+            CheckProfile(vm: vm,
+                         checkTextFields: .bio)
+            
         }
     }
 }
