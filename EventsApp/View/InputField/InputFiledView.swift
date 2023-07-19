@@ -66,26 +66,26 @@ enum InputFieldText {
     var title: String {
         switch self {
         case .email:
-            return "Email"
+            return "Почта"
         case .fullName:
-            return "Full name"
+            return "Полное имя"
         case .pass:
-            return "Password"
+            return "Пароль"
         case .confirmPass:
-            return "Confirm password"
+            return "Подтверждение пароля"
         }
     }
     
     var placeholder: String {
         switch self {
         case .email:
-            return "Enter your email"
+            return "Введите вашу почту"
         case .fullName:
-            return "Enter your first name or create a nickname"
+            return "Введите ваше имя или создайте никнейм"
         case .pass:
-            return "Enter your password"
+            return "Введите ваш пароль"
         case .confirmPass:
-            return "Confirm your password"
+            return "Подтвердите ваш пароль"
         }
     }
 }

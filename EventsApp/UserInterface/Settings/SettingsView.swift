@@ -12,7 +12,7 @@ struct SettingsView: View {
     
     var body: some View {
         VStack {
-            HeaderWithBackBtn(title: "Settings")
+            HeaderWithBackBtn(title: "Настройки")
             
             listOfSettings
         }

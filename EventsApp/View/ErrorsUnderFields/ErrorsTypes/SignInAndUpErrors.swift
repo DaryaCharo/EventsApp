@@ -26,15 +26,15 @@ struct SignInAndUpErrors: View {
         var getErrorMessage: String {
             switch self {
             case .email:
-                return "Please fill the email field correctly"
+                return "Поле с почтой заполнено некорректно "
             case .fullName:
-                return "Please fill the name field correctly"
+                return "Поле с именем заполнено некорректно"
             case .pass:
-                return "Password need to be more than 5 characters"
+                return "Пароль должен содержать больше 5 символов"
             case .confPass:
-                return "Password is not correct"
+                return "Пароль введён неверно"
             case .emptyField:
-                return "Text filed can't be empty"
+                return "Поле не может оставаться пустым"
             }
         }
     }

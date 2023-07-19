@@ -35,7 +35,7 @@ struct CurrentEventView: View {
     
     private var eventInfo: some View {
         VStack {
-            Text(event?.title ?? "Title")
+            Text(event?.title ?? "Название")
                 .font(.customFont(type: .semiBold,
                                   size: 18))
                 .lineLimit(3)
@@ -44,7 +44,7 @@ struct CurrentEventView: View {
                 .padding(.horizontal)
             
             HStack {
-                Text(event?.type ?? "event")
+                Text(event?.type ?? "событие")
                     .font(.customFont(type: .regular,
                                       size: 16))
                     .padding(8)
@@ -58,7 +58,7 @@ struct CurrentEventView: View {
                     .font(.customFont(type: .regular,
                                       size: 16))
                     .padding(.leading, 8)
-                Text(" Going")
+                Text("пойдут")
                     .font(.customFont(type: .regular,
                                       size: 16))
             }
@@ -68,7 +68,7 @@ struct CurrentEventView: View {
             
             HStack {
                 Label {
-                    Text(event?.place?.address ?? "Place doesn't have address yet")
+                    Text(event?.place?.address ?? "Адрес не был добавлен")
                         .font(.customFont(type: .regular,
                                           size: 16))
                         .lineLimit(2)

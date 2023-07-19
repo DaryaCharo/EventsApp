@@ -53,7 +53,7 @@ struct FeaturedEventsView: View {
         Button {
             showInfo = .fullInfoView
         } label: {
-            Text("Learn more")
+            Text("Узнать больше")
                 .font(.customFont(type: .semiBold,
                                   size: 16))
                 .padding(5)

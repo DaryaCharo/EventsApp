@@ -22,11 +22,11 @@ enum NotifySettings {
     var getText: String {
         switch self {
         case .notificationOnOff:
-            return "Notifications"
+            return "Уведомления"
         case .showNotifications:
-            return "Show notifications"
+            return "Показывать уведомления"
         case .reset:
-            return "Reset notifications"
+            return "Сбросить настройки"
         }
     }
 }

@@ -26,7 +26,7 @@ struct FullCurrentEventView: View {
     private var title: some View {
         VStack {
             HStack {
-                Text(event?.type ?? "event")
+                Text(event?.type ?? "событие")
                     .padding(8)
                     .overlay {
                         RoundedRectangle(cornerRadius: 24)
@@ -37,11 +37,11 @@ struct FullCurrentEventView: View {
                 Spacer()
                 
                 Text(event?.favouritesCount?.description ?? "0")
-                Text("Going")
+                Text("пойдёт")
             }
             
             HStack {
-                Text(event?.title ?? "Title")
+                Text(event?.title ?? "Название")
                     .font(.title)
                     .bold()
                 
@@ -64,7 +64,7 @@ struct FullCurrentEventView: View {
     
     private var aboutEvent: some View {
         VStack {
-            Text(event?.description ?? "Can't find any information" )
+            Text(event?.description ?? "Не удалось найти никакой информации" )
                 .frame(maxWidth: .infinity,
                        alignment: .leading)
             HStack(spacing: 5) {
@@ -73,9 +73,13 @@ struct FullCurrentEventView: View {
                      "+" : "")
                    
             }
-            .padding(.top, 8)
+            .padding(.vertical, 8)
             .frame(maxWidth: .infinity,
                    alignment: .leading)
+            
+            Text(event?.place?.phone ?? "Телефон не был добавлен")
+                .frame(maxWidth: .infinity,
+                       alignment: .leading)
         }
         .padding(.vertical)
     }
@@ -112,7 +116,7 @@ struct FullCurrentEventView: View {
             
             VStack {
                 Text(event?.dateRange?.startDate?.formatted(date: .abbreviated,
-                                                            time: .omitted) ?? "Date is unknown")
+                                                            time: .omitted) ?? "Дата неизвестна")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
@@ -121,7 +125,7 @@ struct FullCurrentEventView: View {
                 Button {
                     
                 } label: {
-                    Text("Add to My Calendar")
+                    Text("Добавить в календарь")
                         .font(.headline)
                         .padding(5)
                 }
@@ -144,13 +148,13 @@ struct FullCurrentEventView: View {
                 .clipShape(Circle())
             
             VStack {
-                Text(event?.place?.address ?? "Address has not been added yet")
+                Text(event?.place?.address ?? "Адрес не был добавлен")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,
                            alignment: .leading)
                 
                 Label {
-                    Text(event?.place?.subway ?? "Subway has not been added yet")
+                    Text(event?.place?.subway ?? "Станция метро ещё не добавлена")
                         .frame(maxWidth: .infinity,
                                alignment: .leading)
                 } icon: {
@@ -164,7 +168,7 @@ struct FullCurrentEventView: View {
                 Button {
                     showMap = .map
                 } label: {
-                    Text("See on Map")
+                    Text("Посмотреть на карте")
                         .font(.headline)
                         .padding(5)
                 }

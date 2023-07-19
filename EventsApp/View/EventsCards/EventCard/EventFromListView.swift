@@ -36,7 +36,7 @@ struct EventFromListView: View {
     
     private var eventInfo: some View {
         VStack {
-            Text(event?.title ?? "Title")
+            Text(event?.title ?? "Название")
                 .font(.customFont(type: .semiBold,
                                   size: 18))
                 .lineLimit(3)
@@ -45,7 +45,7 @@ struct EventFromListView: View {
                 .padding(.horizontal)
             
             HStack {
-                Text(event?.categories?.first?.name ?? "event")
+                Text(event?.categories?.first?.name ?? "событие")
                     .font(.customFont(type: .regular,
                                       size: 16))
                     .padding(8)
@@ -59,7 +59,7 @@ struct EventFromListView: View {
                     .font(.customFont(type: .regular,
                                       size: 16))
                     .padding(.leading, 8)
-                Text("Going")
+                Text("пойдут")
                     .font(.customFont(type: .regular,
                                       size: 16))
             }
@@ -69,7 +69,7 @@ struct EventFromListView: View {
             
             HStack {
                 Label {
-                    Text(event?.place?.address ?? "Place doesn't have address yet")
+                    Text(event?.place?.address ?? "Адрес не был добавлен")
                         .font(.customFont(type: .regular,
                                           size: 16))
                         .lineLimit(2)

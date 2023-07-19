@@ -12,7 +12,7 @@ struct NotificationView: View {
     
     var body: some View {
         VStack {
-            HeaderWithBackBtn(title: "Notifications")
+            HeaderWithBackBtn(title: "Уведомления")
             
             if notifications.isEmpty {
                 Spacer()

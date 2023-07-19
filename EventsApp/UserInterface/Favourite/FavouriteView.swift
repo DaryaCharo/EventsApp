@@ -12,7 +12,7 @@ struct FavouriteView: View {
     
     var body: some View {
         VStack {
-            HeaderWithBackBtn(title: "Favourite events")
+            HeaderWithBackBtn(title: "Избранные события")
             
             if vm.results.isEmpty {
                 Spacer()
