@@ -20,12 +20,12 @@ struct ProfileErrors: View {
     }
     
     enum ErrorTypes {
-        case id, email, fullName, emptyField
+        case incorrectBio, email, fullName, emptyField
         
         var getErrorMessage: String {
             switch self {
-            case .id:
-                return "Please fill the email field correctly"
+            case .incorrectBio:
+                return "Please fill the bio field correctly"
             case .email:
                 return "Please fill the email field correctly"
             case .fullName:
@@ -39,6 +39,6 @@ struct ProfileErrors: View {
 
 struct ProfileErrors_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileErrors(type: .id)
+        ProfileErrors(type: .incorrectBio)
     }
 }

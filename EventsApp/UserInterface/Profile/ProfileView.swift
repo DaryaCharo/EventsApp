@@ -28,7 +28,7 @@ struct ProfileView: View {
     
     private var bio: some View {
         VStack {
-            Text("My bio")
+            Text(vm.bio)
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -36,7 +36,7 @@ struct ProfileView: View {
     
     private var avatar: some View {
         VStack {
-            ProfileAvatar(data: vm.avatar)
+            AvatarView()
                 .padding(.bottom)
             Text(vm.fullName)
                 .font(.customFont(type: .semiBold,
